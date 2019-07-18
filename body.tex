@@ -1,0 +1,177 @@
+\pagestyle{plain}
+\section{Machine Learning Terminology}
+%\subsection{What is overfitting?\cite{l1l2regularization}}
+\subsection[What is overfitting?]{What is overfitting?\cite{l1l2regularization}}
+\label{sec:what_is_overfitting}
+When too simple a model is used to predict something, it will likely fail and is said to have \emph{high bias}.
+
+When too complex a model is used to predict something, the model has likely learnt the data patterns as well as the noise in the training dataset. The goal is to learn only the data patterns while ignoring the noise. Such a model usually does very well on the training dataset but does not generalize. Such a model is said to be \emph{overfitting}.
+
+\subsection{Regularization}
+\subsubsection[What is regularization?]{What is regularization?\cite{l1l2regularization}}
+\label{sec:what_is_regularization}
+Regularization is a technique to discourage overfitting or complexity of the model. It does this by penalizing the loss function.
+
+Consider a polynomial regression model of four input variables:
+\begin{equation}
+f(x_i) = h_{\theta}x = \theta_0 + \theta_1 x_1 + \theta_2 x_2^2 + \theta_3 x_3^3 + \theta_4 x_4^4
+\end{equation}
+
+The main reference~\cite{l1l2regularization} for this subsection mentions that the above function is a linear regression model - however, the above function is actually a polynomial regression model~\cite{WikiPolynomialRegression}, but is linear in terms of the unknown parameters $\theta_0, \theta_1, \theta_2, \theta_3, \theta_4$. A polynomial regression model can be treated as a multi-variable linear regression model (also called \emph{multiple regression}) by taking $1, x_1,x_2^2,x_3^3,x_4^4$ as the inputs instead of $1,x_1,x_2,x_3,x_4$.
+
+A loss function without regularization for the above model would be:
+\begin{equation}
+    L(x,y) = \sum_{i=1}^{n}(y_i - f(x_i))^2
+\end{equation}
+
+Such a model may be too complex to fit a few points on the $x$--$y$ plane, and it would help to make the model simple (e.g., making $\theta_3$ and $\theta_4$ very small or negligible). This can be done by modifying the loss function to:
+\begin{equation}
+    L(x,y) = \sum_{i=1}^{n}(y_i - f(x_i))^2 + \lambda \sum_{i=1}^{n} \theta_i^2
+    \label{eq:ridge_regularization}
+\end{equation}
+The second term of the above equation is called the regularization term which encourages smaller values of weights $\theta_i$. 
+
+$\lambda$ is the \emph{penalty term} which determines how much to penalize the weights. Too high $\lambda$ will result in underfitting and too low $\lambda$ will result in overfitting.
+
+Below are some methods of regularization.
+
+\subsubsection[Early stopping]{Early stopping\cite{WikiRegularization}}
+\label{sec:early_stopping}
+Early stopping can be viewed as regularization in time. A training procedure will tend to learn more and more complex functions as the number of training iterations increases. By regularizing on time, the complexity of the model can be controlled, improving generalization.
+
+\subsubsection[Lasso or L1 Regularization]{Lasso or L1 Regularization\cite{l1l2regularization}}
+\label{sec:lasso}
+Lasso or L1 regularization does feature selection by assigning insignificant input features with a zero weight and useful features with a non-zero weight. The loss function looks like:
+\begin{equation}
+    L(x,y) = \sum_{i=1}^{n}(y_i - h_{\theta}(x_i))^2 + \lambda\sum_{i=1}^{n}|\theta_i|
+\end{equation}
+
+\subsubsection[Ridge or L2 Regularization]{Ridge or L2 Regularization\cite{l1l2regularization}}
+\label{sec:ridge_regularization}
+In L2 regularization, the regularization term is the sum of squares of all feature weights, already shown in Eq.~\ref{eq:ridge_regularization}. This forces weights to be small but does not make them zero leading to a non-sparse solution. This performs well when all the input features influence the output and all weights are of roughly equal size.
+
+\subsubsection{Weight decay}
+\label{sec:weight_decay}
+In \emph{weight decay} approach, after each training update, the weights are multiplied by a factor slightly less than one to prevent the weights from growing too large. 
+
+\subsubsection[Dropout]{Dropout\cite{Brownlee2018}}
+\label{sec:dropout}
+In this approach, a model's nodes are randomely dropped out during the training phase to reduce overfitting or co-learning, improving generalization.
+
+\subsection[Cross-entropy]{Cross-entropy\cite{WikiCrossEntropy}}
+\label{sec:cross_entropy}
+This is likely written from the point of view of classification. 
+Consider a model with probability distribution $p_i$ for its true labels, and probability distribution $q_i$ for the predicted labels.
+Let this model be a logistic regression, which deals with classifying a given set of data points into two possible classes labelled 0 or 1. The logistic regression model predicts an output $y \in {0,1}$ for a given input vector $\mathbf{x}$. Let $\mathbf{w}$ be the weights of this model. The probability is modelled using the \emph{logistic function} $g(z) = \frac{1}{(1 + e^{-z})}$. 
+
+Probability of finding the output $y = 1$ is:
+\begin{equation}
+    q_{y=1} = \hat y = g(\mathbf{w}.\mathbf{x}) = \frac{1}{1 + e^{-\mathbf{w}.\mathbf{x}}},
+\end{equation}
+and the probability of finding the output $y=0$ is $q_{y=0} = 1 - \hat y$. 
+
+Let the true probabilities be expressed similarly as $p_{y=1}=y$ and $p_{y=0}=1-p$. Then the cross-entropy for $p \in {y,1-y}$ and $q \in {\hat y, 1- \hat y}$ is a measure of dissimilarity given by:
+\begin{equation}
+    H(p,q) = - \sum_i p_i \log q_i = -y \log\hat y - (1 - y)\log(1 - \hat y).
+\end{equation}
+The above was for the classification of input $\mathbf{x}$ into just one class, i.e., whether it belonged to that class or not. Suppose we have $N$ classes indexed $n=1,...,N$, then we can have a cross-entropy for each pair of classes, and we can define a cost function which is the average of all cross-entropies:
+\begin{equation}
+    J(w) = \frac{1}{N} \sum_{n=1}^N H(p_n,q_n) = -\frac{1}{N}\sum_{n=1}^N \left[y_n \log\hat y_n + (1 - y_n)\log(1 - \hat y_n)\right]
+\end{equation}
+
+\subsection[Likelihood function]{Likelihood function\cite{WikiLikelihoodFunction}}
+\label{sec:likelihood_function}
+Likelihood function describes the relative probability of obtaining the observed data for all permissible values of the parameter, and is used to identify the particular parameter values that are most plausible given the observed data. Let $X$ be a discrete random variable with probability mass function $p$ depending on a parameter $\theta$. Then the function
+\begin{equation}
+L(\theta|x) = p_{\theta}(x) = P_{\theta}(X = x),
+\end{equation}
+is the likelihood function of $\theta$ given the outcome $x$ of $X$. Check out ``Example 1" of the reference mentioned above.
+
+\subsection[Maximum Likelihood Estimation]{Maximum Likelihood Estimation\cite{WikiMLE}}
+\label{sec:MLE}
+MLE is a method of estimating the parameters of a statistical model, given observations. The method obtains parameter estimates by finding the parameter values that maximize the \emph{likelihood function} $L(\theta; x)$. Suppose we're given a statistical model, i.e. a family of distributions $\{f(\cdot ; \theta)| \theta \in \Theta\}$, where $\theta$ denotes the parameter of the model. The method of maximum likelihood finds the values of the model parameter $\theta$ that maximize the likelihood function $L(\theta; x)$:
+\begin{equation}
+    \hat \theta \in {\argmax_{\theta \in \Theta} L(\theta; x)}
+\end{equation}
+
+\subsection[Posterior Probability]{Posterior Probability\cite{WikiPosteriorProbability}}
+\label{sec:posterior_probability}
+Posterior probability of a random event is the conditional probability after taking into account all the evidence or background information.
+
+Posterior probability is the probability of the parameter $\theta$ given the evidence $X:p(\theta | X)$. This contrasts with the likelihood function (Sec.~\ref{sec:likelihood_function}) which is the probability of the evidence given the parameters $:p(X | \theta)$. The two are related as follows: Let us have a prior belief that the probability distribution fuction is $p(\theta)$ and observations $x$ with the likelihood $p(x|\theta)$, then the posterior probability is defined as:
+\begin{equation}
+    p(\theta|x) = \frac{p(x|\theta) p(\theta))}{p(x)}
+\end{equation}
+
+\subsection[Linear Models]{Linear Models~\cite{friedman2001elements}}
+\label{sec:linear_model}
+Given a vector of inputs $X^T = \left(X_1, X_2,...,X_p \right)$, we predict the output via the model:
+\begin{equation}
+    \hat{Y} = \hat{\beta}_0 + \sum_{j=1}^{p} X_j \hat{\beta}_j.
+\end{equation}
+The term $\hat{\beta}_0$ is the intercept, also known as the \emph{bias} in machine learning. Often it is convenient to include the constant variable $1$ in $X$, and include $\hat{\beta}_0$ in the vector of coefficients $\hat{\beta}$, and write the linear model in vector form as an inner product:
+\begin{equation}
+    \hat{Y} = X^T \hat{\beta}.
+\end{equation}
+
+\section{Paper Reading Notes}
+\subsection{Weight Uncertainty in Neural Networks}
+\subsubsection{Section 2}
+View a neural network as a probabilistic model $P(y|x,w)$: given an input $x \in \mathbb{R}^p$ a neural network assigns a probability to each possible output $y \in Y$, using the set of parameters or weights $w$. The weights can be learnt by maximum likelihood estimation (MLE): given a set of training examples $D=(x_i,y_i)$, the MLE weights $w^{\text{MLE}}$ are given by:
+\begin{align}
+    w^{\text{MLE}} &= \argmax_{w} \log P(D|w)\\
+    &= \argmax_{w} \sum_i \log P(y_i | x_i, w).
+\end{align}
+This is typically achieve by gradient descent (e.g., back-propagation).
+
+Regularization can be introduced by:
+\begin{equation}
+    w^{\text{MAP}} = \argmax_{w} \log P(D|w) + \log P(w).
+    \label{eq:bayesian_mle_map}
+\end{equation}
+
+\kishore{Isn't it supposed to be argmin instead of argmax, because we want to find the least complex model (see Sec.\ref{sec:what_is_regularization})?} No. Here, we're not minimizing the error due to the model against the training dataset like in Eq.~\ref{eq:ridge_regularization}. Instead, we're maximizing the probability of (1) seeing the training dataset $D$ given weights $w$, and the probability of weights $w$ given a prior probability distribution. 
+
+\subsection{DeepFocus Learned Image Synthesis for Computational Displays}
+\label{sec:DeepFocus}
+
+\section{Doubts}
+\label{sec:doubts}
+\subsection{Reconciling Posterior Probability and Likelihood}
+Read Example of reference\cite{WikiPosteriorProbability} and read Example 1 of reference\cite{WikiLikelihoodFunction}. Let us refer to these examples as $P$ (short for posterior probability) and $L$ (short for likelihood function) respectively.
+
+In example $L$, they say that these two statements are not the same:
+\begin{packed_enumerate}
+\item The likelihood that the model parameter $p_H = 0.5$  is 0.25
+\item The probability that the model parameter $p_H = 0.5$  is 0.25
+\end{packed_enumerate}
+
+Doubts:
+\begin{packed_enumerate}
+\item Why are they not the same? Is it simply because probability and likelihood are not the same things? 
+\item What is the difference between ``probability" and ``posterior probability" for $p_H$? Is the only difference that ``posterior probability" needs to take into account extra information, such as the outcome of coin tosses?
+\item How would one calculate the posterior probability of $p_H = 0.5$? $P(p_H = 0.5|HH) = \frac{P(HH|p_H = 0.5)P(p_H=0.5)}{P(HH)}$. But, how to know $P(p_H=0.5)$? What information is missing in example P which is not missing in example L, because in example L, they are able to calculate the posterior probability?
+\item Consider the formula for posterior probability in example $P$: $p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}$. This feels absurd because $p(x)$ is actually always dependent on $\theta$ -- recall example $L$: $P(HH)$ always depends on $p_H$. So, how can you define $p(\theta|x)$ based on $p(x)$? Consider example $P$ again--$P(T)$ clearly depends on $P(G)$. 
+\end{packed_enumerate}
+
+\subsection{Least Squares derivation}
+In ~\cite{friedman2001elements}, refer to the derivation of the solution to a least squares problem concluding on Eq. 2.6. Why is the derivation so long when you can simply start with $\hat{Y} = X^T \beta$ and conclude that $\beta = \left( X^T \right)^{-1} \hat{Y}$?
+
+
+\section{Tasks}
+\subsection{Kishore}
+\begin{packed_itemize}
+\item Look at the code
+\item Read ECE153's lecture notes
+\item Read Chapter 2 of Hastie's textbook
+\begin{packed_itemize}
+    \item Stuck at understanding derivation of Eq. 2.13.
+\end{packed_itemize}
+\item Read Chapter 21 on Variational Learning from Murphy's textbook
+\item Derive the result that $P(D|w)$ in Equation~\ref{eq:bayesian_mle_map} is essentially the cross-entropy as defined in Sec.~\ref{sec:cross_entropy}
+\end{packed_itemize}
+
+\subsection{Anusha}
+\begin{packed_enumerate}
+\item Reply to doubts in Sec.~\ref{sec:doubts}
+\end{packed_enumerate}
