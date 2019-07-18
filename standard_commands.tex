@@ -18,12 +18,10 @@
 \definecolor{DarkGreen}{rgb}{0.0, 0.5, 0.0}
 
 \ifauthorcomments
-\newcommand{\al}[1]{{\color{blue}{\textbf{[AL: #1]}}}}
 \newcommand{\kishore}[1]{\textcolor{Purple}{\textbf{[KR: #1]}}}
 \newcommand{\copiedverbatim}[1]{\textcolor{Blue}{\textbf{[#1]}}}
 \NewEnviron{copiedverbatim_par}{\color{blue}\BODY}
 \else
-\newcommand{\al}[1]{{\color{blue}{}}}
 \newcommand{\kishore}[1]{\textcolor{Purple}{\textbf{}}}
 \newcommand{\copiedverbatim}[1]{\textcolor{Blue}{}}
 \NewEnviron{copiedverbatim_par}{}
