@@ -3,5 +3,7 @@
 auto/
 auxiliary/
 *.code-workspace
+*.bak
+*.log
 
 
