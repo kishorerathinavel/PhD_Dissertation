@@ -1,0 +1,61 @@
+\input{chapters/varifocal_occlusion/tables/small_comparison_table.tex}
+
+\subsection{Varifocal Near-eye Displays}
+\label{sec:varifocal_occlusion:related:varifocal}
+Varifocal displays are similar to conventional fixed-focus near-eye displays, but they dynamically adjust the distance of the magnified virtual image. This can be achieved using focus-tunable lenses~\cite{Liu2008Optical,Konrad2016Novel,Johnson:16,Padmanaban2016Optimizing,Laffont:2018,Rathinavel2018}, deformable membranes~\cite{Dunn2017Wide,chakravarthula2018focusar}, or by mechanically actuating optical components~\cite{Shiwa1996proposal,Padmanaban2016Optimizing,Aksit2017Near}. Varifocal displays require eye tracking to determine the distance of the fixated object, to which the display is then focused in a gaze-contingent manner. 
+
+
+Previous work on varifocal near-eye displays has primarily sought to adjust the virtual image of the digitally displayed content, primarily to mitigate the vergence-accommodation conflict~\cite{kooi2004visual,lambooij2009visual}. %Some recent work extend the concept of varifocal displays to prescription vision correction by re-focusing different depths of the real world into the user's limited accommodation range~\cite{Padmanaban2019Autofocals,chakravarthula2018focusar}. 
+
+In this work, we extend the concept of varifocal displays to the problem of mutually consistent occlusion in AR, where the focus distance of an occlusion SLM is dynamically updated with the goal of improving perceptual realism. 
+We discuss optical design strategies and demonstrate a varifocal occlusion-capable AR display that dynamically adjusts the focus of both digital image and occlusion SLM.
+
+\subsection{Occlusion-capable AR displays}
+
+\subsubsection{Projection-based Lighting}
+
+Projection displays can be used to control the lighting of a scene in a spatially varying manner. Using such controlled illumination, mutually consistent occlusions, shading effects, and shadows in projector-based AR systems can be synthesized~\cite{Bimber:2002,bimber2003consistent,maimone2013general,avveduto2017real}.
+The primary disadvantages of these systems are that projectors are required for the AR experience, which are not necessarily portable or wearable, and that they may not work in the presence of ambient illumination.
+We aim for a fully integrated occlusion-capable AR display that does not require additional projectors.
+
+
+\subsubsection{Global Dimming} 
+
+Commercial AR displays (e.g., Microsoft HoloLens, Magic Leap) often use a neutral density filter placed on the outside of the display module to reduce ambient light uniformly across the entire field of view.
+An adaptive version of global dimming was recently proposed by Mori et al.~\cite{Mori2018}, where the amount of dimming is controlled by a single liquid crystal cell and responsive to its physical environment. While these approaches may be useful in some scenarios, they do not provide spatial control of the occlusion layer.
+
+
+\subsubsection{Fixed-focus Occlusion} 
+\label{sec:varifocal_occlusion:related:fixedfocusOcc}
+The physical scene can be focused onto an occlusion SLM which selectively blocks its transmission in a spatially varying manner before it reaches the user's eye. This idea was first proposed by the seminal work of Kiyokawa et al.~\cite{Kiyokawa2000,Kiyokawa2001,Kiyokawa2003}. Improvements of related systems were later demonstrated \cite{Cakmakci2004, Cakmakci2005, Wilson2017, Howlett2017, Wetzstein2010, Gao2012, Gao2013optical}. 
+
+Unfortunately, focusing a scene on an SLM usually requires a bulky optical system, first to focus it to the SLM, then to negate the effect of the first lens, and then to flip the resulting image the right way up. Moreover, as this approach only focuses a single distance of the scene on the occlusion SLM, hard-edge occlusion is only achieved at this fixed focus distance. This limitation is similar to the characteristics of fixed-focus near-eye displays, which has been alleviated by varifocal displays. In this work, we propose an extension of the concept of varifocal displays to occlusion.
+
+Two key challenges for fixed-focus occlusion-capable displays are: (1) to ensure unit magnification of the see-through scene and (2) to ensure zero viewpoint offset between the see-through scene and the real-scene as seen without the display, so that the images of the real-world objects are at the correct distance. Both of these considerations are significantly more challenging for varifocal occlusion displays because unit magnification and zero viewpoint offset needs to be ensured while adjusting the focus of the SLM, which shares the optical path with the physical scene. 
+
+Kiyokawa et al.~\cite{Kiyokawa2003} derive optical design parameters that satisfy unit magnification for all real-world object distances and also propose an interesting geometric configuration of the optical components that make the offset between the real world objects and their images equal to zero.
+Cakmakci et al. \cite{Cakmakci2004} propose a compact optical design that satisfies the magnification requirements, but it does not achieve zero offset between the real viewpoint and the virtual viewpoint; however, the offset is small (5 cm). 
+Howlett and Smithwick~\cite{Howlett2017} propose an optical design approach based on ray-transfer matrices to achieve unit magnification and zero viewpoint offset, which is in turn inspired by optical cloaking~\cite{Choi2015}.
+We extend the optical design approach based on ray-transfer matrices to varifocal occlusion displays, and generalize the theory to asymmetrical optical designs.  
+
+\subsubsection{Soft-edge Occlusion} 
+
+To avoid a bulky optical system, a single LCD can be placed directly in front of the user's eyes~\cite{Wetzstein2010,Itoh2017}. However, due to the fact that the occlusion LCD is out of focus, it always appears blurred. Itoh et al.~\cite{Itoh2017} recently proposed to compensate for this blur by modifying the digitally displayed image.
+Such an approach could be interpreted as a hybrid optical see-through and video see-through AR display. 
+Calibrating such a system requires extremely precise alignment and the mismatch in resolution (spatial and angular), latency, brightness, contrast, and color fidelity between digital display and physical world may contribute to perceived inconsistency and reduced perceptual realism in such a system~\cite{Rolland2000}. 
+Maimone et al.~\cite{Maimone2014} also used an out-of-focus LCD, where the occlusion mask is calculated as the silhouette of the virtual object. None of these approaches achieves hard-edge occlusion, which severely limits perceptual realism.
+
+\subsubsection{Light Field Occlusion}
+Maimone and Fuchs~\cite{Maimone2013} propose a 4D light field occlusion mask using stacked LCD layers placed out of focus in front of the eye, where the occluding patterns are calculated by light field factorization algorithms~\cite{Lanman2010, Wetzstein2012}. 
+The advantage of light field occlusion is that depth-dependent occlusion can be presented for virtual content at different depths simultaneously in a compact form factor. 
+In practice, see-through LCDs mounted close to the eye are light inefficient and result in significant diffraction artifacts, which are due to the electronic components in each pixel as well as the wiring of the display panel. This effect significantly degrades the observed image quality of any soft-edge or light field occlusion system. 
+
+Another approach for light field occlusion is presented in \cite{Yamaguchi2016} using concepts of integral imaging systems. This system has a very narrow field of view (4.3 degrees) and is fundamentally limited by the spatio-angular resolution tradeoff as well as diffraction.
+
+As opposed to any of these methods, the proposed varifocal occlusion approach achieves hard-edge occlusion at varying distances in the scene at high resolution, with better light efficiency, and using technology components that make it easily compatible with emerging varifocal near-eye display. 
+
+\subsubsection{Varifocal Occlusion}
+Concurrently and independently of our work, Hamasaki and Itoh~\cite{Hamasaki2019} also developed a strategy for a varifocal occlusion-capable AR display. Unlike our approach that builds on focus-tunable optics to dynamically adjust the depth of the occlusion layer, their approach requires mechanical motion of the occlusion SLM. Each approach has certain benefits and limitations. For example, robust calibration of the mechanically moving parts in their approach can be challenging, especially in a wearable display form factor. Our approach, on the other hand, requires focus-tunable optics, such as liquid lenses or Alvarez lenses (see Sec.~\ref{sec:varifocal_occlusion:related:varifocal}).
+
+\subsection{Consistent Colors, Shading, and Shadows in AR}
+Spatial AR systems and optical see-through AR display often aim at providing radiometrically consistent, color-corrected or even color-stylized imagery~\cite{Bimber:2008,Wetzstein2010,Langlotz:2016,Langlotz2018,Itoh2019}. All of these approaches are successful in enhancing the viewing experience in AR, but none of them tackle the problem of mutually consistent occlusions in optical see-through AR displays.

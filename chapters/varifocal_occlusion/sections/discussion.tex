@@ -1,0 +1,16 @@
+In summary, we introduce varifocal-occlusion capable AR displays based on focus-tunable optics. This approach improves the realism of optical see-through displays by enabling mutually consistent occlusions between digital and physical objects over a large depth range. We derive a formal optimization approach and real-time heuristics to tune the optical settings of our system to avoid distortions of the physical scene and demonstrate improved realism with a prototype AR display. 
+
+\subsection{Limitations}
+
+Similar to other varifocal-type displays, ours would require eye tracking to determine where to focus the display. Our current prototype does not include an eye tracker, although this capability has been demonstrated with previous varifocal VR displays~\cite{Padmanaban2016Optimizing}. The field of view of our prototype is limited by the size of commercially available focus-tunable lenses, although these are steadily increasing~\cite{Padmanaban2019Autofocals}. Finally, our prototype shares limitations of other, fixed-focus occlusion-capable AR displays in being implemented as a benchtop system. Although it does not seem straightforward how to miniaturize the proposed optical design, we believe that the capabilities offered by our system are unique and important; we hope to inspire others to address some of the remaining questions on optimizing device form factors for occlusion-capable displays in general. 
+
+\subsection{Future Work}
+
+First and foremost, the device form factor of this and other occlusion-capable displays should be reduced to enable wearable occlusion-capable displays. This is a major optical design challenge, beyond the scope of this paper. Eye tracking should be incorporated into such a wearable system. While most occlusion-capable displays aim at computing a binary occlusion mask, one could also envision the attenuation pattern to be optimized to enable consistent illumination, shading, and shadows of digital and physical objects along with consistent occlusion~\cite{bimber2003consistent} or enable other types of optical image processing capabilities~\cite{Wetzstein2010}. 
+
+\subsection{Conclusion}
+
+To enable seamless experiences with AR displays, hard-edge occlusion control is critical. With this work, we take steps towards improving the realism of optical see-through displays with varifocal occlusion capabilities. Yet, many challenges in this area remain to design and build small, light-weight AR glasses that offer perceptually realistic and seamless experiences.
+
+
+%We introduced the concept of depth-dependent occlusion and presented an optimization-based approach to design dynamically changing asymmetrical optical designs which would enable varifocal occlusion. Under some reasonable constraints, we derived closed-form solutions for dynamically changing asymmetrical optical designs which would able varifocal occlusion. We built a prototype varifocal occlusion-capable AR display and compared the see-through view to previous AR displays. We hope that this work leads to more work on occlusion, mainly towards the realization of compact occlusion technologies which preserve a high fidelity of the see-through image, and towards depth-dependent occlusion.

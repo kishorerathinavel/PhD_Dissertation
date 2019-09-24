@@ -1,0 +1,26 @@
+\section{Discussion}
+\label{sec:volumetric:discussion}
+\subsection{Limitations}
+
+Here we discuss the limitations of our proposed technique and its implementation. We review methods for overcoming these limitations.
+
+\subsubsection{High computation}
+Our proposed rendering pipeline, under our current assumptions of (1) opaque 3-D models (2) uniform FoV throughout the lens cycle, allow us to implement the entire algorithm (from graphics primitives to binary images) very efficiently. If the above assumptions were removed, the decomposition would become complex. However, we started off with the assumption that future near-eye displays will most likely have an onboard GPU and consequently, the techniques presented here are closely related to some of the graphics algorithms already implemented very efficiently in GPUs.
+
+\subsubsection{Non-zero pixel blur along optical axis}
+We presented two sources for blur that could reduce the depth resolution and the spatial resolution of the displayed imagery. Of these, the spatial resolution can be improved by a calibration process that takes into account the changing FoV over the lens cycle. The source of the depth blur is more fundamental to the approach. It arises from the effort to represent a color voxel in a depth-fused manner with multiple binary voxels. This could be reduced in the future with advanced color to binary volume decomposition algorithms.
+
+\subsubsection{Implementation Limitations}
+\paragraph{Static display} Our current implementation relies on an offline rendering pipeline implementation. We believe that our implementation can be made into a dynamic display in a system similar to that presented in recent low-latency and HDR display work~\cite{Lincoln2016motion,Lincoln2017scene}.
+
+\paragraph{Bulky Optics}
+The bulk of the optics is due to the large optical engine of the DLP Discovery 4100 kit, and the tiny aperture of the focus-tunable lens. Other DMD development boards have much smaller optics, and we also note that there is a commercially available AR display that uses a DMD chip~\cite{Dewald2016Avegant}. The small aperture of the focus-tunable lens constrains the optical design and limits the etendue of the system. There are focus-tunable lenses with a wider aperture which could be used. Our NED, if implemented with alternative components, could approach moderate form factor.
+
+\paragraph{Bulky electronic components}
+All of the driving electronics (DLP Discovery 4100 kit, custom RGB LED controller, microcontroller) could be reimplemented in a compact ASICs device. 
+
+\subsection{Future work}
+Our near-eye display can emulate some other display technologies, such as multifocal and varifocal displays, and is thus suitable as a versatile platform for user studies. The current work could benefit greatly from a compact, wearable, wide-FoV, binocular, and real-time implementation. Since the hardware platform and application are similar, this work could be integrated with recent low-latency~\cite{Lincoln2016motion}, and HDR AR~\cite{Lincoln2017scene} displays work. This would require a holistic approach to a near-eye display rendering pipeline. Another opportunity for research is to investigate if this display can be made entirely independent of eye-tracking requirements.
+
+\section{Conclusion}
+We have introduced a near-eye volumetric display capable of presenting a large volume over an extended depth-of-field created external to the display's physical volume. We view our system as a hybrid between traditional volumetric displays that create the volume within the confines of the display's physical volume, and view-dependent multifocal near-eye displays. We presented the optical design of our implementation and the rendering pipeline that synthesizes the volume for our display. Our main contribution is a new color-volume-to-binary-volume decomposition algorithm that does not require image planes, but rather decomposes each color voxel into a series of binary voxels around the color voxel's position. With our optical setup and rendering pipeline, we demonstrate a full-color volumetric display refreshed at 60 Hz and comprising 280 focal planes, each at a unique depth, ranging from 15cm (6.7 diopters) to 4M (0.25 diopters). We hope that this system will inspire future research work in near-eye displays to rethink the rendering pipeline. 

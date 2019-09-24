@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1973.962mm"
+   height="751.36139mm"
+   viewBox="0 0 1973.9621 751.36138"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename=".\drawing.png"
+   inkscape:export-xdpi="19.990843"
+   inkscape:export-ydpi="19.990843">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.175"
+     inkscape:cx="4082.4339"
+     inkscape:cy="2421.9829"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1578"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-505.73549,60.115349)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:127.99999714%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="601.0351"
+       y="116.76208"
+       id="text819"><tspan
+         sodipodi:role="line"
+         id="tspan817"
+         x="601.0351"
+         y="116.76208"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px">Camera</tspan><tspan
+         sodipodi:role="line"
+         x="601.0351"
+         y="149.27408"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         id="tspan821">focused near</tspan></text>
+    <text
+       id="text827"
+       y="574.79102"
+       x="601.0351"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:127.99999714%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="574.79102"
+         x="601.0351"
+         id="tspan823"
+         sodipodi:role="line">Camera</tspan><tspan
+         id="tspan825"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="607.30304"
+         x="601.0351"
+         sodipodi:role="line">focused far</tspan></text>
+    <text
+       id="text833"
+       y="-40.693279"
+       x="1370.7568"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:127.99999714%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="-40.693279"
+         x="1370.7568"
+         sodipodi:role="line"
+         id="tspan853">Varifocal AR display</tspan><tspan
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="-8.181284"
+         x="1370.7568"
+         sodipodi:role="line"
+         id="tspan869">without occlusion</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1818.9546"
+       y="-40.312283"
+       id="text839"><tspan
+         sodipodi:role="line"
+         x="1818.9546"
+         y="-40.312283"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         id="tspan882">Fixed-focus AR display</tspan><tspan
+         sodipodi:role="line"
+         x="1818.9546"
+         y="-8.5622826"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         id="tspan886">with fixed-focus occlusion</tspan></text>
+    <text
+       id="text847"
+       y="-40.693279"
+       x="2270.3608"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:127.99999714%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan845"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="-40.693279"
+         x="2270.3608"
+         sodipodi:role="line">Varifocal AR display</tspan><tspan
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="-8.181284"
+         x="2270.3608"
+         sodipodi:role="line"
+         id="tspan851">with varifocal occlusion</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect855"
+       width="414.80231"
+       height="213.81561"
+       x="1610.9893"
+       y="16.901535" />
+    <rect
+       y="16.901535"
+       x="1163.1387"
+       height="213.81561"
+       width="414.80231"
+       id="rect857"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect859"
+       width="414.80231"
+       height="213.81561"
+       x="2062.3953"
+       y="16.901489" />
+    <rect
+       y="474.93045"
+       x="1610.9893"
+       height="213.81561"
+       width="414.80231"
+       id="rect861"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect863"
+       width="414.80231"
+       height="213.81561"
+       x="1163.1387"
+       y="474.93045" />
+    <rect
+       y="474.93045"
+       x="2062.3953"
+       height="213.81561"
+       width="414.80231"
+       id="rect865"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+    <text
+       id="text837"
+       y="-40.312283"
+       x="925.41888"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan833"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="-40.312283"
+         x="925.41888"
+         sodipodi:role="line">Fixed-focus AR display</tspan><tspan
+         id="tspan835"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         y="-8.5622826"
+         x="925.41888"
+         sodipodi:role="line">without occlusion</tspan></text>
+    <rect
+       y="16.901535"
+       x="717.45343"
+       height="213.81561"
+       width="414.80231"
+       id="rect839"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect841"
+       width="414.80231"
+       height="213.81561"
+       x="717.45343"
+       y="474.93045" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:25.39999962px;line-height:127.99999714%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="601.0351"
+       y="345.77652"
+       id="text848"><tspan
+         sodipodi:role="line"
+         id="tspan843"
+         x="601.0351"
+         y="345.77652"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px">Camera</tspan><tspan
+         sodipodi:role="line"
+         x="601.0351"
+         y="378.28851"
+         style="text-align:center;text-anchor:middle;stroke-width:0.26458332px"
+         id="tspan846">focused middle</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect850"
+       width="414.80231"
+       height="213.81561"
+       x="1610.9893"
+       y="245.91597" />
+    <rect
+       y="245.91597"
+       x="1163.1387"
+       height="213.81561"
+       width="414.80231"
+       id="rect852"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect854"
+       width="414.80231"
+       height="213.81561"
+       x="2062.3953"
+       y="245.91597" />
+    <rect
+       y="245.91597"
+       x="717.45343"
+       height="213.81561"
+       width="414.80231"
+       id="rect856"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:0;stroke:#000007;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+  </g>
+</svg>
