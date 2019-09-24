@@ -4,7 +4,7 @@ Near-eye displays that seamlessly integrate virtual content into the real world 
 
 Some of the proposed solutions to the problem of providing such depth cues attempt to approximate focus cues. Varifocal displays, monovision displays, and even some implementations of multifocal displays are in this category. Some other proposed solutions, such as light field displays and holographic displays, provide accurate focus cues but have limitations. Current implementations of light field displays have poor resolution or are diffraction-limited. Current implementations of holographic displays are compute-intensive and may have very small eyeboxes. Phase-only spatial light modulator (SLM) technologies also need improvement before holographic displays based on these technologies can become practical.
 
-This paper explores a new class of displays: volumetric near-eye displays. Our approach is to sweep the virtual image plane back and forth over a wide range of diopters and use high-speed DMDs coupled with high-speed illumination to present a large number of multiple thin slices of a computer generated volume. While this sounds similar to multifocal displays that show images at various fixed depths, there is a crucial difference:
+This chapter explores a new class of displays: volumetric near-eye displays. Our approach is to sweep the virtual image plane back and forth over a wide range of diopters and use high-speed DMDs coupled with high-speed illumination to present a large number of multiple thin slices of a computer generated volume. While this sounds similar to multifocal displays that show images at various fixed depths, there is a crucial difference:
 
 Traditionally, for multifocal displays, the computer-generated volume is decomposed into a series of image planes placed at different depths; for time-multiplexed multifocal displays, this necessitates that the focus-tunable lens or deformable mirror settle down in each focus state. Our approach is to oscillate the focus-tunable lens in a continuous state and display a stack of binary images at high-speed such that the displayed stack of images is perceived as slices of a continuous full-color volume. We decompose the computer-generated volume locally, on a per-voxel basis, and distribute the decomposition around the location of the voxel. Thus, our rendering algorithm is aware of and leverages the fact that the focus-tunable lens is in continuous motion--rather than assuming a lens that moves and settles in discrete steps. Low-level hardware access to a high-speed DMD and a high-speed HDR RGB LED light source allows control of display pattern and illumination for each binary frame. We present a rendering pipeline for volumetric near-eye displays that utilize such hardware.
 
@@ -19,7 +19,7 @@ One might be concerned about the computational complexity of our approach. In ou
 
 \subsection{Contributions}
 \label{sec:Contributions}
-This paper's main contributions are: 
+This chapter's main contributions are: 
 
 \begin{enumerate}
 \item A volumetric NED exhibiting 280 perceptually simultaneous binary depth planes, each an arbitrary RGB color, situated between 15cm (6.7 diopters) and 4M (0.25 diopters) from the viewer.
