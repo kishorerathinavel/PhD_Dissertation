@@ -1,0 +1,22 @@
+\section{Notes from PhD progress update}
+\begin{compact_itemize}
+\item MS: You have some knobs (number of depth planes, color bit-depth, LED bit-depth, Lens function, DMD framerate, decomposition algorithm, depth cues, time to render and decompose); I want to see a design space analysis, trade-offs for the various parameters in the display
+\item MS: Discuss various possible approaches for scene decomposition, various possibilities choices in the optimization regime. Solve for one particular case.
+\item KR: Discuss how various other display technologies can be emulated by your display
+\item KR: Compare your display against other similar recent displays. Can we prove that our display is better?
+\item DL,GW: Not clear what you are optimizing. Is it the depth blur? Are there other things that you could optimize for? We need to see your current optimization effort and future ones written in a much more concrete and formalized manner. 
+\item LM: Discuss artifacts that may be possible in a real-time display because the different depth planes have different update rates (e.g. planes in the middle have equally spaced update rates whereas planes at the far or near have different updates - one very short and one very long)
+\item GW: Need to show convergence analysis to convince folks that your algorithm actually works
+\item GW: Your current approach is called projected-gradient approach
+\item DL,LM: Look into error diffusion. This is a known technique in computer graphics. What you need is something like 3D error diffusion or 3D dithering.
+\item LM: You can redo a lot of perceptual experiment with this display. You're holding yourself back by not doing them. Such studies would be real contribution to science rather than engineering which is what most of your work is about.
+\item TW, MS: Please share with us a block diagram of your real-time system
+\end{compact_itemize}
+
+\section{Tasks}
+\begin{compact_todolist}
+\item Look up last date of semester valid for defense. Verify with Denise about this date. 
+\item Choose three or four dates and ask Henry if those dates look good.
+\item Create doodle poll and send out to PhD committee
+\item Make blockdiagram of the real-time system. Share it with the PhD committee
+\end{compact_todolist}
