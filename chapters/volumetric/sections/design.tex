@@ -180,3 +180,35 @@ Here we discuss a minor limitation in extending our proposed offline rendering p
 
 If the incoming frame information completely replaces the previous frame information, there could be a loss of brightness and bit-depth for the color voxels in the last few focal planes. Alternatively, if we design the NED to start displaying the new frame information only after it finishes displaying the previous frame information, the DMD display's cycle would quickly fall out-of-sync with the lens cycle. With a modified rendering pipeline, for which the framerate of the NED is slightly lower than the frequency of the focus-tunable lens, and very good synchronization of the lens and the DMD, this would not be an issue. Alternatively, we could carry over the information of the last few focal planes of the previous frame to the new frame while giving priority/preference to the new frame's information. 
 
+\section{Color-Adaptive Decomposition}
+\subsection{Method 1}
+% adaptive_color_decomposition.m
+
+\begin{algorithm}
+    \caption{Method 1 for color-adaptive decomposition}
+    \label{alg:colorAdaptiveMethodOne}
+    \begin{algorithmic}
+        \STATE{x = y}
+    \end{algorithmic}
+\end{algorithm}
+
+Use this template from Andrew's dissertation:
+\begin{algorithm}
+    \caption{Compute Retinal Reconstruction $\mathbf{R}$}
+    \label{alg:retinalReconstruction}
+    \begin{algorithmic}
+    \FORALL{$(x,y) \in \boldsymbol{E}$}
+        \STATE{$\boldsymbol{S} = \mathit{RetinaRays}(x,y)$} 
+        \STATE{$t = \frac{1}{\left\vert{S}\right\vert} \sum_{(i,j) \in \boldsymbol{S}} \; (\mathbf{FG})[i,j]$}
+        \FORALL{$(i,j) \in \boldsymbol{S}$}
+            \STATE $\mathbf{R}[i,j] = t$
+        \ENDFOR
+    \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Method 2}
+% adaptive_color_decomposition_all_channels_bk.m
+
+\subsection{Method 3}
+% heuristic_adaptive_decomposition.m
