@@ -72,6 +72,46 @@
 % Kishore
 \newcommand{\numPlanes}{N_{\text{planes}}}
 
+\newenvironment{compact_enumerate}{
+     \begin{enumerate}[leftmargin=0.4cm]
+     \setlength{\itemsep}{1pt}
+     \setlength{\parskip}{0pt}
+     \setlength{\parsep}{0pt}
+   }{\end{enumerate}}
+
+\newenvironment{compact_itemize}{
+  \begin{itemize}[leftmargin=0.4cm]
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+  }{\end{itemize}}
+
+\usepackage{enumitem}
+\newlist{todolist}{itemize}{6}
+\setlist[todolist]{label=$\square$}
+\setlist{nolistsep}
+
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\checkmark}}%
+\hspace{-2.5pt}}
+
+\newenvironment{compact_todolist}{
+  \begin{todolist}[leftmargin=0.4cm]
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+  }{\end{todolist}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[L]{\thepage}
+\fancyfoot[R]{\hyperlink{toc}{TOC}}
+\fancyhead{}
+\fancyhead[L]{\slshape \nouppercase{\leftmark}}
+%\fancyhead[R]{\slshape \nouppercase{\leftmark}}
+
+% End of Kishore
+
 % schedulers
 \mkkw{\cfs}{CFS}
 
