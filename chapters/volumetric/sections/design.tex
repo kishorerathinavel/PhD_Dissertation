@@ -188,7 +188,21 @@ If the incoming frame information completely replaces the previous frame informa
     \caption{Method 1 for color-adaptive decomposition}
     \label{alg:colorAdaptiveMethodOne}
     \begin{algorithmic}
-        \STATE{x = y}
+        \STATE{residue = zeros(H,W,C)}
+        \STATE{expected\_reconstruction = zeros(H,W,C)}
+        \STATE{actual\_reconstruction = zeros(H,W,C)}
+        \STATE{LEDs\_ALL = zeros(C,$\numPlanes$)}
+        \STATE{BIN\_IMG\_ALL = zeros(H,W,$\numPlanes$)}
+        \FOR{depth = 1 \TO $\numPlanes$}
+        \STATE{channel = depth modulo 3}
+        \IF{channel = 0}
+        \STATE{channel = 3}
+        \ENDIF
+        \STATE{subvolume = Volume(:, :, :, depth)}
+        \STATE{expected\_reconstruction = expected\_reconstruction + subvolume}
+        \STATE{toOptimize = subvolume + residue}
+        \STATE{channel\_toOptimize = toOptimize(:, :, channel)}
+        \ENDFOR
     \end{algorithmic}
 \end{algorithm}
 
