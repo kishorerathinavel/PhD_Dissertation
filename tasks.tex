@@ -16,13 +16,20 @@
 \section{Tasks}
 \begin{compact_todolist}
 \item Write down these algorithms for color-adaptive decomposition:
-\begin{compact_todolist}
-\item Mixed-primary heuristic approach
-\item Highest energy channel heuristic approach
-\item Mixed-primary projected gradient approach
-\item Highest energy channel projected gradient approach
-\end{compact_todolist}
-\item Also write down the fixed-pipeline algorithm
+    \begin{compact_todolist}
+    \item adaptive\_color\_decomposition
+    \item adaptive\_color\_decomposition\_all\_channels
+    \item heuristic\_adaptive\_decomposition
+    \item highest\_energy\_channel\_decomposition
+    \item ColorDC\_edit3
+    \end{compact_todolist}
+\item Things of note to write down for above algorithms:
+    \begin{compact_todolist}
+    \item Non-fixed pipeline algorithms tend to use more binary voxels, but tend to concentrate the energies in a narrow region. Maybe a threshold can be used to stop carrying over the residual energy. 
+    \item Main gains are in terms of variance of binary voxel depths - which is an indication of depth blur. Is there a way to quantify this in terms of diopters?
+    \item Single channel projected gradient algorithm is not necessary because the initialization is good enough. Further optimization never happens.
+    \item Mixed-primary projected gradient algorihtm sucks. Main reason is that there is really not that much correspondence between the three color channels - this can be shown by counting the number of times the heuristic\_adaptive\_decomposition algorithm picks a mixed-primary combination, which is almost never. The bunny image is not a good example because it is not composed of mixed primaries. What about something with more complex colors - how do adaptive\_color\_decomposition\_all\_channels and heuristic\_adaptive\_decomposition do?
+    \end{compact_todolist}
 \item Include pictures to compare the four algorithms
 \item Write code to calculate focal stacks
 \item Make blockdiagram of the real-time system. Share it with the PhD committee
