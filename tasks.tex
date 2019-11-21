@@ -13,7 +13,60 @@
 \item TW, MS: Please share with us a block diagram of your real-time system
 \end{compact_itemize}
 
-\section{Tasks}
+\section{Thesis Statement}
+
+Perceived Realism in Augmented Reality Near-Eye Displays can be improved by presenting 
+
+\section{Henry's advice to improve defense slides}
+\begin{compact_itemize}
+\item Do not exceed 50 minutes. Think of how you'll gratiously end this.
+\item Have a running header: Introduction, Volumetric, \dots
+\item Explain AR vs VR from the title itself. Explain the real world scene, AR content, different distances. And mention that this is different from AR because you can also see the real world. \myverbatim{And let me just say that there is an entire volume here and when you focus at different distances, it will be in sharp focus. Full volume being displayed is closer to how things are in the real world.}
+\item Make a new teaser with a 2 by 2 grid for the volumetric as well as varifocal occlusion results
+\item Title: Highlight title and affiliation for non-UNC committee members
+\item Example image for \myverbatim{next generation computing platform}: choose HoloLens images with many virtual displays
+\item Choose a different tele-collaboration image
+\item Label commercial AR devices
+\item Use Augmented Reality ``Systems'' and not ``Displays''
+\item Limitations of current generation AR displays - make minislides
+\item Insert slide for limitations of current AR displays for depth cues in detail
+\item Contributions of ``This'' (not ``My'') Thesis
+\item Small images for Contributions
+\item Does not cover chromablur and intra-pupillary occlusions but these are also less important than cues such as accommodation, defocus-blur, and occlusion
+\item \myverbatim{Perceptually realistic and continuous monocular depth cues over a large depth range}: Mention contributions of each display separately. For volumetric, mention that the objects are displayed ``simultaneously'' at all depths. For varifocal, mention that the depth plane is dynamically adjustable.
+\item Explain accommodation clearly. Explain occlusion clearly.
+\item Here's what I've done: 280 depth planes possible by stripping out all the usual display interface and designing every aspect of the GPU to photon pipeline.
+\item Both of these are enabled by new hardware (focus-tunable lenses) but together with new optical designs and algorithms
+\item Acknowledge that MagicLeap has two depth planes. Check where MagicLeap puts its two depth planes. 
+\item Put about Photonics West submission - credit Hanpeng.
+\item Put overview of what to expect in each subtitle slide
+\item About real-time system
+    \begin{compact_itemize}
+    \item Towards Real-Time System: Initial Experiment
+    \item Experiment to just get something running
+    \item Layout of FPGA is difficult and here's what is achievable with the current FPGA Layout
+    \item Why only two depth planes?
+    \item Need a pipeline diagram
+    \item Everything is happening in the GPU
+    \end{compact_itemize}
+\item Occlusion as the most important depth cue
+\item Previous work:
+    \begin{compact_itemize}
+    \item AR displays - usually no occlusion
+    \item Video see through - many limitations, e.g. Canon MREAL
+    \end{compact_itemize}
+\item Overview of how we achieved varifocal occlusion: focus-tunable lens + maths
+\end{compact_itemize}
+
+\section{Defense Tasks}
+\begin{compact_todolist}
+\item Write the speech
+\item Make introduction slides
+\item Change the 300 label to 280
+\item Make sure the proposed candidate diagrams are aligned properly
+\end{compact_todolist}
+
+\section{Dissertation Tasks}
 \begin{compact_todolist}
 \item Write down these algorithms for color-adaptive decomposition:
     \begin{compact_todolist}
