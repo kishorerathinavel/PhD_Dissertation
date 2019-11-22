@@ -1,13 +1,18 @@
+Augmented Reality (AR) systems offer unprecedented experiences and promise to augment the physical world around us with digital content seamlessly. Providing a seamless, perceptually realistic experience, however, requires the display to support all depth cues of the human visual system~\cite{Palmer:1999,Howard:2002} accurately. While current AR displays offer impressive capabilities, they typically do not support important depth cues such as accommodation or occlusion.
+
+Accommodation is the depth cue that results from the ability of the lens in the eye to focus to different depths of the real world. For improved realism, an AR display should be capable of optically presenting a 3D virtual scene such that the user could explore the virtual scene by focusing to different depths.
+
+Occlusion is the depth cue that arises from solid objects blocking rays of light that arise from real-world points behind it. Providing accurate, i.e., mutually consistent and hard-edge, occlusion between digital and physical objects with optical see-through AR displays is a significant challenge. When digital content is located in front of physical objects, the former usually appear semi-transparent and unrealistic (see Fig.~\ref{fig:varifocal_occlusion:results}, columns~1 and~2). To adequately render these objects, the light reflected off of the physical object toward the user has to be blocked by the display before impinging on their retina. This occlusion mechanism needs to be programmable to support dynamic scenes, and it needs to be perceptually realistic to be effective. The latter implies that occlusion layers are correctly rendered at the distances of the physical objects (see Fig.~\ref{fig:varifocal_occlusion:depth-dependent-occlusion}), allowing for pixel-precise, or hard-edge, control of the transmitted light rays.
+
+Display technologies that provide these depth cues could revolutionize the way we communicate, visualize and interact with digital information, e.g., \emph{telepresence} systems will significantly benefit from being able to depict occlusion~\cite{maimone2013general}, \emph{visualization} of 3D data, especially data composed of surfaces within surfaces such as that of the human anatomy would greatly benefit from occlusion as well as accommodation depth cues.
+
+\section{Contributions}
+The broad contributions of this dissertation are new optical designs, new real-time rendering algorithms, and prototype displays that demonstrate accommodation and mutual occlusion depth cues over an extended depth-range.
+
+For accommodation, this dissertation's contributions are: (1) A volumetric NED exhibiting 280 perceptually simultaneous binary depth planes, each an arbitrary RGB color, situated between 15~cm (6.7 diopters) and 400~cm (0.25 diopters) from the viewer. (2) A rendering pipeline that decomposes a 3-D scene into the set of single-color binary depth planes, such that 24 bpp color voxels are displayed at 280 unique depth positions. (3) A yet-to-be-developed color-adaptive decomposition algorithm for the NED which also demonstrates intra-pupillary occlusions.
+
+For depth-dependent occlusion, this dissertation's contributions are: (1) Varifocal occlusion as an AR display capability that adaptively changes the focal distance of an occlusion mask to enable depth-dependent hard-edge occlusion. (2) Complementary approaches of optimization and closed-form solutions for arriving at an optical design that enables a focus-tunable optical system to achieve varifocal occlusion in a perceptually realistic manner without optically distorting the observed scene. (3) A monocular varifocal occlusion-capable AR display prototype that demonstrates improved realism through depth-dependent occlusion over a large depth range (30~cm to 300~cm).
+
+
 \section{Thesis Statement}
-
-\paragraph{From PhD proposal}
-A comprehensive approach that simultaneously considers and optimizes the optics, electronics, hardware, and software can lead to improved capabilities in near-eye displays.
-
-% Andrew's thesis statement: 
-% The use of a joint computational and optical approach to see-through near eye displays will allow displays to achieve higher performance, a new set of capabilities, and a different trade-offs as compared to purely optical approaches.
-
-
-\paragraph{Alternative options}
-\begin{compact_itemize}
-\item The use of a computational displays approach, where the optics, electronics, and rendering pipeline are jointly designed, will allow displays to achieve higher performance for monocular depth cues. 
-\end{compact_itemize}
+The use of computational displays, where the optics, electronics, and algorithms are co-designed, will improve accommodation and occlusion in AR displays. 

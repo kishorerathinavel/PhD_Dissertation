@@ -1,5 +1,6 @@
 \section{Notes from PhD progress update}
-\begin{compact_itemize}
+
+\begin{itemize}
 \item MS: You have some knobs (number of depth planes, color bit-depth, LED bit-depth, Lens function, DMD framerate, decomposition algorithm, depth cues, time to render and decompose); I want to see a design space analysis, trade-offs for the various parameters in the display
 \item MS: Discuss various possible approaches for scene decomposition, various possibilities choices in the optimization regime. Solve for one particular case.
 \item KR: Discuss how various other display technologies can be emulated by your display
@@ -11,14 +12,14 @@
 \item DL,LM: Look into error diffusion. This is a known technique in computer graphics. What you need is something like 3D error diffusion or 3D dithering.
 \item LM: You can redo a lot of perceptual experiment with this display. You're holding yourself back by not doing them. Such studies would be real contribution to science rather than engineering which is what most of your work is about.
 \item TW, MS: Please share with us a block diagram of your real-time system
-\end{compact_itemize}
+\end{itemize}
 
 \section{Thesis Statement}
 
 Perceived Realism in Augmented Reality Near-Eye Displays can be improved by presenting 
 
 \section{Henry's advice to improve defense slides}
-\begin{compact_itemize}
+\begin{itemize}
 \item Do not exceed 50 minutes. Think of how you'll gratiously end this.
 \item Have a running header: Introduction, Volumetric, \dots
 \item Explain AR vs VR from the title itself. Explain the real world scene, AR content, different distances. And mention that this is different from AR because you can also see the real world. \myverbatim{And let me just say that there is an entire volume here and when you focus at different distances, it will be in sharp focus. Full volume being displayed is closer to how things are in the real world.}
@@ -41,50 +42,51 @@ Perceived Realism in Augmented Reality Near-Eye Displays can be improved by pres
 \item Put about Photonics West submission - credit Hanpeng.
 \item Put overview of what to expect in each subtitle slide
 \item About real-time system
-    \begin{compact_itemize}
+    \begin{itemize}
     \item Towards Real-Time System: Initial Experiment
     \item Experiment to just get something running
     \item Layout of FPGA is difficult and here's what is achievable with the current FPGA Layout
     \item Why only two depth planes?
     \item Need a pipeline diagram
     \item Everything is happening in the GPU
-    \end{compact_itemize}
+    \end{itemize}
 \item Occlusion as the most important depth cue
 \item Previous work:
-    \begin{compact_itemize}
+    \begin{itemize}
     \item AR displays - usually no occlusion
     \item Video see through - many limitations, e.g. Canon MREAL
-    \end{compact_itemize}
+    \end{itemize}
 \item Overview of how we achieved varifocal occlusion: focus-tunable lens + maths
-\end{compact_itemize}
+\end{itemize}
 
 \section{Defense Tasks}
-\begin{compact_todolist}
+\begin{todolist}
 \item Write the speech
 \item Make introduction slides
 \item Change the 300 label to 280
 \item Make sure the proposed candidate diagrams are aligned properly
-\end{compact_todolist}
+\end{todolist}
 
 \section{Dissertation Tasks}
-\begin{compact_todolist}
+\begin{todolist}
 \item Write down these algorithms for color-adaptive decomposition:
-    \begin{compact_todolist}
+    \begin{todolist}
     \item adaptive\_color\_decomposition
     \item adaptive\_color\_decomposition\_all\_channels
     \item heuristic\_adaptive\_decomposition
     \item highest\_energy\_channel\_decomposition
     \item ColorDC\_edit3
-    \end{compact_todolist}
+    \end{todolist}
 \item Things of note to write down for above algorithms:
-    \begin{compact_todolist}
+    \begin{todolist}
     \item Non-fixed pipeline algorithms tend to use more binary voxels, but tend to concentrate the energies in a narrow region. Maybe a threshold can be used to stop carrying over the residual energy. 
     \item Main gains are in terms of variance of binary voxel depths - which is an indication of depth blur. Is there a way to quantify this in terms of diopters?
     \item Single channel projected gradient algorithm is not necessary because the initialization is good enough. Further optimization never happens.
     \item Mixed-primary projected gradient algorihtm sucks. Main reason is that there is really not that much correspondence between the three color channels - this can be shown by counting the number of times the heuristic\_adaptive\_decomposition algorithm picks a mixed-primary combination, which is almost never. The bunny image is not a good example because it is not composed of mixed primaries. What about something with more complex colors - how do adaptive\_color\_decomposition\_all\_channels and heuristic\_adaptive\_decomposition do?
     \item This method does not penalize errors in residual that are carried over for several iterations, e.g. a residual at frame 10 may be carried over up to frame 100 because there is no mechanism in this approach to penalize discrepancy in depth.
     \item Re-write this in terms of error diffusion: This method has the effect that imagery towards the nearer end of the volume are properly represented and have low errors but imagery towards the farther end of the volume are not represented properly and have high errors. This is because imagery towards the farther end do not have sufficient number of frames to be represented. Recommended fix: What has been implemented so far is a forwards decomposition where the subvolume iterates from 1 to 280. What is needed is a backwards decomposition too, but for the backwards decomposition, the following needs to be changed: The initialization should be the $\alpha$ values and $B$ calculated in the forwards decomposition. Should the residual be a carry over from the forwards decomposition or should we re-initialize the residual to a zero image?
-    \end{compact_todolist}
+    \end{todolist}
 \item Include pictures to compare the four algorithms
 \item Make blockdiagram of the real-time system. Share it with the PhD committee
-\end{compact_todolist}
+\end{todolist}
+
