@@ -1,0 +1,43 @@
+\section{Color-Adaptive Decomposition}
+
+In this section, we present methods for more efficient decomposition from color-volume to binary-volume, efficiency here refering to the number of binary depth planes that are used to represent a color depth plane. 
+
+\subsection{Motivation}
+In the method presented in Sec. \todo{find the section number}, each color voxel was decomposed into the nearest 24 binary depth planes. 
+
+\subsection{Approach}
+
+
+\begin{algorithm}
+\end{algorithm}
+Let $R$ denote residue, $T$ denote the target image, $A$ denote the actual reconstruction, $L$ denote the LEDs, $B$ denote the binary image, and $V$ denote the volume. Then, 
+
+\begin{algorithm}
+    \caption{Outline of error propagation appoach}
+    \label{alg:colorAdaptiveMethodOne}
+    \hspace*{\algorithmicindent}\textbf{Input:} $V$\\
+    \hspace*{\algorithmicindent}\textbf{Output:} $B, L$
+    \begin{algorithmic}[1]
+        \STATE{$R \gets \text{zeros}$}
+        \FOR{$d \gets 1$ \TO $\numPlanes$}
+        \STATE{$I \gets V \lbrack :,:,d \rbrack $}
+        \STATE{$T \gets I + R$}
+        \STATE{${B_d,L_d} \gets \text{Decompose$(T)$}$}
+        \STATE{$R \gets T - \text{Reconstruct$(B_d, L_d)$}$}
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+% adaptive_color_decomposition_all_channels_bk.m
+
+\subsubsection{Method 3}
+% heuristic_adaptive_decomposition.m
+
+\subsection{Results}
+
+\subsection{Future Work}
+\todo{Polish up these things:}
+Above approaches are slow. Opportunity to apply Deep Neural Networks. Global optimization is another direction.
