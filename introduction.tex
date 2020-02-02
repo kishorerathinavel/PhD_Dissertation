@@ -1,140 +1,54 @@
-This dissertation develops and demonstrates new display technologies to enable some perceptually realistic and accurate monocular depth cues for optical see-through Augmented Reality Displays. In this chapter, we examine motivations for augmented reality displays, a taxonomy of display technologies to understand the compeating alternatives for augmented relaity, limitations in current augmented reality displays, the scope of this thesis, and the contributions of this thesis.
+\section{Motivation}
+\myblockquote{
+A display connected to a digital computer gives us a chance to gain familiarity with concepts not realizable in the physical world. It is a looking glass into a mathematical wonderland. (Ivan Sutherland, 1965)
+}{\cite{sutherland1965ultimate}}
 
-\section{Motivation: Communication and Visualization: Past, Present, and Future}
-Human progress through the ages was heavily influenced by key discoveries and inventions, e.g., fire, iron, agriculture, transportation, computers, internet, etc. But, the role of communication and visualization is seldom talked about in context of human progress. Here, we take brief look into this topic. 
+\input{images/other/fig_motivation.tex}
 
-History shows that human progress grows by leaps and bounds when a more effective method of communication is invented, e.g.: When we first learnt to speak, we could teach each other methods to make tools, or coordinate better as a group to hunt or fight. 
-When we first learnt to read and write on cave walls, we began to record history, and pictorially explained to one another methods to stay safe and hunt.
-When we invented written language and paper, we began to write for pleasure and scientific inquiry, e.g., novels, poems, letters, mathematics, etc. 
-Once we invented the printing press, democratization and sharing of human knowledge happened much faster. 
-The printing press was a key factor in Renaissance, Reformation movement and Scientific revolutions.
-The invention of telephone and radio enabled us to commnicate with each other in real-time. 
-And finally, we're all too familiar with the effect the inventions of computers and internet have had on society. 
-Communication and visualization is instantaneaous and interactive.
+The goal of Augmented Reality is to seamlessly integrate the real world and the digital world.
+Although Augmented Reality hopes to address the combination of real and digital worlds for all our sense-modalities, i.e., sight, smell, touch, and hearing, in this dissertation, we shall only consider Augmented Reality for sight. 
+There has been significant progress over the decades to create synthetic photorealistic imagery for movies, games, etc. 
+But until recently, the most common way to interact with digital worlds was through 2D displays such as televisions, computer monitors, or mobile phones and tablets. 
+These displays are 2D displays and subtend a narrow field-of-view. 
+Since we live in a 3D world and our eyes see a wide field-of-view image, today’s displays severely limits our communication, visualization, and interaction with the digital world. 
+Providing a seamless, perceptually realistic experience requires more than just rendering photorealistic imagery. 
+It requires display that can present wide field-of-view high-quality imagery, and in particular, it requires that these displays support all depth cues of the human visual system (Palmer, 1999; Howard and Rogers, 2002) accurately. 
+Display technologies that enable a seamless combination of the real and digital worlds could revolutionize the way we communicate, visualize and interact with digital information.
+Fig. \todo{rename} shows some compelling envisioned applications for future Augmented Reality systems.
 
-To summarize, it could be argued that communication and visualization go hand-in-hand, and a more effective way to communicate leads to unprecedented levels of human progress.
-
-
-\section{The role of displays in communication}
-
-Visual information is a key ingredient in most means of communication (except telephone and radio). 
-Without text, images, and videos, communication and visualization as we know it would be far less effective. 
-Below, we discuss the state of current mainsteam displays, their limitations, and current research directions for future displays.
-\todo{Check flow here}
-
-\section{Current mainstream displays and its limitations}
-Today's main mode of communication and visualization for visual information are displays, e.g., TVs, computer monitors, or smartphones.
-All these displays are 2D displays and subtend a narrow field-of-view.
-Since we live in a 3D real world, the narrow field-of-view and 2D nature of these displays severely limits our communication, visualization, and interaction with the digital world. 
-Current displays can let users view and edit virtual worlds, but can not give a sense of immersion in a virtual world.
-
-\section{Future Displays}
-
-\subsection{Depth cues}
-\todo{Binocular, Occlusion, Monocular (accommodation, defocus blur, intra-pupillary occlusion, chromablur)}
-
-
-\subsection{Research Directions}
-In this section, we discuss the approaches to extend the virtual world beyond the traditional 2D displays. 
-There are mainly four approaches: 
-(1) desktop 3D displalys, (2) shader lamps, (3) Near-Eye Displays. 
-Here's a brief description of each approach:
-
-\subsubsection{Desktop 3D Displays}
-These displays often resemble the form-factor of traditional computer monitors and present a 3D virtual scene in a confined volume~\todo{insert citations}. 
-
-\subsubsection{Shader Lamps}
-These systems use multiple projectors to display virtual worlds onto physical surfaces such as walls, tables, etc. 
-Multiple cameras are used to track the physical surfaces and user interactions.
-Disadvantages with these systems include (1) lack of monocular depth cues, (2) shadows cast by objects and users pose a difficulty for both projectors and cameras, (3) ambient lighting of these specialized rooms needs to be controlled carefully.
-
-
-\subsubsection{Near-Eye Displays}
-In Near-Eye Display (NED) systems, the virtual world can be seen only for a specific volume of pupil positions, similar to how a binocular or microscope image is seen only in a specific volume of pupil positions. 
-The volume of pupil positions from which the virtual world can be seen is essentially the \emph{exit pupil} of the optical system, also called the \emph{eyebox} in NED terminology.
-
-Head-Mounted Displays (HMDs) refer to portable versions of Near-Eye Displays (NEDs). 
-Often, research prototypes for Augmented Reality and Virtual Reality are Near-Eye Displays which are later developed into Head-Mounted Displays.
-\todo{What about head-mounted projective displays?}
-
-NEDs are broadly of two categories, Virtual Reality Displays and Augmented Reality Displays:
-
-\paragraph{Virtual Reality Displays}
-Virtual Reality NEDs block out the real-world and immerse the user in a completely virtual world. 
-Virtual imagery is often seen across the entire field-of-view, across a large eyebox. 
-In terms of depth-cues, often, VR NEDs present binocular depth cues and monocular depth cues which can be rendered, e.g., occlusions. 
-Some important monocular depth cues such as accommodation and defous-blur are often missing.
-
-\paragraph{Augmented Reality Displays}
-Augmented Reality NEDs insert virtual objects into the view of the real-world.
-The user maintains context of the real-world and the inserted virtual objects are often contextual and spatially registered with the real-world.
-
-\paragraph{Similarities and differences between AR and VR}
-Although VR and AR systems need similar technologies such as rendering, tracking (head, eyes, fingers), display optics, they differ in many ways:
-
-\begin{compact_enumerate}
-\item \textbf{AR displays have harder design constraints.} Since AR displays need to optically insert virtual imagery onto the real world, the optics needs to be designed such that the real-world view is unemcumbered. 
-The optics usually consists of off-axis designs, waveguides, or pinlights, and each method has limitations that are hard to overcome due to the fundamental laws of physics: 
-(1) off-axis designs are limited by \emph{entendue}, the law of conservation of the product between the field-of-view and the aperture, which dictates the trade-off between the eyebox and the field-of-view, wave. 
-(2) Waveguides are limited by the angle at which \emph{total internal reflection} occurs.
-(3) Pinlight Displays are limited by diffraction.
-\item \textbf{AR displays have a lower limit for acceptable latency} because the real-world (the gold standard for low latency) is always a frame of reference for virtual objects. 
-VR systems typically aim for a latency around 10 - 20 ms. 
-However, for AR displays, calculations show that for average head rotation in social settings (150 degrees per second), a latency of 10 ms introduces an angular error of 1.5 degrees or an error of 5.24 cm for an object placed 2 m away.
-\todo{Reference SAE ARP 5228 2001 study on latency tolerance}
-\todo{Reference Holloway 1997 study that shows that latency is the greatest source of error, outweighing all others combined}
-\item \textbf{AR displays have an additional requirement of occlusion:}
-Today's AR displays are typically designed to only add the virtual objects onto the view of the real-world. 
-However, this causes the virtual objects to look transparent becuase the real-world's light form behind the virtual objects also enters the eye. 
-To make virtual objects look solid, the real-world's light rays from behind the virtual objects needs to be blocked or occluded. 
-This is hard problem and will be discussed in more detail in Chapter~\ref{chapter:varifocal_occlusion_ned}.
-\item \textbf{AR displays need a wider range of brightness levels:}
-The real world has a very high dynamic range (\todo{mention range}) and AR displays need to match this range. 
-\item \textbf{The need for environment 3D reconstruction:}
-Since AR displays may need to show contextual and spatially registered information with respect to the real-world, the real-world needs to be 3D reconstructed in real-time.
-\item \textbf{VR displays have an additional requirement to reconstruct user's body:} 
-Since VR displays block out the real-world completely, the user would not normally see his/her own body when the user looks down or extends his/her arm infront. This can be addressed by reconstructing the user's body in real-time and rendering it into the scene.
-\end{compact_enumerate}
-
-\paragraph{Hybrid AR/VR systems: Video-see through AR displays}
-
-
-Compared to other display approaches that seek to integrate the real-world and the virtual-world (desktop 3D displays, shader lamps, video see-through displays), augmented reality displays are the only option to provide an unencumbered view of the real-world, portability, and the potential to present imagery with wide field-of-view and all the expected depth cues.
-This dissertation adds to a large body of work new methods to improve or enable depth-cues. 
-
-\section{Augmented Reality}
-Augmented Reality systems are the next potential platform for communication and visualization and they will be far superior to the current alternatives because AR systems will not only unlock a whole new dimension to our virtual worlds, but also the ability to present virtual imagery over our entire field-of-view.
-
-\section{Limitations of Augmented Reality Displays}
-\paragraph{Field of view}
-
-\paragraph{Resolution}
-
-\paragraph{Depth cues}
-Providing a seamless, perceptually realistic experience, however, requires the display to support all depth cues of the human visual system~\cite{Palmer:1999,Howard:2002} accurately. 
-While current AR displays offer impressive capabilities, they typically do not support important depth cues such as accommodation or occlusion.
-
-Accommodation is the depth cue that results from the ability of the lens in the eye to focus to different depths of the real world. For improved realism, an AR display should be capable of optically presenting a 3D virtual scene such that the user could explore the virtual scene by focusing to different depths.
-
-Occlusion is the depth cue that arises from solid objects blocking rays of light that arise from real-world points behind it. Providing accurate, i.e., mutually consistent and hard-edge, occlusion between digital and physical objects with optical see-through AR displays is a significant challenge. When digital content is located in front of physical objects, the former usually appear semi-transparent and unrealistic (see Fig.~\ref{fig:varifocal_occlusion:results}, columns~1 and~2). To adequately render these objects, the light reflected off of the physical object toward the user has to be blocked by the display before impinging on their retina. This occlusion mechanism needs to be programmable to support dynamic scenes, and it needs to be perceptually realistic to be effective. The latter implies that occlusion layers are correctly rendered at the distances of the physical objects (see Fig.~\ref{fig:varifocal_occlusion:depth-dependent-occlusion}), allowing for pixel-precise, or hard-edge, control of the transmitted light rays.
-
-\paragraph{Latency}
+\paragraph{Multiple screens anywhere:} an AR system can not only fully replace our current 2D displays (televisions and computer monitors), but can place virtual versions of our 2D displays any location around us. 
+The future workspace would be more customizable and productive than ever before.
+\paragraph{Tele-collaboration:} an AR system with AR displays and 3D reconstruction system can enable an advanced version of today’s video teleconferencing. 
+In the envisioned system, the remote AR system would capture the remote person’s geometry and colors and transmit it to the local AR system which would render the remote person such that they appear to be in the local physical space. 
+\paragraph{3D visualization:} future AR system would enable us to visualize 3D structures and volumetric effects (fog, fluid simulations, etc.) in very informative ways. 
+Sometimes, future AR systems may even be better than recreating such 3D structures in the real-world because in a digital system, we could have the option to visualize not just the structure as a whole, but informative versions of the structure, e.g., cross-sectional view, part-wise view, etc. 
+\paragraph{Enhanced training:} it has already been demonstrated that spatially registered training programs and manuals improve learning rate[To do: needs citation]. 
+\paragraph{Navigation:} Similar to the point above, navigation is another example of contextual information that can be presented better with an AR display because it is spatially registered to where the user is already looking.
+\paragraph{Real-time medical visualization:} one of the most important applications for future AR is probably in medical sciences, e.g., spatially registering visualization of the internal organs of the current patient underoing a surgery.
 
 \section{Scope of this dissertation}
-
-\section{What is Augmented Reality?}
-
-
-Display technologies that provide these depth cues could revolutionize the way we communicate, visualize and interact with digital information, e.g., \emph{telepresence} systems will significantly benefit from being able to depict occlusion~\cite{maimone2013general}, \emph{visualization} of 3D data, especially data composed of surfaces within surfaces such as that of the human anatomy would greatly benefit from occlusion as well as accommodation depth cues.
-
-\section{Contributions}
-The broad contributions of this dissertation are new optical designs, new real-time rendering algorithms, and prototype displays that demonstrate accommodation and mutual occlusion depth cues over an extended depth-range.
-
-For accommodation, this dissertation's contributions are: (1) A volumetric NED exhibiting 280 perceptually simultaneous binary depth planes, each an arbitrary RGB color, situated between 15~cm (6.7 diopters) and 400~cm (0.25 diopters) from the viewer. (2) A rendering pipeline that decomposes a 3-D scene into the set of single-color binary depth planes, such that 24 bpp color voxels are displayed at 280 unique depth positions. (3) A yet-to-be-developed color-adaptive decomposition algorithm for the NED which also demonstrates intra-pupillary occlusions.
-
-For depth-dependent occlusion, this dissertation's contributions are: (1) Varifocal occlusion as an AR display capability that adaptively changes the focal distance of an occlusion mask to enable depth-dependent hard-edge occlusion. (2) Complementary approaches of optimization and closed-form solutions for arriving at an optical design that enables a focus-tunable optical system to achieve varifocal occlusion in a perceptually realistic manner without optically distorting the observed scene. (3) A monocular varifocal occlusion-capable AR display prototype that demonstrates improved realism through depth-dependent occlusion over a large depth range (30~cm to 300~cm).
+\input{images/other/fig_scope.tex}
+Fig. \todo{rename} depicts the scope of this dissertation. 
+There are many enabling technologies and active research areas for Augmented Reality e.g., display technologies, 3D reconstruction, tracking, virtual assistants, redirected walking, etc. 
+This dissertation focusses on display technologies. 
+Even for just the topic of display technologies, there are a number of disserata outlined in Sec. \todo{rename}. 
+This dissertation considers only three specific monocular depth cues, namely: occlusion, accommodaiton and defocus-blur. 
+These depth-cues are explained and dicussed in-detail in Sec. \todo{rename}, but briefly, these three depth cues are important monocular depth cues whose absense in AR displays has demonstrated reduced task performance \todo{needs citation} and increased discomfort \todo{needs citations}. 
+For these depth cues, this dissertation develops two display technologies that improve the presentation of these depth cues over a large depth-range.
 
 
 \section{Thesis Statement}
-The use of computational displays, where the optics, electronics, and algorithms are co-designed, will improve accommodation and occlusion in AR displays. 
+The use of computational displays, where the optics, electronics, and algorithms are co-designed, will improve accommodation, defocus-blur, and occlusion in AR displays.
 
+\section{Contributions of this dissertation}
+For accommodation and retinal-blur, this dissertation’s contributions are: 
+(1) A volumetric NED exhibiting 280 perceptually simultaneous binary depth planes, each an arbitrary RGB color, situated between 15 cm (6.7 diopters) and 400 cm (0.25 diopters) from the viewer. 
+(2) A rendering pipeline that decomposes a 3-D scene into the set of single-color binary depth planes, such that 24 bpp color voxels are displayed at 280 unique depth positions. 
+(3) A yet-to-be-developed color-adaptive decomposition algorithm for the NED which also demonstrates intra-pupillary occlusions. 
+
+For depth-dependent occlusion, accommodaiton, and retinal blur, this dissertation’s contributions are: 
+(1) Varifocal occlusion as an AR display capability that adaptively changes the focal distance of an occlusion mask to enable depth-dependent hard-edge occlusion. 
+(2) Complementary approaches of optimization and closed-form solutions for arriving at an optical design that enables a focus-tunable optical system to achieve varifocal occlusion in a perceptually realistic manner without optically distorting the observed scene. 
+(3) A monocular varifocal occlusion-capable AR display prototype that demonstrates depth-dependent occlusion over a large depth range (30 cm to 300 cm). 
+
+The broad contributions of this dissertation are new optical designs, new real-time rendering algorithms, and prototype displays that demonstrate monocular depth-cues such as accommodation, defocus-blur, and hard-edge occlusion over a large depth-range. 

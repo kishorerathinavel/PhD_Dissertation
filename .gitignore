@@ -2,6 +2,7 @@
 *~
 auto/
 auxiliary/
+examples/
 *.code-workspace
 *.bak
 *.log

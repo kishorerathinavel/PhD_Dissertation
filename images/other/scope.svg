@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="222.74602mm"
+   height="112.49034mm"
+   viewBox="0 0 222.74602 112.49034"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="scope.svg"
+   inkscape:export-filename="./scope_varifocal.png"
+   inkscape:export-xdpi="225.79716"
+   inkscape:export-ydpi="225.79716">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="22.181467"
+     inkscape:cy="252.71549"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer3"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:snap-page="true"
+     inkscape:snap-global="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     transform="translate(3.2894559,-44.032913)">
+    <ellipse
+       style="opacity:1;vector-effect:none;fill:#ffdd55;fill-opacity:1;stroke:#e9afaf;stroke-width:0.09377392;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path815"
+       cy="100.27808"
+       cx="108.08355"
+       rx="111.32612"
+       ry="56.198284"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.58514023px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.28657126"
+       x="88.00312"
+       y="51.142204"
+       id="text819"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489"><tspan
+         sodipodi:role="line"
+         id="tspan817"
+         x="88.00312"
+         y="51.142204"
+         style="font-size:4.23333311px;stroke-width:0.28657126">Augmented Reality</tspan></text>
+    <ellipse
+       ry="48.235229"
+       rx="95.551697"
+       cx="108.61887"
+       cy="102.56296"
+       id="ellipse821"
+       style="opacity:1;vector-effect:none;fill:#e9afaf;fill-opacity:1;stroke:#e9afaf;stroke-width:0.08048657;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23687077px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.26480442"
+       x="86.48172"
+       y="61.099815"
+       id="text819-9"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489"><tspan
+         sodipodi:role="line"
+         id="tspan817-9"
+         x="86.48172"
+         y="61.099815"
+         style="font-size:4.23333311px;stroke-width:0.26480442">Display Technologies</tspan></text>
+    <ellipse
+       ry="39.684319"
+       rx="78.61274"
+       cx="103.96409"
+       cy="105.26035"
+       id="ellipse821-7"
+       style="opacity:1;vector-effect:none;fill:#ac9d93;fill-opacity:1;stroke:#ac9d93;stroke-width:0.06621829;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489" />
+    <text
+       id="text862"
+       y="71.362038"
+       x="91.905907"
+       style="font-size:3.83217025px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.23951064"
+       xml:space="preserve"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489"><tspan
+         style="font-size:4.23333359px;stroke-width:0.23951064"
+         y="71.362038"
+         x="91.905907"
+         id="tspan860"
+         sodipodi:role="line">Depth cues</tspan></text>
+    <g
+       id="g962"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489">
+      <ellipse
+         ry="31.173784"
+         rx="61.75378"
+         cx="103.37194"
+         cy="107.75025"
+         id="ellipse864"
+         style="opacity:1;vector-effect:none;fill:#cdde87;fill-opacity:1;stroke:#ac9d93;stroke-width:0.0520174;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-size:3.43475652px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.21467228"
+         x="86.799309"
+         y="83.231689"
+         id="text868"><tspan
+           sodipodi:role="line"
+           id="tspan866"
+           x="86.799309"
+           y="83.231689"
+           style="font-size:4.23333311px;stroke-width:0.21467228">Monocular cues</tspan></text>
+    </g>
+    <ellipse
+       ry="11.624761"
+       rx="23.028101"
+       cx="80.486908"
+       cy="102.30724"
+       id="ellipse870"
+       style="opacity:1;vector-effect:none;fill:#f4d7ee;fill-opacity:1;stroke:#ac9d93;stroke-width:0.01939739;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text874"
+       y="103.88338"
+       x="63.664162"
+       style="font-size:3.586128px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.224133"
+       xml:space="preserve"><tspan
+         style="font-size:4.23333359px;stroke-width:0.224133"
+         y="103.88338"
+         x="63.664162"
+         id="tspan872"
+         sodipodi:role="line">Accommodation</tspan></text>
+    <g
+       id="g957"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489"
+       transform="translate(9.1531253,4.0320221)">
+      <ellipse
+         ry="11.815486"
+         rx="23.405916"
+         cx="127.67409"
+         cy="102.16141"
+         id="ellipse876"
+         style="opacity:1;vector-effect:none;fill:#ccaaff;fill-opacity:1;stroke:#ac9d93;stroke-width:0.01971563;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text880"
+         y="103.73754"
+         x="117.63026"
+         style="font-size:3.64496493px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.22781031"
+         xml:space="preserve"><tspan
+           style="font-size:4.23333311px;stroke-width:0.22781031"
+           y="103.73754"
+           x="117.63026"
+           id="tspan878"
+           sodipodi:role="line">Occlusion</tspan></text>
+    </g>
+    <g
+       id="g952"
+       inkscape:export-filename="./scope.png"
+       inkscape:export-xdpi="224.27489"
+       inkscape:export-ydpi="224.27489"
+       transform="translate(-1.5119048,-0.37797619)">
+      <ellipse
+         style="opacity:1;vector-effect:none;fill:#aaccff;fill-opacity:1;stroke:#ac9d93;stroke-width:0.01780614;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="ellipse882"
+         cy="124.31671"
+         cx="97.536522"
+         rx="21.139015"
+         ry="10.671136" />
+      <text
+         xml:space="preserve"
+         style="font-size:3.29194379px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.20574649"
+         x="83.829865"
+         y="125.90318"
+         id="text886"><tspan
+           sodipodi:role="line"
+           id="tspan884"
+           x="83.829865"
+           y="125.90318"
+           style="font-size:4.23333311px;stroke-width:0.20574649">Defocus Blur</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Varifocal_occlusion"
+     style="display:inline"
+     transform="translate(3.2894559,-44.032913)">
+    <text
+       id="text874-1-4"
+       y="52.834343"
+       x="190.16678"
+       style="font-size:3.58612823px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;stroke-width:0.22413301"
+       xml:space="preserve"><tspan
+         id="tspan864-7"
+         style="font-size:4.23333454px;text-align:center;text-anchor:middle;stroke-width:0.22413301"
+         y="52.834343"
+         x="190.16678"
+         sodipodi:role="line">Varifocal-Occlusion</tspan><tspan
+         style="font-size:4.23333454px;text-align:center;text-anchor:middle;stroke-width:0.22413301"
+         y="58.126011"
+         x="190.16678"
+         sodipodi:role="line"
+         id="tspan941">AR Display</tspan></text>
+    <path
+       style="display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#9955ff;stroke-width:0.6507833;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 141.37096,86.972414 178.56422,54.269807"
+       id="path943"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <ellipse
+       style="display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#9955ff;stroke-width:0.7410773;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path844-9"
+       cx="-86.517754"
+       cy="191.36659"
+       rx="40.657822"
+       ry="45.658096"
+       transform="matrix(0.85572148,-0.51743671,0.94381304,0.33047985,0,0)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Volumetric"
+     style="display:inline"
+     transform="translate(3.2894559,-44.032913)">
+    <text
+       id="text874-1"
+       y="141.42165"
+       x="2.4206569"
+       style="font-size:3.58612823px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;stroke-width:0.22413301"
+       xml:space="preserve"><tspan
+         style="font-size:4.23333406px;stroke-width:0.22413301"
+         y="141.42165"
+         x="2.4206569"
+         id="tspan872-9"
+         sodipodi:role="line">Volumetric</tspan><tspan
+         id="tspan864"
+         style="font-size:4.23333406px;stroke-width:0.22413301"
+         y="146.71332"
+         x="2.4206569"
+         sodipodi:role="line">AR Display</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path866"
+       d="M 26.192413,142.51821 60.194456,118.61365"
+       style="display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#00ccff;stroke-width:0.48047036;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       style="display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#00ccff;stroke-width:0.50342476;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path844"
+       cx="-1.8873585"
+       cy="142.63318"
+       rx="27.88653"
+       ry="30.779408"
+       transform="matrix(0.97016816,-0.24243293,0.62454007,0.78099277,0,0)" />
+  </g>
+</svg>

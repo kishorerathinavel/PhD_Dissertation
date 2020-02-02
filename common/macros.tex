@@ -81,18 +81,8 @@
 \definecolor{DarkGreen}{rgb}{0.0, 0.5, 0.0}
 \definecolor{Gray}{rgb}{0.5 0.5, 0.5}
 \definecolor{Fuchsia}{rgb}{0.79,0.17,0.57}
-%\definecolor{Fuchsia}{rgb}{1.00,0.47,1.00}
 
-\newcommand{\lookup}[1]{\textcolor{Blue}{[Lookup: #1]}}
-\newcommand{\myverbatim}[1]{\textcolor{Fuchsia}{[Verbatim: #1]}}
 \newcommand{\todo}[1]{\textcolor{Red}{[To do: #1]}}
-\newcommand{\doubt}[1]{\textcolor{Red}{[Doubt: #1]}}
-\newcommand{\answer}[1]{\textcolor{DarkGreen}{[Answer: #1]}}
-\newcommand{\openproblem}[1]{\textcolor{DarkGreen}{[Open Problem: #1]}}
-\newcommand{\opinion}[1]{\textcolor{Purple}{[Opinion: #1]}}
-\newcommand{\citedsectionheading}[2]{\section[#1]{#1 #2}}
-
-
 
 \newenvironment{compact_enumerate}{
      \begin{enumerate}[leftmargin=0.4cm]
@@ -129,8 +119,13 @@
 \fancyfoot[L]{\thepage}
 \fancyfoot[R]{\hyperlink{toc}{TOC}}
 \fancyhead{}
-\fancyhead[L]{\slshape \nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
 %\fancyhead[R]{\slshape \nouppercase{\leftmark}}
+
+\usepackage{csquotes}
+\SetBlockThreshold{2}
+\newcommand\myblockquote[2]{%
+  \blockquote{\hspace*{2em}\emph{`#1'}\hfill #2}\par}
 
 % End of Kishore
 
