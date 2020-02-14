@@ -6,5 +6,6 @@ examples/
 *.code-workspace
 *.bak
 *.log
+*.ini
 
 
