@@ -1,4 +1,5 @@
-\section{Results}
+\input{chapters/volumetric/figures/fig_results.tex}
+\subsection{Results}
 \label{sec:volumetric:results}
 \paragraph{Cameras}
 To record images and videos of the see-through view of the display, cameras that approximate the human eye were placed behind the display (see Figure~\ref{fig:volumetric:setup}) at a distance that approximated the eye relief of a human viewer (2cm away from the beamsplitter). See-through image results presented in this chapter were recorded using a Canon T6i Rebel camera with a Canon 24-70mm f/2.8 lens. See-through video results (in accompanying video submission) were recorded using a Point Grey Chameleon3 camera with a Fujinon 2.8-8mm f/1.2 lens. A 4mm aperture was used in both cameras to emulate the human pupil diameter while collecting results. When using PointGrey cameras, the nearest distance was chosen to be 15cm (6.7 diopters), and when using the DSLR camera, the minimum distance was 20cm (5 diopters) because the lens could not focus closer. 
@@ -13,12 +14,13 @@ Figure~\ref{fig:volumetric:results} shows the see-through views of our NED when 
 
 As discussed earlier, the field of view of the virtual image changes during the lens cycle. Ideally, this needs to be calibrated for, but we didn't. Other first order and second order optical aberrations present in all optical systems may also need to be calibrated. Each of these optical aberrations likely varies with depth across the volume. Optical aberrations are observable in our system, e.g., in the second row of Figure~\ref{fig:volumetric:results}, even when focused at the correct depth, the bottom portion of the Jack card is blurred relative to the top. 
 
-To demonstrate that our display shows high-resolution imagery when each binary image is considered individually, Figure~\ref{fig:volumetric:single_plane_images} shows the see-through view when only one of the 280 binary images was encoded with the image of a wire model of a teapot. We plan to develop a methodology for the calibration of the volume as future work - our expectation is this would lead to high-resolution imagery across the entire volume. 
-
-Figure~\ref{fig:volumetric:sinusoidal_vs_triangular} shows a comparison between the see-through views when the lens signal follows a triangular and a sinusoidal waveform. This is discussed in Section~\ref{sec:volumetric:sinusoidal_vs_triangular}.
+To demonstrate that our display shows high-resolution imagery when each binary image is considered individually, Figure~\ref{fig:volumetric:single_plane_images} shows the see-through view when only one of the 280 binary images was encoded with the image of a wire model of a teapot. 
 
 \input{chapters/volumetric/figures/fig_sinusoidal_vs_triangular.tex}
+Figure~\ref{fig:volumetric:sinusoidal_vs_triangular} shows a comparison between the see-through views when the lens signal follows a triangular and a sinusoidal waveform. This is discussed in Section~\ref{sec:volumetric:sinusoidal_vs_triangular}.
+
 
 \paragraph{Video results}
-An accompanying file with this chapter shows videos of the see-through view. The video results show a larger range of depth (15cm - 4M) compared to the image results (20cm - 4M) because the camera used to record the video was able to focus closer. In these videos, a flicker is seen propagating back and forth through the displayed volume. This flicker is an artifact of the video capture and is not human-visible. The flicker arises because of the slight discrepancy between the display frame time (16.67 ms) and the minimum shutter speed possible on the camera (16.74 ms). The flicker moves back and forth in the volume because the camera samples the whole volume once and a small portion of the volume twice - and because of this, it starts to sample the volume in the subsequent frame from a slightly different starting position of the volume. 
+A video was recorded as demonstration of this display. This video was submitted as part of this dissertation and is also available publically at this URL: \url{https://www.youtube.com/watch?v=oDcOQ_NotRU}. 
+The video results show a larger range of depth (15cm - 4M) compared to the image results (20cm - 4M) because the camera used to record the video was able to focus closer. In these videos, a flicker is seen propagating back and forth through the displayed volume. This flicker is an artifact of the video capture and is not human-visible. The flicker arises because of the slight discrepancy between the display frame time (16.67 ms) and the minimum shutter speed possible on the camera (16.74 ms). The flicker moves back and forth in the volume because the camera samples the whole volume once and a small portion of the volume twice - and because of this, it starts to sample the volume in the subsequent frame from a slightly different starting position of the volume. 
 

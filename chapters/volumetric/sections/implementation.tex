@@ -1,4 +1,4 @@
-\section{Implementation}
+\section{Static System}
 \subsection{Overview and Software}
 To test our ideas, we developed a hardware prototype of a monocular near-eye display and implemented an offline version of our proposed rendering pipeline. The offline rendering pipeline begins with the rendering of a virtual scene using OpenGL/GLSL to generate an RGB image and a linearized 16-bit depth map of the virtual scene. The RGB image and depth map are processed in MATLAB to generate a series of binary images and RGB LED brightness values. The binary images are uploaded to and displayed by the DMD controller, and the RGB LED brightness values are used by a custom RGB LED driver for precise high-speed control over each LED's brightness. An ARM-based microcontroller provides synchronization between the lens, the DMD controller, and the custom RGB LED driver. Below we discuss each hardware component in detail.
 
@@ -21,14 +21,11 @@ A PCB mounted RGB LED is controlled using electronics consisting of Digital-Anal
 \paragraph{PC}
 A PC using Intel Xeon E5-2630 2.4 GHz processor with an NVIDIA GeForce GTX 980 running Windows 7 is used to implement an offline version of the proposed rendering pipeline. 
 
-\input{chapters/volumetric/figures/fig_results.tex}
 
 \subsection{Operational detail}
 Figure~\ref{fig:volumetric:blockdiagram-timing} gives an overview of the operation of the NED. The binary images are uploaded to the DMD controller using the ALP 4.1 Controller Suite. The DMD controller is configured to advance frames each time it receives a trigger signal from the microcontroller. At the end of the sequence of images, the DMD cycles back to the first image. The frametime of the DMD was set to the minimum possible frametime of 58 $\mu s$.
 
-The lens controller outputs a trigger signal whose rising edges correspond to the beginning of each lens's cycle. The lens operates at a frequency of 60 Hz. The lens' trigger signal is detected by the microcontroller, which then performs $280$ instances of these operations before the next lens' trigger signal: (1) microcontroller outputs a trigger signal to the DMD controller, and (2) microcontroller sends three 16-bit words to the LED controller. Each 16-bit word specifies the brightness of a color LED. The microcontroller ensures that the DMD updates and illumination values are phase-locked to the lens cycle. 
-
-Figure~\ref{fig:volumetric:setup} shows an image of our display's hardware and the experimental setup. 
+The lens controller outputs a trigger signal whose rising edges correspond to the beginning of each lens's cycle. The lens operates at a frequency of 60 Hz. The lens' trigger signal is detected by the microcontroller, which then performs $280$ instances of these operations before the next lens' trigger signal: (1) microcontroller outputs a trigger signal to the DMD controller, and (2) microcontroller sends three 16-bit words to the LED controller. Each 16-bit word specifies the brightness of a color LED. The microcontroller ensures that the DMD updates and illumination values are phase-locked to the lens cycle. Figure~\ref{fig:volumetric:setup} shows an image of our display's hardware and the experimental setup. 
 
 \subsubsection{Calibrating phase delay}
 In our experience, we've found that there is a phase delay between the lens signal and the displayed image plane depth estimated in Figure~\ref{fig:volumetric:graphs}. This phase delay was calibrated visually by generating a synthetic stack of images in which each image has a single feature (like a cross-hair), but the feature is placed at a different location in each image. By setting the camera lens to nearest focus, it was visually determined that the $180$th image out of the $280$ image stack is in focus, which meant that the lens trigger signal and our system's display of the virtual images are out of phase by $\frac{180 - 140}{280} \times 16.67ms = 2.38 ms$. To correct for this, the binary images uploaded to the DMD controller were cyclically rearranged such that the $180$th binary image is moved to the $140$th index.

@@ -7,5 +7,7 @@ examples/
 *.bak
 *.log
 *.ini
+*.mat
+
 
 

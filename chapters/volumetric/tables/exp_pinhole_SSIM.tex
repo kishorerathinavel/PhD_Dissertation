@@ -1,0 +1,25 @@
+\begin{table}
+\begin{center}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.0cm}|>{\centering\arraybackslash}m{2.0cm}|>{\centering\arraybackslash}m{2.2cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.0cm}|>{\centering\arraybackslash}m{1.7cm}|}
+\hline
+Number of binary planes & Images & Fixed pipeline & Combinatorial & Highest-Energy Minimization & Projected Gradients & Heuristic \\
+\hline
+280 & Cards & 1.0000  & 0.9999 & 1.0000 & 0.9722 & 0.9976 \\ % exp1
+\hline
+280 & Bunnies  & 0.9999 & 0.9999 & 0.9999 & 0.9720 & 0.9993 \\ % exp2
+\hline
+25 & Cards & 0.9736 & 0.9943 & 0.9895 & 0.9720 & 0.9987 \\ % exp4
+\hline
+25 & Bunnies & 0.9929 & 0.9975 & 0.9987 & 0.9602 & 0.9993 \\ % exp3
+\hline
+280 & Transparency & 0.9988 & 0.9998 & 0.9999 & 0.9389 & 0.9982 \\ % exp10
+\hline
+25 & Transparency & 0.9509 & 0.9908 & 0.9928 & 0.9435 & 0.9965 \\ % exp9
+\hline
+\end{tabular}}
+\end{center}
+\caption[SSIM values for various decomposition algorithms and experiment settings]{Table shows Structural Similarity Index (SSIM) values for different experiment settings (number of binary planes and target image) for the different decomposition algorithms.}
+\label{tab:volumetric:acd:exp_pinhole_ssim}
+\end{table}
+

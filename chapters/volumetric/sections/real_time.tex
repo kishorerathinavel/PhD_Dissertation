@@ -1,4 +1,5 @@
 \section{Towards Real-Time System}
+\label{sec:volumetric:rts}
 \input{images/volumetric/real_time_system/fig_real_time_system_overview}
 
 A real-time system with only 8 depth planes was developed as part of this dissertation to demonstrate the future feasibility of a completely developed real-time system.
@@ -11,20 +12,20 @@ The computational compoenents of this real-time system and their tasks is summar
     \item PC:
     \begin{itemize}
         \item Initializes the lens driver to oscillate at 60 Hz. 
-        \item Passes scene infomration (3D models, lighting information, camera position) to the GPU
-        \item Interprets user mouse movements to modify camera position
+        \item Passes scene infomration (3D models, lighting information, camera position) to the GPU.
+        \item Interprets user mouse movements to modify camera position.
     \end{itemize}
     \item GPU (in the order mentioned):
     \begin{itemize}
-        \item Render 3D scene into an RGB image and depth map
+        \item Render 3D scene into an RGB image and depth map.
         \item Decomposes RGB image and depth map into 8 binary images and 8 LED colors.
         \item Encodes these 8 binary images into a gray-scale image and copies this gray-scale image into the three color channels of the image being sent over DVI to the Virtex-7 FPGA.
     \end{itemize}
     \item Virtex-7 FPGA:
     \begin{itemize}
-        \item Receives the DVI image and stores into an on-board RAM
-        \item Copies two color channels of the image on the RAM onto the cache \todo{is this the right word?} memory
-        \item Waits for trigger signal from the focus-tunable lens driver which indicates the start of a lens cycle
+        \item Receives the DVI image and stores into an on-board RAM.
+        \item Copies two color channels of the image on the RAM onto the cache memory.
+        \item Waits for trigger signal from the focus-tunable lens driver which indicates the start of a lens cycle.
         \item Sends 8 RGB LED values to the custom LED controller. These 8 values are uniformely spaced temporally over the duration of one lens cycle assuming that the lens is oscillating at 60 Hz.
         \item Sends 8 binary patterns to the Virtex 5 DMD controller board. These 8 values are uniformely spaced temporally over the duration of one lens cycle assuming that the lens is oscillating at 60 Hz.
     \end{itemize}
@@ -47,7 +48,7 @@ After this step, we have 8 1-bit images for each depth plane which can be encode
 Due to some limitations in our FPGA implementation (described in Sec.~\ref{sec:volumetric:rts:limitations}), we copy this encoded image into all the three color channels to make the subsequent parts of the display pipeline agnostic to the color channel it chooses to display.
 
 \subsection{Results}
-A video was recorded as demonstration of this real-time volumetric display system and is available at this URL: \url{https://www.youtube.com/watch?v=pUtvBEPkzfA}. 
+A video was recorded as demonstration of this real-time volumetric display system. This video was submitted as part of this dissertation and is also available publically at this URL: \url{https://www.youtube.com/watch?v=pUtvBEPkzfA}. 
 The video shows two real objects and two virtual objects. 
 The real objects are a postage stamp at 30 cm and a real person at 300 cm.
 The virtual objects are a Coca-Cola bottle cap model and a 3D body scan of a person.

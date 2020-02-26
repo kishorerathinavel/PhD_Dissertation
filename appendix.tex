@@ -1,3 +1,15 @@
 \chapter[]{}
-\section[]{}
+\section[]{Registration errors due to latency}
 \label{sec:appendix:registration_errors_latency}
+
+Suppose $\omega_{\text{head}}$ denotes the head rotation speed in degrees-per-seconds and $t_{\text{latency}}$ denotes the latency of the display system (i.e., the time between the tracking information used for rendering and the display of the currently rendered image), then the error of the currently displayed frame is:
+\begin{equation}
+    \theta_{\text{error}} = \omega_{\text{head}} \ast t_{\text{latency}}.
+\end{equation}
+
+For a virtual object that is displayed at distance $d_{\text{object}}$ away, the lateral error is given by:
+\begin{equation}
+    d_{\text{error}} = \tan(\theta_{\text{error}}) \ast d_{\text{object}}.
+\end{equation}
+
+Suppose $\omega_{\text{head}} = 150$ degrees-per-second and $t_{\text{latency}} = 10$ milliseconds, then $\theta_{\text{error}}=1.5$ degrees, and if $d_{\text{object}}=2$ meters, then $d_{\text{error}}=5.24$ centimeters.

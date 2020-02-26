@@ -149,7 +149,7 @@ The pipeline currently handles only opaque polygons; transparency and other prim
 Using 3-D models and scene data, an OpenGL renderer generates an RGB image and a linearized 16-bit depth map of the current scene at the resolution of the DMD display ($1024 \times 768$). The 16-bit values of the depth map are remapped to the 280 depth values of the focal planes supported by our optical design. This results in a 2-D surface, composed of color voxels, in a $1024 \times 768 \times 280$ volume.
 
 \subsection{Binary Decomposition: Color voxels to binary images}
-\label{sec:volumetric:Decomposition}
+\label{sec:volumetric:fixed_pipeline}
 
 Our key observation is that the binary representation of a color voxel need not start or end at one of the modulo $3 \times (2^{N_{\text{gray}}} - 1)$ planes as proposed by earlier binary multifocal displays. It need not start or end at one of the modulo $3 \times N_{\text{gray}}$ also, as would be the case for a multifocal NED which displays color image planes using DDS decomposition. Instead, the decomposition of a color voxel to binary voxel can begin and end at arbitrary depths. 
 
@@ -171,7 +171,7 @@ Similarly, due to the slightly changing FoV of binary images across the lens cyc
 
 The blur perpendicular to the optical axis can be reduced by performing a calibration to determine the actual FoV of each binary image plane and modifying the color to binary decomposition algorithm to take into account the deformed volume geometry. We did not perform such a calibration process for this chapter. The blur along the optical axis, however, is more fundamental to the display technology. It could be reduced by advanced color volume to binary volume decomposition schemes. 
 
-Previous works have suggested slightly different values for the focal plane separation required for a good multifocal display. Rolland et al.~\cite{Rolland1999dynamic} suggest 0.143 diopters, Akeley et al.~\cite{Akeley2004stereo} design their prototype with image spacings of 0.67 diopters, Liu et al.~\cite{Liu2010systematic} and Watt et al.~\cite{Watt2012Real} suggest 0.6 diopters, and MacKenzie et al.~\cite{MacKenzie2010Accommodation} suggest 1 diopter. As shown in Figure~\ref{fig:volumetric:blur_graphs}, our display has a maximum depth-blur of 0.3 diopters and an average depth-blur of 0.167 diopters. 
+Previous works have suggested slightly different values for the focal plane separation required for a good multifocal display. Rolland et al.~\cite{Rolland1999dynamic} suggest 0.143 diopters, Akeley et al.~\cite{Akeley2004} design their prototype with image spacings of 0.67 diopters, Liu et al.~\cite{Liu2010systematic} and Watt et al.~\cite{Watt2012Real} suggest 0.6 diopters, and MacKenzie et al.~\cite{MacKenzie2010Accommodation} suggest 1 diopter. As shown in Figure~\ref{fig:volumetric:blur_graphs}, our display has a maximum depth-blur of 0.3 diopters and an average depth-blur of 0.167 diopters. 
 
 \input{chapters/volumetric/figures/fig_blur_graphs.tex}
 

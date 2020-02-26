@@ -1,10 +1,10 @@
-\section{Color-Adaptive Decomposition}
+\section{Adaptive Color-to-Binary Decomposition Algorithms}
 \label{sec:volumetric:acd}
 
 In this section, we present methods for more efficient decomposition from color-volume to binary-volume, efficiency here refering to the number of binary depth planes that are used to represent a color depth plane. 
 
 \subsection{Motivation}
-In the method presented in Sec. \todo{find the section number}, each color voxel was decomposed into the nearest 24 binary depth planes. Since our display's LEDs can change color and intensity over a very large range on a per-binary frame basis, we don't need to limit our display to a fixed pattern of LED colors and intensities or to 8 bits-per-color. A more optimum decomposition method might use fewer number of binary voxels to represent the same color voxel. It is useful to reduce the number of binary voxels that represent each color voxel for the following reasons:
+In the method presented in Sec.~\ref{sec:volumetric:fixed_pipeline}, each color voxel was decomposed into the nearest 24 binary depth planes. Since our display's LEDs can change color and intensity over a very large range on a per-binary frame basis, we don't need to limit our display to a fixed pattern of LED colors and intensities or to 8 bits-per-color. A more optimum decomposition method might use fewer number of binary voxels to represent the same color voxel. It is useful to reduce the number of binary voxels that represent each color voxel for the following reasons:
 
 \begin{enumerate}
     \item This will reduce the depth-blur associated with each color voxel.
@@ -52,15 +52,16 @@ However, the problem with trying to decompose a 24-bit target RGB image into a 1
     \item 
 \end{enumerate}
 
-\subsubsection{Brute-force}
+\subsubsection{Combinatorial Optimization}
+\label{sec:acd:combinatorial}
 In this method, we calculate the decomposition for every combination of color channel. 
 These are the difference combinations of color channels: $O_1 = $\{ 1, 0, 0 \}, $O_2 = $ \{ 0, 1, 0 \}, $O_3 = $ \{ 0, 0, 1 \}, $O_4 = $ \{ 1, 1, 0 \}, $O_5 = $ \{ 1, 0, 1 \}, $O_6 = $ \{ 0, 1, 1 \}, $O_7 = $ \{ 1, 1, 1 \}, where 0 indicates that the color channel is not considered for the optimization and 1 indicatest that the color channel is considered for the optimization. 
 
-See Algorithm~\ref{alg:bruteforce} for a pseudo-code for this approach. A step-wise explanation for the algorithm follows:
+See Algorithm~\ref{alg:combinatorial} for a pseudo-code for this approach. A step-wise explanation for the algorithm follows:
 \begin{itemize}
     \item Lines 1-2: At each depth plane, we assign the target image by adding the previous residual to the current depth plane's image. We split this target image ($T$) into its color channels $(C_1, C_2, C_3))$ because we process the color channel's independently in the initial part of the algorithm to estimate the common optimal binary image.
     \item Line 3: In the outer for-loop, we consider each of the seven possible options for whether an LED is on or off, i.e., $O_1$, $O_2$, ..., $O_7$, and save these calculated values: LED values ($L_i$), binary pattern ($B_i$), the reconstructed image ($S_i$), the residual ($R_i$), and the energy or loss ($E_i$).
-    \item Lines 5-13: calculate the best LED value and binary pattern when each color channel is considered independently and in accordance with whether that color channel's LED should be on or off. If that color channel's LED should be off, then the LED value for that color channel is set to 0 and the binary pattern is set to all ones. If however the LED should be on, the LED value is calculated as the mean value of the non-zero pixel values of that color channel and the binary pattern is calculated by thresholding the pixel values divided by the calculated LED value. Ideally, this threshold should be set to 1. \todo{What is the threshold value used?}.
+    \item Lines 5-13: calculate the best LED value and binary pattern when each color channel is considered independently and in accordance with whether that color channel's LED should be on or off. If that color channel's LED should be off, then the LED value for that color channel is set to 0 and the binary pattern is set to all ones. If however the LED should be on, the LED value is calculated as the mean value of the non-zero pixel values of that color channel and the binary pattern is calculated by thresholding the pixel values divided by the calculated LED value. Typically, this threshold is set to 1.
     \item Line 14: Since the DMD pattern is common to all three color channels, we need to calculate the common binay pattern by simply multiplying together all the color channel's binay patterns. 
     \item Lines 15-24: Because the common binary pattern may be different from each of the color channel's binary patterns, we need to calculate the new optimum LED values. This for-loop accomplishes that by assigning each LED value to the minimum pixel value in its color channel.
     \item Lines 27-30: We find which option resulted in the least energy and output that option's binary pattern, LED values, and residual image. 
@@ -68,7 +69,7 @@ See Algorithm~\ref{alg:bruteforce} for a pseudo-code for this approach. A step-w
 
 \begin{algorithm}
     \caption{Brute-force color decomposition}
-    \label{alg:bruteforce}
+    \label{alg:combinatorial}
     \hspace*{\algorithmicindent}\textbf{Input:} $T, R$\\
     \hspace*{\algorithmicindent}\textbf{Output:} $B, L, R$
     \begin{algorithmic}[1]
@@ -106,6 +107,7 @@ See Algorithm~\ref{alg:bruteforce} for a pseudo-code for this approach. A step-w
 \end{algorithm}
 
 \subsubsection{Highest Energy Channel Minimization}
+\label{sec:acd:highestenergy}
 \begin{algorithm}
     \caption{Highest Energy Channel Minimization}
     \label{alg:highest_energy_channel_minimization}
@@ -137,14 +139,14 @@ See Algorithm~\ref{alg:highest_energy_channel_minimization} for a pseudo-code fo
 
 
 \subsubsection{Projected Gradient}
-\label{sec:acd_projected_gradient}
+\label{sec:acd:projected_gradient}
 This approach is based on non-negative matrix factorization methods as used in recent compressive displays~cite{Wetzstein2012,Huang2015Light,huang2017mixed}. 
 However, the previous papers were concerned with decomposing a continuous-valued image into two or more continuous-valued images. 
 Here, by continuous, we mean that the values are considered to be in continuous domain even through in a computer they may be represented by an 8-bit per color channel image. 
 However, in our display, we need to decompose continuous-valued images (slices of the color volume) into a binary image and a continuous-valued triplet for the RGB LED. 
 This is a significantly harder problem because it is a combination of the traditional optimization as explored by non-negative matrix factorizatin algorithms and combinatorial optimization which has not been explored previously in context of computational displays. 
 In this section, we derive the update rules for non-negative matrix factorization algorithms, and we write down the algorithm and explain it.
-We shall see later in the \todo{results section} that this algorithm does poorly in terms of visual quality.
+We shall see later in the Sec.~\ref{sec:volumetric:acd:results} that this algorithm does poorly in terms of visual quality.
 
 \paragraph{Newton's method adapted for optimization}
 Non-negative matrix factorization's update rules can be understood from studying Newton's method adapted for optimization:
@@ -291,24 +293,10 @@ See Algorithm~\ref{alg:projected_gradients} for a pseudo-code for this approach.
 \end{itemize}
 
 \subsubsection{Heuristic}
-\label{sec:acd_heuristis}
+\label{sec:acd:heuristis}
 This approach is a judicious combination of the brute-force approach (which yields the best image quality, least number of binary voxels, but longest runtime) and the projected gradients approach (which yields very poor image quality, comparable number of binary voxels, but fast runtimes). 
 In this approach, we treat treat the problem as a combination of a combinatorial optimization (for selecting which combination of color channels the DMD image and LEDs should try to address) and continous-valued optimization (for selecting the LED values). 
 In this approach, the combinatorial optimization portion (selecting the combination of color channels to address) automatically determines the DMD pattern too.
-See Algorithm~\ref{alg:heuristics} for a pseudo-code for this approach. A step-wise explanation for the algorithm follows:
-\begin{itemize}
-    \item Line 1: At each depth plane, we assign the target image by adding the previous residual to the current depth plane's image. 
-    \item Line 2: Split the target image ($T$) into its color channels $(C_1, C_2, C_3))$ because we process the color channel's independently.
-    \item Lines 3-6: For each color channel, initialize the LED value to be the mean of that color channel's non-zero pixel values. Assuming that the DMD image is a per-channel continuous-valued image, calculate the initial guess by normalizing the color image by the mean of the color image.  
-    \item Line 7: Combine the per-channel continuous-valued images into a binary image by adding and thresholding. 
-    \item Line 8-9: Calculate the reconstructed image and the residual image.
-    \item Line 10,22: for-loop for two iterations of the non-negative matrix factorization algorithm.
-    \item Lines 11-13: Update the LED values according to Eq.~\ref{eq:led_update}.
-    \item Lines 14-15: Calculate the reconstructed image and the residual image.
-    \item Lines 16-18: Assuming that the DMD image is a per-channel continuous-valued image, calculate the gradient according to Eq.~\ref{eq:binary_image_update}.
-    \item Line 19: Combine the per-channel continuous-valued image-gradients into a binary image by adding and thresholding.
-    \item Lines 20-21: Calculate the reconstructed image and the residual image.
-\end{itemize}
 
 \begin{algorithm}
     \caption{Heuristic approach}
@@ -344,19 +332,96 @@ See Algorithm~\ref{alg:heuristics} for a pseudo-code for this approach. A step-w
     \end{algorithmic}
 \end{algorithm}
 
+See Algorithm~\ref{alg:heuristics} for a pseudo-code for this approach. A step-wise explanation for the algorithm follows:
+\begin{itemize}
+    \item Line 1: At each depth plane, we assign the target image by adding the previous residual to the current depth plane's image. 
+    \item Line 2: Split the target image ($T$) into its color channels $(C_1, C_2, C_3))$ because we process the color channel's independently.
+    \item Lines 3-6: For each color channel, initialize the LED value to be the mean of that color channel's non-zero pixel values. Assuming that the DMD image is a per-channel continuous-valued image, calculate the initial guess by normalizing the color image by the mean of the color image.  
+    \item Line 7: Combine the per-channel continuous-valued images into a binary image by adding and thresholding. 
+    \item Line 8-9: Calculate the reconstructed image and the residual image.
+    \item Line 10,22: for-loop for two iterations of the non-negative matrix factorization algorithm.
+    \item Lines 11-13: Update the LED values according to Eq.~\ref{eq:led_update}.
+    \item Lines 14-15: Calculate the reconstructed image and the residual image.
+    \item Lines 16-18: Assuming that the DMD image is a per-channel continuous-valued image, calculate the gradient according to Eq.~\ref{eq:binary_image_update}.
+    \item Line 19: Combine the per-channel continuous-valued image-gradients into a binary image by adding and thresholding.
+    \item Lines 20-21: Calculate the reconstructed image and the residual image.
+\end{itemize}
+
+
 \subsection{Results}
+\label{sec:volumetric:acd:results}
+To study the above decomposition algorithms, we simulate the perceived images of all the decomposition algorithms proposed so far with each other, i.e., fixed-pipeline (Sec.~\ref{sec:volumetric:fixed_pipeline}), combinatorial (Sec.~\ref{sec:acd:combinatorial}), highest energy channel minimization (Sec.~\ref{sec:acd:highestenergy}), projected gradients (Sec.~\ref{sec:acd:projected_gradient}), and a heuristic approach (Sec.~\ref{sec:acd:heuristis}). For all the results shown in this section, we assume that the field-of-view of the display is constant. 
+
+We model the perceived images by two methods:
 \begin{enumerate}
-  \item PSNR of reconstruction
-  \item SSIM of reconstruction
-  \item Number of binary voxels
-  \item Transparencies
-  \item PSNR of focal stacks
-  \item SSIM of focal stacks
+\item By accumulating the perspective projection of every binary image. In other words, by assuming that the human pupil is a pinhole camera. This method allows us to get an rough idea of the visual quality of the reconstruction in a more compact representation. It also allows us to count the number of binary voxels that each color voxel is decomposed into. See Fig.~\ref{fig:volumetric:acd:exp1:pinhole} for an example --- this figure will be explained below in more detail. The disadvantage with this method is that it does not model focus cues such as accommodation or retinal blur.
+\item To model focus cues such as accommodation and retinal blur as seen by a human pupil, we model the pupil as an area aperture of 4 mm. We render a set of images for a set of corresponding eye's focal lengths. This is called a \emph{focal stack}. See Fig.~\ref{fig:volumetric:acd:exp1:focalstack} for an example --- this figure will be explained below in more detail.
 \end{enumerate}
 
-\input{images/volumetric/cad_results/fig_cad_visual_quality.tex}
-\input{images/volumetric/cad_results/fig_cad_num_binary_voxels.tex}
-Fig.~\todo{rename} compares the number of binary voxels needed to present each color voxel for the different algorithms above. Fig.~\todo{rename} compares the reconstructed image quality and residual images for the different algorithms above. Note that while the \emph{Fixed pipeline} approach gives the best visual quality, the \emph{Projected gradient} approach gives the least number of binary voxels needed to present each color voxel. The \emph{Fixed pipeline} approach gives a residual of zero because it is a deterministic algorithm where the binary volume is guaranteed to fully represent the color volume.
+For both methods of generating perceived images, we present visual results, PSNR values, and SSIM values. 
 
-\subsection{Future Work}
-\todo{Polish up these things} Above approaches are slow. Opportunity to apply Deep Neural Networks. Global optimization is another direction.
+\subsubsection{Pinhole camera simlation results}
+\input{images/volumetric/acd_exp1/fig_exp_pinhole.tex}
+\input{images/volumetric/acd_exp2/fig_exp_pinhole.tex}
+\input{chapters/volumetric/tables/exp_pinhole_psnr.tex}
+\input{chapters/volumetric/tables/exp_pinhole_ssim.tex}
+
+The top row of Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole} show the simulated perceived image assuming a pinhole pupil for a display of 280 depth planes. Observe the images for \emph{projected graidents} in these figures --- in Fig.~\ref{fig:volumetric:acd:exp1:pinhole}, the image looks like a gray scale image and in Fig.~\ref{fig:volumetric:acd:exp2:pinhole}, the image has color artifacts. As mentioned before, this algorithm is suitable when the decomposted units can take continuous values, but since our display uses binary images, we need to convert continuous values predicted by the algorithm into binary values by thresholding. This thresholding leads to loss of information and results in artifacts. 
+
+The bottom row of Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole} show the number of binary voxels which represent each color voxel for a display of 280 depth planes. Observe how \emph{projected graidents} and \emph{heuristic} algorithm use significantly lesser number of binary voxels. Also observe how \emph{combinatorial} and \emph{highest energy channel minimization} algorithms use even more binary voxels than \emph{fixed pipeline} --- this is probably because calculating the LED values as the average of one or more color channel(s) is not the optimal choice. In \emph{projected graidents} and \emph{heuristic}, the LED values are initialized to the average of the color channels, but are subsequently modified according to the optimization update rules. 
+
+Rows 1 and 2 of Tables \ref{tab:volumetric:acd:exp_pinhole_psnr} and \ref{tab:volumetric:acd:exp_pinhole_ssim} show the PSNR and SSIM values respectively for the images in Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole}. These values indicate the \emph{fixed pipeline} is the best algorithm and \emph{projected gradients} is the worst when meausred with popular visual quality metrics. The reason \emph{fixed pipeline} turns out as the best algorithm is because it is the only non-lossy decomposition. All the other methods invariably operate by thresholding the target color image against a calculated LED value. 
+
+But the above metrics do not indicate whether or not the decomposition happens at the correct depth. It may be possible that the reconstructed image has the same pixel values as the target image, but the binary representation of the color voxels were at a wrong location --- such errors can lead to incorrect monocular cues. So, we introduce another way to compare the different decomposition algorithms below --- by calculating the focal stack of the algorithm and comparing it against the focal stack of the color volume. 
+
+\subsubsection{Reduced number of depth planes}
+\input{images/volumetric/acd_exp1/fig_exp_FS.tex}
+\input{chapters/volumetric/tables/exp1_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp1_FS_SSIM.tex}
+
+\paragraph{Visual results}
+
+Figures \ref{fig:volumetric:acd:exp1:focalstack} and \ref{fig:volumetric:acd:exp4:focalstack} show the focal stacks when the number of binary planes is 280 and 25 respectively. From these figures, we can see the first failure case for the \emph{fixed pipeline} algorithm. When $N_{\text{planes}}=25$, the nearst and farthest cards exhibit color artifacts because their binary decompositions lie outside the displayable volume and hence get clipped. We also notice that \emph{highest energy channel minimization} shows some darkening for the farther virtual objects, and that \emph{combinatorial} incorrectly decomposes the farthest card to a gray-scale card. 
+
+\input{images/volumetric/acd_exp4/fig_exp_FS.tex}
+\input{chapters/volumetric/tables/exp4_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp4_FS_SSIM.tex}
+
+\paragraph{PSNR and SSIM results}
+Tables \ref{tab:volumetric:acd:exp1_fs_psnr} and \ref{tab:volumetric:acd:exp4_fs_psnr} show the SSIM values for the focal stacks shown in Figures \ref{fig:volumetric:acd:exp1:focalstack} and \ref{fig:volumetric:acd:exp4:focalstack} respectively. From all these tables, 
+Tables \ref{tab:volumetric:acd:exp1_fs_ssim} and \ref{tab:volumetric:acd:exp4_fs_ssim} show the SSIM values for the focal stacks shown in Figures \ref{fig:volumetric:acd:exp1:focalstack} and \ref{fig:volumetric:acd:exp4:focalstack} respectively. 
+
+From tables \ref{tab:volumetric:acd:exp1_fs_psnr} and \ref{tab:volumetric:acd:exp1_fs_ssim}, we see that even though the PSNR and SSIM values for the pinhole aperture simulation predicts that \emph{fixed pipeline} is the best algorithm, when focus cues such as accommodation and retinal blur are taken in account, \emph{heuristic} algorithm is actually better. From all these tables, we see that \emph{heuristic} algorithm shows the best performance in terms of PSNR and SSIM. The superiority of \emph{heuristic} is obvious especially when $N_{\text{planes}} = 25$.
+
+\subsubsection{Transparencies}
+\input{images/volumetric/acd_exp10/fig_exp_FS.tex}
+\input{chapters/volumetric/tables/exp10_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp10_FS_SSIM.tex}
+
+\paragraph{Visual results}
+Figures \ref{fig:volumetric:acd:exp10:focalstack} and \ref{fig:volumetric:acd:exp9:focalstack} show the focal stacks when the number of binary planes is 280 and 25 respectively. 
+When $N_{\text{plane}=280}$ (Fig. \ref{fig:volumetric:acd:exp10:focalstack}), we see that \emph{fixed pipeline} has artifacts in some cases, e.g., the near card looks cyan and parts of the red or green bunny appear opaque. 
+These artifacts arise when two color voxels are separated by less than 24 depth planes, which is the length of binary voxels required to represent any given color voxel. So, when two color voxels lie within 24 depth planes of each other, only one will be represented while the other is dicarded
+When $N_{\text{plane}}=25$ (Fig. \ref{fig:volumetric:acd:exp9:focalstack}), we see additional artifacts in the focal stack of \emph{fixed pipeline} due to the binary representation for near and far objects being clipped by the fewer binary depth planes.  
+
+\paragraph{PSNR and SSIM results}
+\input{images/volumetric/acd_exp9/fig_exp_FS.tex}
+\input{chapters/volumetric/tables/exp9_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp9_FS_SSIM.tex}
+
+Tables \ref{tab:volumetric:acd:exp10_fs_psnr} and \ref{tab:volumetric:acd:exp9_fs_psnr} show the PSNR values for the focal stacks in Figures \ref{fig:volumetric:acd:exp10:focalstack} and \ref{fig:volumetric:acd:exp9:focalstack} respectively. As expected, \emph{fixed pipeline}'s values are much lower than the other algorithms. But, unlike previously discussed tables, here we see that \emph{combinatorial} and \emph{highest energy minimization} algorithms are slightly better than \emph{heuristic}. However, when we look at the SSIM values in \ref{tab:volumetric:acd:exp10_fs_ssim} and \ref{tab:volumetric:acd:exp9_fs_ssim}, it looks like \emph{heuristic} is slightly better than \emph{combinatorial} and \emph{highest energy minimization}.
+
+\paragraph{Summary}
+
+To summarize, here are the key observations from these results:
+\begin{enumerate}
+    \item \emph{Projected gradients} usually results in artifacts such as gray scale images or incoorect colors. 
+    \item For a virtual scene composed of only opaque objects and a display with many depth planes like 280, \emph{fixed pipeline} appears to do a good job, especially when we model the perceived image as that seen by a pinhole camera. However, when we take into account focus cues such as accommodation or retinal blur, we see that \emph{fixed pipeline} does worse than some other decomposition algorithms. 
+    \item For virtual scenes composed of transparent objects or for a display with few depth planes like 25, \emph{fixed pipeline} shows unacceptable artifacts such as completely missing color voxels or misrepreseting them. 
+    \item \emph{Projected gradient} and \emph{heuristics} algorithms need significantly fewer number of binary voxels to represent color voxels compare to other algorithms. However, when it comes to image quality, \emph{projected gradients} does much worse than most algorithms in almost all experimental settings.
+    \item The only scenario where \emph{heuristics} does not out-perform all other algorithms is when we consider PSNR values for a virtual scene composed of transparent objects. For the same experimental setting however, \emph{heuristics} exhibits better SSIM values than other algorithms.
+\end{enumerate}
+
+\paragraph{Conclusion}
+In conclusion, our understanding of the problem that it is a combination of a combinatorial optimization (in selecting which color channels need to be decomposed at a given depth and thereby calculating the optimum binary pattern) and conventional continuous space optimization (in calculating the optimum LED values) resulted in a heuristic algorithm which outperforms all other commonly known algorithms.
+
