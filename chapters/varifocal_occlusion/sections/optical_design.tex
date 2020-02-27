@@ -2,27 +2,27 @@
 Our goal is to design a varifocal occlusion-capable OST AR display that satisfies several key requirements. These include 
 %
 \begin{enumerate}
-    \item The virtual image of the occlusion SLM, i.e. the occlusion mask, and the digital image should be optically placed together in the scene and their distance be dynamically adjustable.
+    \item The virtual image of the occlusion SLM, i.e., the occlusion mask, and the digital image should be optically placed together in the scene and their distance be dynamically adjustable.
     \item The lateral and longitudinal magnification of the physical scene seen through the display should be equal to one, such that the experience is similar to viewing the scene without any optical elements.
     \item No mechanical motion should be introduced to any component (lenses, SLM, etc.) to adjust the distance of its virtual image. Instead, the virtual image should be moved by changing the focal powers of the employed lenses.
 \end{enumerate}
 %
 
-In the following, we first provide an overview of the optical design we consider, introduce a ray-transfer matrix analysis of prior work on fixed-focus occlusion-capable AR displays (see Sec.~\ref{sec:varifocal_occlusion:related:fixedfocusOcc}), and  finally introduce our focus-tunable varifocal occlusion approach.
+In the following, we first provide an overview of the optical design we consider, introduce a ray-transfer matrix analysis of prior work on fixed-focus occlusion-capable AR displays (see Sec.~\ref{sec:varifocal_occlusion:related:fixedfocusOcc}), and finally introduce our focus-tunable varifocal occlusion approach.
 
 \paragraph{\textbf{Overview of the optical design}}
 We consider an optical design composed of four lenses (see Fig.~\ref{fig:varifocal_occlusion:unfolded}), whose respective functions are: The first lens brings the real world at a particular depth into focus at the SLM. This image is always flipped, similar to how the image of the real world that is formed on our retina inside our eyes is always flipped. The next two lenses re-invert the in-focus image at the SLM, similar to a 4f system. The last lens finally places the image back into the appropriate depth for comfortable viewing. Let us denote these lenses by $L_1,L_2,L_3,L_4$ (see Fig.~\ref{fig:varifocal_occlusion:unfolded}).
 
-The occlusion SLM can be placed in any of the image planes of the optical system. There are two locations for this, one is between $L_1$ and $L_2$ and the other is between $L_3$ and $L_4$. We place the occlusion SLM between $L_1$ and $L_2$ because it simplifies Eq.~\eqref{eq:closed_form_f_1}. The digital image SLM can also be placed in any of the image planes of the optical system. We choose to place it between $L_1$ and $L_2$ because in this case, we can treat both the occlusion SLM and the virtual SLM to be optically equivalent and derive just one set of conditions for both of them.
+The occlusion SLM can be placed in any of the image planes of the optical system. There are two locations for this, one is between $L_1$ and $L_2$, and the other is between $L_3$ and $L_4$. We place the occlusion SLM between $L_1$ and $L_2$ because it simplifies Eq.~\eqref{eq:closed_form_f_1}. The digital image SLM can also be placed in any of the image planes of the optical system. We choose to place it between $L_1$ and $L_2$ because in this case, we can treat both the occlusion SLM and the virtual SLM to be optically equivalent and derive just one set of conditions for both of them.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Modeling Fixed-focus Occlusion Masks}
 \label{sec:optical_design_fixed_focus}
 
-%In this subsection, we discuss previous approaches to display an occlusion mask at a fixed depth. Such systems satisfy the first three requirements listed earlier. We restrict discussion of previous works to the image-forming occlusion type. 
+%In this subsection, we discuss previous approaches to display an occlusion mask at a fixed depth. Such systems satisfy the first three requirements listed earlier. We restrict the discussion of previous works to the image-forming occlusion type. 
 
 %\kishore{Move to related work}
-%Kiyokawa et al. \cite{Kiyokawa2003} derive optical design parameters that satisfy unit magnification for all real-world object distances and propose an interesting geometric configuration of the optical components that make the offset between the real world objects and images equal to zero.
+%Kiyokawa et al. \cite{Kiyokawa2003} derive optical design parameters that satisfy unit magnification for all real-world object distances and propose an interesting geometric configuration of the optical components that make the offset between the real-world objects and images equal to zero.
 %Cakmakci et al. \cite{Cakmakci2004} propose a compact optical design that satisfies the magnification requirements. 
 %Cakmakci et al.'s \cite{Cakmakci2004} design does not guarantee that the offset between the real viewpoint and the virtual viewpoint should be zero; however, the offset is small (5 cm). 
 %The design approach in these papers was primarily based on algebraic analysis of the Gaussian form of the thin lens equation to guarantee that the magnification is one, and coming up with an interesting folded optics design to ensure that the real viewpoint and virtual viewpoint are coincident, if possible. 

@@ -1,0 +1,33 @@
+\begin{algorithm}[!htb]
+    \caption{Outline of error propagation appoach}
+    \label{alg:colorAdaptiveMethodOne}
+    \hspace*{\algorithmicindent}\textbf{Input:} Color Volume\\
+    \hspace*{\algorithmicindent}\textbf{Output:} Binary Images, LEDs
+    \begin{algorithmic}[1]
+        \STATE{$\text{Residual} \gets \text{zeros}$}
+        \FOR{$d \gets 1$ \TO $\numPlanes$}
+        \STATE{Color Volume Slice $\gets$ Color Volume $\lbrack :,:,d \rbrack $}
+        \STATE{Target $\gets$ Color Volume Slice $+$ Residual}
+        \STATE{${(\text{Binary Image}_d, \text{LED}_d)} \gets \text{Decompose$(\text{Target})$}$}
+        \STATE{$\text{Residual} \gets \text{Target} - \text{Reconstruct$(\text{Binary Image}_d, \text{LED}_d)$}$}
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{comment}
+\begin{algorithm}[!htb]
+    \caption{Outline of error propagation appoach}
+    \label{alg:colorAdaptiveMethodOne}
+    \hspace*{\algorithmicindent}\textbf{Input:} $V$\\
+    \hspace*{\algorithmicindent}\textbf{Output:} $B, L$
+    \begin{algorithmic}[1]
+        \STATE{$R \gets \text{zeros}$}
+        \FOR{$d \gets 1$ \TO $\numPlanes$}
+        \STATE{$I \gets V \lbrack :,:,d \rbrack $}
+        \STATE{$T \gets I + R$}
+        \STATE{${(B_d,L_d)} \gets \text{Decompose$(T)$}$}
+        \STATE{$R \gets T - \text{Reconstruct$(B_d, L_d)$}$}
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+\end{comment}

@@ -1,0 +1,37 @@
+\begin{algorithm}[!htb]
+    \caption{Highest Energy Channel Minimization}
+    \label{alg:highest_energy_channel_minimization}
+    \hspace*{\algorithmicindent}\textbf{Input:} $\text{Target}, \text{Residual}$, \text{Color Volume Slice}\\
+    \hspace*{\algorithmicindent}\textbf{Output:} $\text{Binary Image}, \text{LED}, \text{Residual}$
+    \begin{algorithmic}[1]
+        \STATE{$\text{Target} \gets \text{Color Volume Slice} + \text{Residual}$}
+        \STATE{$ \{\text{Target}_R, \text{Target}_G, \text{Target}_B \} \gets \text{Split}(\text{Target})$}
+        \STATE{$\{ \text{Energy}_R, \text{Energy}_G, \text{Energy}_B \} \gets \text{Loss}(\{ \text{Target}_R, \text{Target}_G, \text{Target}_B \})$}
+        \STATE{$k \gets \argmin(\text{Energy}_R,\text{Energy}_G, \text{Energy}_B)$}
+        \STATE{$\text{LED} \gets \{0, 0, 0 \}$}
+        \STATE{$ \text{LED}_k \gets \text{Mean}(\text{Target}_k:\text{Target}_k \neq 0) $}
+        \STATE{$\text{Binary Image} \gets \text{Signum}(\frac{\text{Target}_k}{\text{LED}_k} - \text{Threshold})$}
+        \STATE{$\text{Reconstruction} \gets \text{Reconstruct}(\text{Binary Image},\text{LED})$}
+        \STATE{$\text{Residual} \gets \text{Target} - \text{Reconstruction}$}
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{comment}
+\begin{algorithm}[!htb]
+    \caption{Highest Energy Channel Minimization}
+    \label{alg:highest_energy_channel_minimization}
+    \hspace*{\algorithmicindent}\textbf{Input:} $T, R$\\
+    \hspace*{\algorithmicindent}\textbf{Output:} $B, L, R$
+    \begin{algorithmic}[1]
+        \STATE{$T \gets I + R$}
+        \STATE{$ \{C_1, C_2, C_3 \} \gets \text{split}(T)$}
+        \STATE{$\{ E_1, E_2, E_3 \} \gets Loss(\{ C_1, C_2, C_3 \})$}
+        \STATE{$k \gets i:E_i = \max(E_1, E_2, E_3)$}
+        \STATE{$L \gets \{0, 0, 0 \}$}
+        \STATE{$ L_k \gets \mu(C_k:C_k \neq 0) $}
+        \STATE{$B \gets \text{sgn}(\frac{C_k}{L_k} - T)$}
+        \STATE{$S \gets \text{Reconstruct}(B,L)$}
+        \STATE{$R \gets T - S$}
+    \end{algorithmic}
+\end{algorithm}
+\end{comment}

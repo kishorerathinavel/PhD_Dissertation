@@ -10,30 +10,30 @@ Although Augmented Reality hopes to address the combination of real and digital 
 There has been significant progress over the decades to create synthetic photorealistic imagery for movies, games, etc. 
 But until recently, the most common way to interact with digital worlds was through 2D displays such as televisions, computer monitors, or mobile phones and tablets. 
 These displays are 2D displays and subtend a narrow field-of-view. 
-Since we live in a 3D world and our eyes see a wide field-of-view image, today’s displays severely limits our communication, visualization, and interaction with the digital world. 
+Since we live in a 3D world and our eyes see a wide field-of-view image, today’s displays severely limit our communication, visualization, and interaction with the digital world. 
 Providing a seamless, perceptually realistic experience requires more than just rendering photorealistic imagery. 
-It requires display that can present wide field-of-view high-quality imagery, and in particular, it requires that these displays support all depth cues of the human visual system \cite{Palmer:1999, Howard:2002} accurately. 
+It requires displays that can present wide field-of-view high-quality imagery, and in particular, it requires that these displays support all depth cues of the human visual system \cite{Palmer:1999, Howard:2002} accurately. 
 Display technologies that enable a seamless combination of the real and digital worlds could revolutionize the way we communicate, visualize and interact with digital information.
-Fig.~\ref{fig:motivation} shows some compelling envisioned applications for future Augmented Reality systems.
+Fig.~\ref{fig:motivation} shows some compelling envisioned applications for future Augmented Reality systems, and below is a brief description of each envisioned application:
 
-\paragraph{Multiple screens anywhere:} an AR system can not only fully replace our current 2D displays (televisions and computer monitors), but can place virtual versions of our 2D displays any location around us. 
+\paragraph{Multiple screens anywhere:} an AR system can not only fully replace our current 2D displays (televisions and computer monitors) but can place virtual versions of our 2D displays any location around us. 
 The future workspace would be more customizable and productive than ever before.
 \paragraph{Tele-collaboration:} an AR system with AR displays and 3D reconstruction system can enable an advanced version of today’s video teleconferencing. 
-In the envisioned system, the remote AR system would capture the remote person’s geometry and colors and transmit it to the local AR system which would render the remote person such that they appear to be in the local physical space. 
+In the envisioned system, the remote AR system would capture the remote person’s geometry and colors and transmit it to the local AR system, which would render the remote person such that they appear to be in the local physical space. 
 \paragraph{3D visualization:} future AR system would enable us to visualize 3D structures and volumetric effects (fog, fluid simulations, etc.) in very informative ways. 
-Sometimes, future AR systems may even be better than recreating such 3D structures in the real-world because in a digital system, we could have the option to visualize not just the structure as a whole, but informative versions of the structure, e.g., cross-sectional view, part-wise view, etc. 
-\paragraph{Enhanced training:} it has already been demonstrated that spatially registered training programs and manuals improve learning rate \todo{needs citation}. 
+Sometimes, future AR systems may even be better than recreating such 3D structures in the real-world because in a digital system, we could have the option to visualize not just the structure as a whole but informative versions of the structure, e.g., cross-sectional view, part-wise view, etc. 
+\paragraph{Enhanced training:} Augmented Reality can spatially register training instructions onto the real-world objects which the user needs to learn to use. 
 \paragraph{Navigation:} Similar to the point above, navigation is another example of contextual information that can be presented better with an AR display because it is spatially registered to where the user is already looking.
-\paragraph{Real-time medical visualization:} one of the most important applications for future AR is probably in medical sciences, e.g., spatially registering visualization of the internal organs of the current patient underoing a surgery.
+\paragraph{Real-time medical visualization:} one of the most important applications for future AR is probably in medical sciences, e.g., spatially registering visualization of the internal organs of the current patient undergoing surgery.
 
 \section{Scope of this dissertation}
 \input{images/other/fig_scope.tex}
 Fig.~\ref{fig:scope} depicts the scope of this dissertation. 
-There are many enabling technologies and active research areas for Augmented Reality e.g., display technologies, 3D reconstruction, tracking, virtual assistants, redirected walking, etc. 
+There are many enabling technologies and active research areas for Augmented Reality, e.g., display technologies, 3D reconstruction, tracking, virtual assistants, redirected walking, etc. 
 This dissertation focusses on display technologies. 
-Even for just the topic of display technologies, there are a number of disserata outlined in Sec.~\ref{sec:background:requirements_ar_displays}. 
-This dissertation considers only three specific monocular depth cues, namely: occlusion, accommodaiton and defocus-blur. 
-These depth-cues are explained and dicussed in-detail in Sec.~\ref{sec:background:depth_cues}, but briefly, these three depth cues are important monocular depth cues whose absense in AR displays has demonstrated reduced task performance \todo{needs citation} and increased discomfort \todo{needs citations}. 
+Even for just the topic of display technologies, there are a number of desired requirements outlined in Sec.~\ref{sec:background:requirements_ar_displays}. 
+This dissertation considers only three specific monocular depth cues, namely: occlusion, accommodation, and defocus-blur. 
+These depth-cues are explained and discussed in detail in Sec.~\ref{sec:background:depth_cues}, but briefly, these three depth cues are important monocular depth cues whose absence in AR displays has demonstrated reduced task performance and increased discomfort \cite{lambooij2009visual,shibata2011zone,wann1995natural}. 
 For these depth cues, this dissertation develops two display technologies that improve the presentation of these depth cues over a large depth-range.
 
 \section{Thesis Statement}
@@ -45,9 +45,10 @@ For accommodation and retinal-blur, this dissertation’s contributions are:
 (2) A rendering pipeline that decomposes a 3-D scene into the set of single-color binary depth planes, such that 24 bpp color voxels are displayed at 280 unique depth positions. 
 (3) A yet-to-be-developed color-adaptive decomposition algorithm for the NED which also demonstrates intra-pupillary occlusions. 
 
-For depth-dependent occlusion, accommodaiton, and retinal blur, this dissertation’s contributions are: 
+For depth-dependent occlusion, accommodation, and retinal blur, this dissertation’s contributions are: 
 (1) Varifocal occlusion as an AR display capability that adaptively changes the focal distance of an occlusion mask to enable depth-dependent hard-edge occlusion. 
 (2) Complementary approaches of optimization and closed-form solutions for arriving at an optical design that enables a focus-tunable optical system to achieve varifocal occlusion in a perceptually realistic manner without optically distorting the observed scene. 
 (3) A monocular varifocal occlusion-capable AR display prototype that demonstrates depth-dependent occlusion over a large depth range (30 cm to 300 cm). 
 
-The broad contributions of this dissertation are new optical designs, new real-time rendering algorithms, and prototype displays that demonstrate monocular depth-cues such as accommodation, defocus-blur, and hard-edge occlusion over a large depth-range. 
+The broad contributions of this dissertation are new optical designs, new real-time rendering algorithms, and prototype displays that demonstrate monocular depth-cues such as accommodation, defocus-blur, and hard-edge occlusion over a large depth range. 
+
