@@ -24,7 +24,7 @@ An example calibration image is shown in Fig.~\ref{fig:volumetric:distortion_cor
 To demonstrate our calibration and distortion correction, we first need to align the recording camera's axis to coincide with the display's axis. An explanation for this follows:
 
 Recall that in our display, each color voxel is decomposed into some binary voxels such that these binary voxels will lie on a single perspective projection line such that they get integrated onto the same retinal or camera pixel. 
-Since multifocal plane displays are view-dependent displays, it is necessary to track the pupil position and the decomposition also needs to be view-dependent.
+Since multifocal plane displays are view-dependent displays, it is necessary to track the pupil position, and the decomposition also needs to be view-dependent.
 But, in this paper, we do not use an eye-tracker, and we assume that all the depth planes are centered and perpendicular to the display's optical axis.
 If we assume the eye's axis to be aligned with the display's axis, the display's axis is the only line that will not need calibration or distortion correction. Hence, we need to align the camera's and display's axis.
 
@@ -59,3 +59,4 @@ We do not fully understand the source of these chromatic artifacts.
 
 \subsection{Limitation of our approach}
 Our approach does not address optical distortions that change across different lens cycles. To track optical distortions across lens cycles, we need a sophisticated lens tracking technology. Currently available lens tracking technologies are insufficient because they only track the focal length of the lens.
+

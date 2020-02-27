@@ -33,16 +33,16 @@ Unfortunately, focusing a scene on an SLM usually requires a bulky optical syste
 
 Two key challenges for fixed-focus occlusion-capable displays are: (1) to ensure unit magnification of the see-through scene and (2) to ensure zero viewpoint offset between the see-through scene and the real-scene as seen without the display, so that the images of the real-world objects are at the correct distance. Both of these considerations are significantly more challenging for varifocal occlusion displays because unit magnification and zero viewpoint offset needs to be ensured while adjusting the focus of the SLM, which shares the optical path with the physical scene. 
 
-Kiyokawa et al.~\cite{Kiyokawa2003} derive optical design parameters that satisfy unit magnification for all real-world object distances and also propose an interesting geometric configuration of the optical components that make the offset between the real world objects and their images equal to zero.
+Kiyokawa et al.~\cite{Kiyokawa2003} derive optical design parameters that satisfy unit magnification for all real-world object distances and also propose an interesting geometric configuration of the optical components that make the offset between the real-world objects and their images equal to zero.
 Cakmakci et al. \cite{Cakmakci2004} propose a compact optical design that satisfies the magnification requirements, but it does not achieve zero offset between the real viewpoint and the virtual viewpoint; however, the offset is small (5 cm). 
 Howlett and Smithwick~\cite{Howlett2017} propose an optical design approach based on ray-transfer matrices to achieve unit magnification and zero viewpoint offset, which is in turn inspired by optical cloaking~\cite{Choi2015}.
-We extend the optical design approach based on ray-transfer matrices to varifocal occlusion displays, and generalize the theory to asymmetrical optical designs.  
+We extend the optical design approach based on ray-transfer matrices to varifocal occlusion displays and generalize the theory to asymmetrical optical designs.  
 
 \subsubsection{Soft-edge Occlusion} 
 
 To avoid a bulky optical system, a single LCD can be placed directly in front of the user's eyes~\cite{Wetzstein2010,Itoh2017}. However, due to the fact that the occlusion LCD is out of focus, it always appears blurred. Itoh et al.~\cite{Itoh2017} recently proposed to compensate for this blur by modifying the digitally displayed image.
 Such an approach could be interpreted as a hybrid optical see-through and video see-through AR display. 
-Calibrating such a system requires extremely precise alignment and the mismatch in resolution (spatial and angular), latency, brightness, contrast, and color fidelity between digital display and physical world may contribute to perceived inconsistency and reduced perceptual realism in such a system~\cite{Rolland2000}. 
+Calibrating such a system requires extremely precise alignment, and the mismatch in resolution (spatial and angular), latency, brightness, contrast, and color fidelity between the digital display and physical world may contribute to perceived inconsistency and reduced perceptual realism in such a system~\cite{Rolland2000}. 
 Maimone et al.~\cite{Maimone2014Pinlight} also used an out-of-focus LCD, where the occlusion mask is calculated as the silhouette of the virtual object. None of these approaches achieves hard-edge occlusion, which severely limits perceptual realism.
 
 \subsubsection{Light Field Occlusion}

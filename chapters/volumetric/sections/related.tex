@@ -21,7 +21,7 @@ Similar to multifocal displays, our display can also be thought of as a view-dep
 
 Matsuda et al.~\cite{Matsuda2017focal} propose a multifocal display whose focal surfaces can acquire non-planar, scene-dependent surface geometry. Matsuda et al.~\cite{Matsuda2017focal} propose a rendering pipeline that converts a 3-D scene to multiple piecewise smooth 2-D surface representations that are displayed in a time-multiplex manner. In comparison with their work, our rendering pipeline generates a single 2-D surface representation of the 3-D scene, and our display does not require piecewise smooth 2-D surfaces. Our display also exhibits more uniform image quality throughout the displayed volume. 
 
-Recently, Lee et al.~\cite{Lee2018Tomoreal,Lee2018Shape} propose a multifocal plane display which uses synchronized DMD, LCD panel, and focus-tunable lens. With the exception of their LCD panel and our HDR LEDs, the hardware and operation seem similar to our display. But, because of their use of LCD panel and our use of HDR LEDs, the rendering pipelines of the two displays are different. In their display, during the focus-tunable lens' cycle, the DMD panel is used to illuminate portions of the LCD panel resulting in color sub-images at various depths. In our display, during the focus-tunable lens' cycle, the HDR LEDs and DMD create a series of single-color binary images which integrate together such that a color volume is perceived. 
+Recently, Lee et al.~\cite{Lee2018Tomoreal,Lee2018Shape} propose a multifocal plane display that uses synchronized DMD, LCD panel, and focus-tunable lens. With the exception of their LCD panel and our HDR LEDs, the hardware and operation seem similar to our display. But, because of their use of LCD panel and our use of HDR LEDs, the rendering pipelines of the two displays are different. In their display, during the focus-tunable lens' cycle, the DMD panel is used to illuminate portions of the LCD panel resulting in color sub-images at various depths. In our display, during the focus-tunable lens' cycle, the HDR LEDs and DMD create a series of single-color binary images that integrate together such that a color volume is perceived. 
 
 
 \subsubsection{Light field near-eye displays}
@@ -39,3 +39,4 @@ Varifocal near-eye displays have a single image plane where the vergence and foc
 
 \subsection{Rendering pipeline for DMD-based NEDs}
 Previous NEDs have used DMDs and proposed different rendering pipelines~\cite{Lincoln2016motion,Lincoln2017scene,Hu2014design,Hu2015Design}. We build upon their hardware but propose a new rendering pipeline. A detailed discussion is provided in Section~\ref{sec:volumetric:previous_rendering_pipeline}.
+

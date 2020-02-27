@@ -1,0 +1,63 @@
+\begin{algorithm}[!htb]
+    \caption{Projected Gradients}
+    \label{alg:projected_gradients}
+    \hspace*{\algorithmicindent}\textbf{Input:} $\text{Target}, \text{Residual}$, \text{Color Volume Slice}\\
+    \hspace*{\algorithmicindent}\textbf{Output:} $\text{Binary Image}, \text{LED}, \text{Residual}$
+    \begin{algorithmic}[1]
+        \STATE{$\text{Target} \gets \text{Color Volume Slice} + \text{Residual}$}
+        \STATE{$ \{\text{Target}_R, \text{Target}_G, \text{Target}_B \} \gets \text{Split}(\text{Target})$}
+        \FOR{$j \gets$ R, G, B}
+        \STATE{$ \text{LED}_j \gets \text{Mean}(\text{Target}_j:\text{Target}_j \neq 0) $}
+        \STATE{$\text{Modulation}_j \gets \frac{\text{Target}_j}{\text{LED}_j}$}
+        \ENDFOR
+        \STATE{$\text{Binary Image} \gets \text{sgn}(\text{Modulation}_R + \text{Modulation}_G + \text{Modulation}_B - \text{Threshold})$}
+        \STATE{$\text{Reconstruction} \gets \text{Reconstruct}(\text{Binary Image},\text{LED})$}
+        \STATE{$\text{Residue} \gets \text{Target} - \text{Reconstruction}$}
+        \FOR{$j \gets 1$ \TO $2$}
+        \FOR{$j \gets$ R, G, B}
+        \STATE{$\text{LED}_j \gets \text{LED}_j + \frac{\text{Reduce Sum}\left( \text{Residual}_j \odot \text{Binary Image}\right)}{\text{Reduce Sum} \left( \text{Binary Image} \odot \text{Binary Image}\right)}$}
+        \ENDFOR
+        \STATE{$\text{Reconstruction} \gets \text{Reconstruct}(\text{Binary Image},\text{LED})$}
+        \STATE{$\text{Residual} \gets \text{Target} - \text{Reconstruction}$}
+        \FOR{$j \gets$ R, G, B}
+        \STATE{$\text{Modulation}_j \gets \frac{\text{Residual}_j}{\text{LED}_j}$}
+        \ENDFOR
+        \STATE{$\text{Binary Image} \gets \text{Signum}(\text{Binary Image} + \text{Modulation}_R + \text{Modulation}_G + \text{Modulation}_B)$}
+        \STATE{$\text{Reconstruction} \gets \text{Reconstruct}(\text{Binary Image},\text{LED})$}
+        \STATE{$\text{Residual} \gets \text{Target} - \text{Reconstruction}$}
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{comment}
+\begin{algorithm}[!htb]
+    \caption{Projected Gradients}
+    \label{alg:projected_gradients}
+    \hspace*{\algorithmicindent}\textbf{Input:} $T, R$\\
+    \hspace*{\algorithmicindent}\textbf{Output:} $B, L, R$
+    \begin{algorithmic}[1]
+        \STATE{$T \gets I + R$}
+        \STATE{$ \{C_1, C_2, C_3 \} \gets \text{split}(T)$}
+        \FOR{$j \gets 1$ \TO $3$}
+        \STATE{$L_j \gets \mu(C_j:C_j \neq 0)$}
+        \STATE{$D_j \gets \frac{C_j}{L_j}$}
+        \ENDFOR
+        \STATE{$B \gets \text{sgn}(D_1 + D_2 + D_3 - T)$}
+        \STATE{$S \gets \text{Reconstruct}(B,L)$}
+        \STATE{$R \gets T - S$}
+        \FOR{$j \gets 1$ \TO $2$}
+        \FOR{$j \gets 1$ \TO $3$}
+        \STATE{$L_j \gets L_j + \frac{R_j \cdot B}{B \cdot B}$}
+        \ENDFOR
+        \STATE{$S \gets \text{Reconstruct}(B,L)$}
+        \STATE{$R \gets T - S$}
+        \FOR{$j \gets 1$ \TO $3$}
+        \STATE{$D_j \gets \frac{R_j}{L_j}$}
+        \ENDFOR
+        \STATE{$B \gets \text{sgn}(B + D_1 + D_2 + D_3)$}
+        \STATE{$S \gets \text{Reconstruct}(B,L)$}
+        \STATE{$R \gets T - S$}
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+\end{comment}
