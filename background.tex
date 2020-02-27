@@ -79,15 +79,15 @@ Here’s a brief description of each approach:
 
 \subsection{3D Displays}
 \label{sec:background:3d_displays}
-These displays often resemble the form-factor of traditional computer monitors and present virtual scene with 3D depth cues by presenting each eye with viewpoint-dependent imagery. 
+These displays often resemble the form-factor of traditional computer monitors and present virtual scene with 3D depth cues by presenting each eye with viewpoint-dependent imagery~\cite{geng2013three,holliman2011three}. 
 Typically, these displays present only binocular cues. 
 These displays sometimes time-multiplex the imagery between the two eyes in synchronization with shutter-glasses. 
-Instead of using shutter-glasses, other techniques have been developed that try to re-create the lightfield of the target 3D scene either by using stacks of transparent displays or other novel optical and mechanical configurations. 
+Instead of using shutter-glasses, other techniques have been developed that try to re-create the lightfield of the target 3D scene either by using stacks of transparent displays or other novel optical and mechanical configurations~\cite{Wetzstein2012,Jones2007Rendering}. 
 With respect to our goal to seamlessly combine the physical and digital worlds, this approach’s main limitation is that the imagery is confined to a local volume or field-of-view.
 
 \subsection{Shader Lamps}
 \label{sec:background:shader_lamps}
-These systems projectors to display virtual worlds onto physical surfaces such as walls, tables, etc. 
+These systems projectors to display virtual worlds onto physical surfaces such as walls, tables, etc~\cite{Bimber:2008,raskar1998office,jones2013illumiroom}. 
 Multiple cameras are used to track the physical surfaces and user interactions. 
 Disadvantages with these systems include 
 (1) lack of monocular depth cues, 
@@ -117,7 +117,7 @@ The user maintains the context of the real-world, and the inserted virtual objec
 
 \subsubsection{Video see-through AR dislays}
 \label{sec:background:vst_displays}
-One proposed technology for AR displays is to use a VR display, but relay the real-world’s view using outward-facing camera(s). 
+One proposed technology for AR displays is to use a VR display, but relay the real-world’s view using outward-facing camera(s)~\cite{Rolland2000,kanbara2000stereoscopic,state2005simulation}. 
 This approach solves the occlusion problem trivially, however, this approach has a major limitation being that the view of the real-world is limited by the display’s and the camera’s resolution (spatial and angular), latency, dynamic range, distortions, field-of-view, and color fidelity. 
 In other words, for a video see-through AR display to recreate the same experience of viewing the real-world without the display, camera technologies and display technologies need to advance significantly.
 
@@ -138,6 +138,7 @@ However, there are also differences in the enabling technologies:
     \item For spatially registering virtual objects to the real world, it is often necessary to 3D reconstruct the real-world in real-time.
     \item More stringent design requirements for AR displays, e.g., AR displays should not encumber the view of the real-world (can not have on-axis components that distort or block the real-world), need lower display latency for virtual objects to appear registered to the real-world, display needs to support a wider range of brightness levels, etc. 
 \end{enumerate}
+For a in-depth discussion on video see-through vs. optical see-through AR displays, please refer to \cite{Rolland2000,rolland1995comparison}. 
 
 \section{Requirements for Augmented Reality Displays}
 \label{sec:background:requirements_ar_displays}
@@ -155,6 +156,7 @@ A more detailed description of Augmented Reality and its requirements are covere
 
 \section{Overview of previous work for depth cues in AR displays}
 \label{sec:background:previous_work_ar}
+\todo{enabling focus cues}
 Current commercially-available AR displays offer impressive capabilities, but they typically do not support important monocular depth cues such as accommodation or occlusion, resulting in a transparent image overlaid onto the real-world at a fixed depth. 
 To realize the vision of Augmented Reality, providing a seamless and perceptually realistic experience requires displays capable of presenting photorealistic imagery, and especially, perceptually realistic depth cues, resulting in virtual imagery being presented at any depth and of any opacity. 
 Previous research prototypes fall short by presenting occlusion only for a fixed depth, and by presenting accommodation and defocus-blur only for a narrow depth-range, or with poor depth or spatial resolution. 
