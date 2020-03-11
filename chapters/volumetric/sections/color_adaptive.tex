@@ -34,12 +34,7 @@ For each of the methods below, the decomposition step tries to minimize the L2-n
     \argmin_{\text{Binary Image}_d,\text{LED}_d} ||\text{Target} - \text{Reconstruct}(\text{Binary Image}_d, \text{LED}_d) ||^2
 \end{equation}
 
-However, the problem with trying to decompose a 24-bit target RGB image into a 1-bit DMD image and an RGB LED value is that:
-\begin{enumerate}
-    \item Because the DMD pattern is common for the three color channels, the decomposition is not separable among the color-channels, e.g., a particular DMD pattern may have a very low loss for the red channel but very high for the green channel such that the combined error might be lesser than completely leaving out the green channel. 
-    \item Something to do with binarization. The threshold determines whether we under-expose or over-expose. When the decomposition under-exposes, the errors are propagated much farther away from the slice which caused the error.
-    \item 
-\end{enumerate}
+However, the problem with trying to decompose a 24-bit target RGB image into a 1-bit DMD image and an RGB LED value is that because the DMD pattern is common for the three color channels, the decomposition is not separable among the color-channels, e.g., a particular DMD pattern may have a very low loss for the red channel but very high for the green channel such that the combined error might be lesser than completely leaving out the green channel. 
 
 \subsubsection{Combinatorial Optimization}
 \label{sec:acd:combinatorial}
