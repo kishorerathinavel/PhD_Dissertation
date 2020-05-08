@@ -5,7 +5,7 @@
     \hspace*{\algorithmicindent}\textbf{Output:} Binary Images, LEDs
     \begin{algorithmic}[1]
         \STATE{$\text{Residual} \gets \text{zeros}$}
-        \FOR{$d \gets 1$ \TO $\numPlanes$}
+        \FOR{$d \gets 1$ \TO $N_{\text{planes}}$}
         \STATE{Color Volume Slice $\gets$ Color Volume $\lbrack :,:,d \rbrack $}
         \STATE{Target $\gets$ Color Volume Slice $+$ Residual}
         \STATE{${(\text{Binary Image}_d, \text{LED}_d)} \gets \text{Decompose$(\text{Target})$}$}

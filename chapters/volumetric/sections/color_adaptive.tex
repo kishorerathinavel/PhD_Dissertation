@@ -7,7 +7,7 @@ In this section, we present methods for more efficient decomposition from color-
 \input{images/volumetric/adaptive_color_decomposition.tex}
 In the method presented in Sec.~\ref{sec:volumetric:fixed_pipeline}, each color voxel was decomposed into the nearest 24 binary depth planes. 
 Since our display's LEDs can change color and intensity over a very large range on a per-binary frame basis, we don't need to limit our display to a fixed pattern of LED colors and intensities or to 8 bits-per-color. 
-A more optimum decomposition method might use a fewer number of binary voxels to represent the same color voxel. 
+A more optimal decomposition method might use a fewer number of binary voxels to represent the same color voxel. 
 Fig.~\ref{fig:volumetric:acd} shows a conceptual diagram of how the resulting binary volume of such adaptive color-to-binary decomposition algorithms may look.
 It is useful to reduce the number of binary voxels that represent each color voxel for the following reasons:
 
@@ -15,13 +15,14 @@ It is useful to reduce the number of binary voxels that represent each color vox
     \item This will reduce the depth-blur associated with each color voxel.
     \item This may be useful for more compact prototypes because the more compact DMD projectors have a slower refresh rate than the DMD projector used in our display.
     \item We may be able to achieve High Dynamic Range imagery.
-    \item With fewer number of binary voxels representing each color voxel, we can represent objects that are transparent and closer to each other than with the fixed pipeline decomposition. With the fixed pipeline decomposition, we can not represent objects along the same depth that are closer than $3 \times \text{color bit-depth}$.
+    \item With fewer number of binary voxels representing each color voxel, we can represent objects that are transparent and closer to each other than with the fixed pipeline decomposition. With the fixed pipeline decomposition, we can not represent objects along the same depth that are closer than $3 \times \text{color bit-depth}$. 
 \end{enumerate}
 
+For the fixed-pipeline algorithm, let us parameterize the minimum separation required to cleanly display two objects that project to the same pixel (i.e. the minimum separation for presenting transparencies). If we assume that the depth planes are distributed linearly in dioptric depth, and if the display's optics are designed for $N_{\text{planes}}$ depth planes with a depth range of $D_{\min}$ - $D_{\max}$ diopters, and the display has a per-color-channel bit-depth of $C_{\text{depth}}$, then the minimum separation corresponds to: $S_{\min} = 3C_{\text{depth}} \left(\frac{D_{\max} - D_{\min}}{N_{\text{planes}}}\right)$. For the results shown in Fig.~\ref{fig:volumetric:results}, the relevant parameters are \{$C_{\text{depth}}=8$, $D_{\min} = 0.25$, $D_{\max} = 5$, $N_{\text{planes}} = 280$\}, and $S_{\min} = 0.407$ diopters. Suppose we changed the number of depth planes to a much smaller value, say $N_{\text{planes}}=50$, then $S_{\min} = 2.28$ diopters which is a very large separation! Below, we demonstrate that color adaptive decomposition methods can do a much better job at presenting virtual scene with significantly reduced depth blur and virtually no separation between objects projected onto the same pixel. 
 
 \subsection{Approach}
 The basic idea behind the color adaptive decomposition methods explored here is that of error propagation or diffusion. 
-Starting at the nearest depth plane, we consider the slice of the color volume and do the best of representing it with a binary image and an arbitrary LED color. 
+Starting at the nearest depth plane, we consider the slice of the color volume and best approximate it with a binary image and an arbitrary LED color. 
 Unavoidably, there will be errors, which are propagated onto the next depth plane. 
 At the next depth plane, the current depth's slice of the color volume and the propagated errors are added and considered as the target image for the decomposition.
 The pseudo-code for this approach is given in Algorithm.~\ref{alg:colorAdaptiveMethodOne}. 
@@ -43,7 +44,7 @@ These are the difference combinations of color channels: $\text{Combination}_1 =
 
 \input{chapters/volumetric/algorithms/combinatorial.tex}
 %\input{chapters/volumetric/algorithms/easy.tex}
-See Algorithm~\ref{alg:combinatorial} for a pseudo-code for this approach. A step-wise explanation for the algorithm follows:
+See Algorithm~\ref{alg:combinatorial} for pseudo-code for this approach. A step-wise explanation for the algorithm follows:
 \begin{itemize}
     \item Lines 1-2: At each depth plane, we assign the target image by adding the previous residual to the current depth plane's image. We split this target image into its color channels because we process the color channel's independently in the initial part of the algorithm to estimate the common optimal binary image.
     \item Line 3: In the outer for-loop, we consider each of the seven possible options for whether an LED is on or off, i.e., $\text{Combination}_1$, $\text{Combination}_2$, ..., $\text{Combination}_7$, and save these calculated values: LED values, binary image, the reconstructed image, the residual, and the energy or loss.
@@ -206,7 +207,7 @@ See Algorithm~\ref{alg:heuristics} for a pseudo-code for this approach. A step-w
     \item Line 1: At each depth plane, we assign the target image by adding the previous residual to the current depth plane's image. 
     \item Line 2: Split the target image into its color channels because we process the color channel's independently.
     \item Lines 3-6: For each color channel, initialize the LED value to be the mean of that color channel's non-zero pixel values. Assuming that the DMD is capable of an independent per-color-channel binary image, calculate binary images.
-    \item Lines 7-15: Calculate the best binary image for each of the seven possible options for whether an LED is on or off, i.e., $\text{Combination}_1$, $\text{Combination}_2$, ..., $\text{Combination}_7$, and calculate the number of pixels that are addressed by the binary image. Here, we count the number of pixels slightly differently: The number of pixels is the number of non-zero binary pixels of the binary image multiplied by the number of LEDs that are ON for that combination, e.g., if the number of non-zero binary pixels are 50 for $\text{Combination}_4 = \{1,1,0\}$, we count it as 100 pixels, and if the number of non-zero binary pixels are 99 for $\text{Combination}_1=\{1,0,0\}$, it is counted as 99. 
+    \item Lines 7-15: Calculate the best binary image for each of the seven possible options for whether an LED is on or off, i.e., $\text{Combination}_1$, $\text{Combination}_2$, ..., $\text{Combination}_7$, and calculate the number of pixels that are addressed by the binary image. Here, we count the number of pixels slightly differently: The number of pixels is the number of non-zero binary pixels of the binary image multiplied by the number of LEDs that are ON for that combination, e.g., if the number of non-zero binary pixels are 25 for $\text{Combination}_4 = \{1,1,0\}$, we count it as 50 pixels, and if the number of non-zero binary pixels are 99 for $\text{Combination}_1=\{1,0,0\}$, it is counted as 99. 
     \item Line 16: Find the combination which yields the maximum number of pixels as per the above method of counting pixels. 
     \item Line 17-18: Copy the best combination's binary image to the output binary image. Copy the best combination's LED values to the optimization routine's LED value initialization.
     \item Lines 19-20: Calculate the reconstruction image and the residual image.
@@ -221,21 +222,21 @@ To study the above decomposition algorithms, we simulate the perceived images of
 
 We model the perceived images by two methods:
 \begin{enumerate}
-\item By accumulating the perspective projection of every binary image. In other words, by assuming that the human pupil is a pinhole camera. This method allows us to get a rough idea of the visual quality of the reconstruction in a more compact representation. It also allows us to count the number of binary voxels that each color voxel is decomposed into. See Fig.~\ref{fig:volumetric:acd:exp1:pinhole} for an example --- this figure will be explained below in more detail. The disadvantage with this method is that it does not model focus cues such as accommodation or retinal blur.
-\item To model focus cues such as accommodation and retinal blur as seen by a human pupil, we model the pupil as an area aperture of 4 mm. We render a set of images for a set of corresponding eye's focal lengths. This is called a \emph{focal stack}. See Fig.~\ref{fig:volumetric:acd:exp1:focalstack} for an example --- this figure will be explained below in more detail.
+\item By accumulating the perspective projection of every binary image. In other words, by assuming that the human pupil is a pinhole camera. This method allows us to get a rough idea of the visual quality of the reconstruction in a more compact representation. It also allows us to count the number of binary voxels that each color voxel is decomposed into. See Fig.~\ref{fig:volumetric:acd:exp1:pinhole} for an example --- this figure will be explained below in more detail. The disadvantage with this method is that it does not model focus cues such as accommodation or defocus blur.
+\item To model focus cues such as accommodation and defocus blur as seen by a human pupil, we model the pupil as an area aperture of 4 mm. We render a set of images for a set of corresponding eye's focal lengths. This is called a \emph{focal stack}. See Fig.~\ref{fig:volumetric:acd:exp1:focalstack} for an example --- this figure will be explained below in more detail.
 \end{enumerate}
 
-For both methods of generating perceived images, we present visual results, PSNR values, and SSIM values. 
+For both methods of generating perceived images, we present visual results, \emph{peak signal-to-noise ratio} (PSNR) values, and \emph{structural similarity index} (SSIM) values. 
 
-\subsubsection{Pinhole camera simlation results}
+\subsubsection{Pinhole camera simulation results}
 \input{images/volumetric/acd_exp1/fig_exp_pinhole.tex}
 \input{images/volumetric/acd_exp2/fig_exp_pinhole.tex}
 \input{chapters/volumetric/tables/exp_pinhole_psnr.tex}
 \input{chapters/volumetric/tables/exp_pinhole_ssim.tex}
 
-The top row of Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole} show the simulated perceived image assuming a pinhole pupil for a display of 280 depth planes. Observe the images for \emph{projected graidents} in these figures --- in Fig.~\ref{fig:volumetric:acd:exp1:pinhole}, the image looks like a gray scale image and in Fig.~\ref{fig:volumetric:acd:exp2:pinhole}, the image has color artifacts. As mentioned before, this algorithm is suitable when the decomposed units can take continuous values, but since our display uses binary images, we need to convert continuous values predicted by the algorithm into binary values by thresholding. This thresholding leads to loss of information and results in artifacts. 
+The top row of Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole} show the simulated perceived image assuming a pinhole pupil for a display of 280 depth planes. Observe the images for \emph{projected gradients} in these figures --- in Fig.~\ref{fig:volumetric:acd:exp1:pinhole}, the image looks like a gray scale image and in Fig.~\ref{fig:volumetric:acd:exp2:pinhole}, the image has color artifacts. As mentioned before, this algorithm is suitable when the decomposed units can take continuous values, but since our display uses binary images, we need to convert continuous values predicted by the algorithm into binary values by thresholding. This thresholding leads to loss of information and results in artifacts. 
 
-The bottom row of Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole} show the number of binary voxels which represent each color voxel for a display of 280 depth planes. Observe how \emph{projected graidents} and \emph{heuristic} algorithm use a significantly lesser number of binary voxels. Also, observe how \emph{combinatorial} and \emph{highest energy channel minimization} algorithms use even more binary voxels than \emph{fixed pipeline} --- this is probably because calculating the LED values as the average of one or more color channel(s) is not the optimal choice. In \emph{projected graidents} and \emph{heuristic}, the LED values are initialized to the average of the color channels but are subsequently modified according to the optimization update rules. 
+The bottom row of Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole} show the number of binary voxels which represent each color voxel for a display of 280 depth planes. Observe how \emph{projected gradients} and \emph{heuristic} algorithm use a significantly lesser number of binary voxels. Also, observe how \emph{combinatorial} and \emph{highest energy channel minimization} algorithms use even more binary voxels than \emph{fixed pipeline} --- this is probably because calculating the LED values as the average of one or more color channel(s) is not the optimal choice. In \emph{projected gradients} and \emph{heuristic}, the LED values are initialized to the average of the color channels but are subsequently modified according to the optimization update rules. 
 
 Rows 1 and 2 of Tables \ref{tab:volumetric:acd:exp_pinhole_psnr} and \ref{tab:volumetric:acd:exp_pinhole_ssim} show the PSNR and SSIM values respectively for the images in Figures \ref{fig:volumetric:acd:exp1:pinhole} and \ref{fig:volumetric:acd:exp2:pinhole}. These values indicate the \emph{fixed pipeline} is the best algorithm and \emph{projected gradients} is the worst when meausred with popular visual quality metrics. The reason \emph{fixed pipeline} turns out as the best algorithm is because it is the only non-lossy decomposition. All the other methods invariably operate by thresholding the target color image against a calculated LED value. 
 
@@ -243,28 +244,25 @@ But the above metrics do not indicate whether or not the decomposition happens a
 
 \subsubsection{Reduced number of depth planes}
 \input{images/volumetric/acd_exp1/fig_exp_FS.tex}
-\input{chapters/volumetric/tables/exp1_FS_PSNR.tex}
-\input{chapters/volumetric/tables/exp1_FS_SSIM.tex}
+\input{images/volumetric/acd_exp4/fig_exp_FS.tex}
 
 \paragraph{Visual results}
-
 Figures \ref{fig:volumetric:acd:exp1:focalstack} and \ref{fig:volumetric:acd:exp4:focalstack} show the focal stacks when the number of binary planes is 280 and 25 respectively. From these figures, we can see the first failure case for the \emph{fixed pipeline} algorithm. When $N_{\text{planes}}=25$, the nearest and farthest cards exhibit color artifacts because their binary decompositions lie outside the displayable volume and hence get clipped. We also notice that \emph{highest energy channel minimization} shows some darkening for the farther virtual objects, and that \emph{combinatorial} incorrectly decomposes the farthest card to a grayscale card. 
 
-\input{images/volumetric/acd_exp4/fig_exp_FS.tex}
+\input{chapters/volumetric/tables/exp1_FS_PSNR.tex}
 \input{chapters/volumetric/tables/exp4_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp1_FS_SSIM.tex}
 \input{chapters/volumetric/tables/exp4_FS_SSIM.tex}
 
 \paragraph{PSNR and SSIM results}
 Tables \ref{tab:volumetric:acd:exp1_fs_psnr} and \ref{tab:volumetric:acd:exp4_fs_psnr} show the SSIM values for the focal stacks shown in Figures \ref{fig:volumetric:acd:exp1:focalstack} and \ref{fig:volumetric:acd:exp4:focalstack} respectively. From all these tables, 
 Tables \ref{tab:volumetric:acd:exp1_fs_ssim} and \ref{tab:volumetric:acd:exp4_fs_ssim} show the SSIM values for the focal stacks shown in Figures \ref{fig:volumetric:acd:exp1:focalstack} and \ref{fig:volumetric:acd:exp4:focalstack} respectively. 
 
-From tables \ref{tab:volumetric:acd:exp1_fs_psnr} and \ref{tab:volumetric:acd:exp1_fs_ssim}, we see that even though the PSNR and SSIM values for the pinhole aperture simulation predicts that \emph{fixed pipeline} is the best algorithm, when focus cues such as accommodation and retinal blur are taken in account, \emph{heuristic} algorithm is actually better. From all these tables, we see that \emph{heuristic} algorithm shows the best performance in terms of PSNR and SSIM. The superiority of \emph{heuristic} is obvious especially when $N_{\text{planes}} = 25$.
+From tables \ref{tab:volumetric:acd:exp1_fs_psnr} and \ref{tab:volumetric:acd:exp1_fs_ssim}, we see that even though the PSNR and SSIM values for the pinhole aperture simulation predicts that \emph{fixed pipeline} is the best algorithm, when focus cues such as accommodation and defocus blur are taken in account, \emph{heuristic} algorithm is actually better. From all these tables, we see that \emph{heuristic} algorithm shows the best performance in terms of PSNR and SSIM. The superiority of \emph{heuristic} is obvious especially when $N_{\text{planes}} = 25$.
 
 \subsubsection{Transparencies}
 \input{images/volumetric/acd_exp10/fig_exp_FS.tex}
-\input{chapters/volumetric/tables/exp10_FS_PSNR.tex}
-\input{chapters/volumetric/tables/exp10_FS_SSIM.tex}
-
+\input{images/volumetric/acd_exp9/fig_exp_FS.tex}
 \paragraph{Visual results}
 Figures \ref{fig:volumetric:acd:exp10:focalstack} and \ref{fig:volumetric:acd:exp9:focalstack} show the focal stacks when the number of binary planes is 280 and 25 respectively. 
 When $N_{\text{plane}=280}$ (Fig. \ref{fig:volumetric:acd:exp10:focalstack}), we see that \emph{fixed pipeline} has artifacts in some cases, e.g., the near card looks cyan and parts of the red or green bunny appear opaque. 
@@ -272,23 +270,23 @@ These artifacts arise when two color voxels are separated by less than 24 depth 
 When $N_{\text{plane}}=25$ (Fig. \ref{fig:volumetric:acd:exp9:focalstack}), we see additional artifacts in the focal stack of \emph{fixed pipeline} due to the binary representation for near and far objects being clipped by the fewer binary depth planes.  
 
 \paragraph{PSNR and SSIM results}
-\input{images/volumetric/acd_exp9/fig_exp_FS.tex}
-\input{chapters/volumetric/tables/exp9_FS_PSNR.tex}
-\input{chapters/volumetric/tables/exp9_FS_SSIM.tex}
-
 Tables \ref{tab:volumetric:acd:exp10_fs_psnr} and \ref{tab:volumetric:acd:exp9_fs_psnr} show the PSNR values for the focal stacks in Figures \ref{fig:volumetric:acd:exp10:focalstack} and \ref{fig:volumetric:acd:exp9:focalstack} respectively. As expected, \emph{fixed pipeline}'s values are much lower than the other algorithms. But, unlike previously discussed tables, here we see that \emph{combinatorial} and \emph{highest energy minimization} algorithms are slightly better than \emph{heuristic}. However, when we look at the SSIM values in \ref{tab:volumetric:acd:exp10_fs_ssim} and \ref{tab:volumetric:acd:exp9_fs_ssim}, it looks like \emph{heuristic} is slightly better than \emph{combinatorial} and \emph{highest energy minimization}.
 
-\paragraph{Summary}
+\input{chapters/volumetric/tables/exp10_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp9_FS_PSNR.tex}
+\input{chapters/volumetric/tables/exp10_FS_SSIM.tex}
+\input{chapters/volumetric/tables/exp9_FS_SSIM.tex}
 
+\clearpage
+\paragraph{Summary}
 To summarize, here are the key observations from these results:
 \begin{enumerate}
-    \item \emph{Projected gradients} usually results in artifacts such as grayscale images or incorrect colors. 
-    \item For a virtual scene composed of only opaque objects and a display with many depth planes like 280, \emph{fixed pipeline} appears to do a good job, especially when we model the perceived image as seen by a pinhole camera. However, when we take into account focus cues such as accommodation or retinal blur, we see that \emph{fixed pipeline} does worse than some other decomposition algorithms. 
+    \item For a virtual scene composed of only opaque objects and a display with many depth planes like 280, \emph{fixed pipeline} appears to do a good job, especially when we model the perceived image as seen by a pinhole camera. However, when we take into account focus cues such as accommodation or defocus blur, we see that \emph{fixed pipeline} does worse than some other decomposition algorithms. 
     \item For virtual scenes composed of transparent objects or for a display with few depth planes like 25, \emph{fixed pipeline} shows unacceptable artifacts such as completely missing color voxels or misrepresenting them. 
-    \item \emph{Projected gradient} and \emph{heuristics} algorithms need a significantly fewer number of binary voxels to represent color voxels compare to other algorithms. However, when it comes to image quality, \emph{projected gradients} does much worse than most algorithms in almost all experimental settings.
-    \item The only scenario where \emph{heuristics} does not outperform all other algorithms is when we consider PSNR values for a virtual scene composed of transparent objects. For the same experimental setting however, \emph{heuristics} exhibits better SSIM values than other algorithms.
+    \item \emph{Projected gradient} and \emph{heuristics} algorithms need a significantly fewer number of binary voxels to represent color voxels compare to other algorithms. However, when it comes to image quality, \emph{projected gradients} does much worse than most algorithms in almost all experimental settings, e.g., usually results in artifacts such as grayscale images or incorrect colors. 
+    \item Overall, the \emph{heuristics} approach performs the best. The only scenario where \emph{heuristics} does not outperform all other algorithms is when we consider PSNR values for a virtual scene composed of transparent objects. For the same experimental setting however, \emph{heuristics} shows better SSIM values than other algorithms.
 \end{enumerate}
 
 \paragraph{Conclusion}
-In conclusion, our understanding of the problem that it is a combination of a combinatorial optimization (in selecting which color channels need to be decomposed at a given depth and thereby calculating the optimum binary pattern) and conventional continuous space optimization (in calculating the optimum LED values) resulted in a heuristic algorithm which outperforms all other commonly known algorithms.
+In conclusion, by treating the problem as a combination of a combinatorial optimization (in selecting which color channels need to be decomposed at a given depth and thereby calculating the optimum binary pattern) and conventional continuous space optimization (in calculating the optimum LED values) resulted in a heuristic algorithm which strikes a balance between speed and image quality. We also emphasize that it is vital to consider the non-zero aperture and defocus blur effects when assessing these different approaches.
 

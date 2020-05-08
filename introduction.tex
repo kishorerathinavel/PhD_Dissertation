@@ -1,30 +1,35 @@
+\chapter{Introduction}
+\label{chapter:introduction}
+
 \section{Motivation}
 \myblockquote{
-A display connected to a digital computer gives us a chance to gain familiarity with concepts not realizable in the physical world. It is a looking glass into a mathematical wonderland. (Ivan Sutherland, 1965)
+A display connected to a digital computer gives us a chance to gain familiarity with concepts not realizable in the physical world. It is a looking glass into a mathematical wonderland. 
 }{\cite{sutherland1965ultimate}}
 
-\input{images/other/fig_motivation.tex}
-
-The goal of Augmented Reality is to seamlessly integrate the real world and the digital world.
+The goal of augmented reality is to seamlessly integrate the real world and the digital world.
 Although Augmented Reality hopes to address the combination of real and digital worlds for all our sense-modalities, i.e., sight, smell, touch, and hearing, in this dissertation, we shall only consider Augmented Reality for sight. 
 There has been significant progress over the decades to create synthetic photorealistic imagery for movies, games, etc. 
 But until recently, the most common way to interact with digital worlds was through 2D displays such as televisions, computer monitors, or mobile phones and tablets. 
 These displays are 2D displays and subtend a narrow field-of-view. 
 Since we live in a 3D world and our eyes see a wide field-of-view image, today’s displays severely limit our communication, visualization, and interaction with the digital world. 
 Providing a seamless, perceptually realistic experience requires more than just rendering photorealistic imagery. 
-It requires displays that can present wide field-of-view high-quality imagery, and in particular, it requires that these displays support all depth cues of the human visual system \cite{Palmer:1999, Howard:2002} accurately. 
+\emph{Perceptual realism} requires displays that can present wide field-of-view high-quality imagery, and in particular, it requires that these displays support all depth cues of the human visual system \cite{Palmer:1999, Howard:2002} accurately. 
 Display technologies that enable a seamless combination of the real and digital worlds could revolutionize the way we communicate, visualize and interact with digital information.
 Fig.~\ref{fig:motivation} shows some compelling envisioned applications for future Augmented Reality systems, and below is a brief description of each envisioned application:
 
-\paragraph{Multiple screens anywhere:} an AR system can not only fully replace our current 2D displays (televisions and computer monitors) but can place virtual versions of our 2D displays any location around us. 
+\input{images/other/fig_motivation.tex}
+
+\paragraph{Multiple screens anywhere:} an augmented reality (AR) system can not only fully replace our current 2D displays (televisions and computer monitors) but can place virtual versions of our 2D displays at any location around us. 
 The future workspace would be more customizable and productive than ever before.
-\paragraph{Tele-collaboration:} an AR system with AR displays and 3D reconstruction system can enable an advanced version of today’s video teleconferencing. 
-In the envisioned system, the remote AR system would capture the remote person’s geometry and colors and transmit it to the local AR system, which would render the remote person such that they appear to be in the local physical space. 
+\paragraph{Tele-collaboration:} an AR system comprising of an AR display and a 3D reconstruction system can enable an advanced version of today’s video teleconferencing. 
+In the envisioned system, the remote AR system would capture the remote person’s geometry and colors and transmit it to the local AR system, which would render and display the remote person such that they appear to be in the local physical space.
 \paragraph{3D visualization:} future AR system would enable us to visualize 3D structures and volumetric effects (fog, fluid simulations, etc.) in very informative ways. 
 Sometimes, future AR systems may even be better than recreating such 3D structures in the real-world because in a digital system, we could have the option to visualize not just the structure as a whole but informative versions of the structure, e.g., cross-sectional view, part-wise view, etc. 
+It may even be possible to visualize information that is ordinarily invisble, e.g., visualization of energy propagation has been explored in \citet{lanier2016realitymashers,lanier2018virtually}. 
 \paragraph{Enhanced training:} Augmented Reality can spatially register training instructions onto the real-world objects which the user needs to learn to use. 
 \paragraph{Navigation:} Similar to the point above, navigation is another example of contextual information that can be presented better with an AR display because it is spatially registered to where the user is already looking.
 \paragraph{Real-time medical visualization:} one of the most important applications for future AR is probably in medical sciences, e.g., spatially registering visualization of the internal organs of the current patient undergoing surgery.
+
 
 \section{Scope of this dissertation}
 \input{images/other/fig_scope.tex}
@@ -40,12 +45,12 @@ For these depth cues, this dissertation develops two display technologies that i
 The use of computational displays, where the optics, electronics, and algorithms are co-designed, will improve accommodation, defocus-blur, and occlusion in AR displays.
 
 \section{Contributions of this dissertation}
-For accommodation and retinal-blur, this dissertation’s contributions are: 
-(1) A volumetric NED exhibiting 280 perceptually simultaneous binary depth planes, each an arbitrary RGB color, situated between 15 cm (6.7 diopters) and 400 cm (0.25 diopters) from the viewer. 
-(2) A rendering pipeline that decomposes a 3-D scene into the set of single-color binary depth planes, such that 24 bpp color voxels are displayed at 280 unique depth positions. 
-(3) A yet-to-be-developed color-adaptive decomposition algorithm for the NED which also demonstrates intra-pupillary occlusions. 
+For accommodation and defocus blur, this dissertation’s contributions are: 
+(1) A volumetric near-eye display (NED) exhibiting 280 perceptually simultaneous binary depth planes, each an arbitrary RGB color, situated between 15 cm (6.7 diopters) and 400 cm (0.25 diopters) from the viewer. 
+(2) A fixed-pipeline decomposition algorithm that converts a 3D color volume to a set of single-color binary depth planes, such that 24 bpp color voxels are displayed at 280 unique depth positions. 
+(3) Adaptive color decomposition algorithms that convert a 3D color volume to a set of single-color binary depth planes which show improvements in depth-blur, perceptual loss metrics, and allow depicting transparent objects.
 
-For depth-dependent occlusion, accommodation, and retinal blur, this dissertation’s contributions are: 
+For depth-dependent occlusion, accommodation, and defocus blur, this dissertation’s contributions are: 
 (1) Varifocal occlusion as an AR display capability that adaptively changes the focal distance of an occlusion mask to enable depth-dependent hard-edge occlusion. 
 (2) Complementary approaches of optimization and closed-form solutions for arriving at an optical design that enables a focus-tunable optical system to achieve varifocal occlusion in a perceptually realistic manner without optically distorting the observed scene. 
 (3) A monocular varifocal occlusion-capable AR display prototype that demonstrates depth-dependent occlusion over a large depth range (30 cm to 300 cm). 

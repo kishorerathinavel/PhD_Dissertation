@@ -1,14 +1,14 @@
 \section{Static System}
+\label{sec:volumetric:static_system}
+This chapter presents two rendering pipelines for our display system: (1) One pipeline enables the display to present static volumes. This pipeline is described in this section in a detailed manner. (2) The other pipeline would enable the display to present interactive and dynamically changing volumes. This is still largely under development and this dissertation presents preliminary results in Section \ref{sec:volumetric:rts}.
+
 \subsection{Overview and Software}
 To test our ideas, we developed a hardware prototype of a monocular near-eye display and implemented an offline version of our proposed rendering pipeline. The offline rendering pipeline begins with the rendering of a virtual scene using OpenGL/GLSL to generate an RGB image and a linearized 16-bit depth map of the virtual scene. The RGB image and depth map are processed in MATLAB to generate a series of binary images and RGB LED brightness values. The binary images are uploaded to and displayed by the DMD controller, and the RGB LED brightness values are used by a custom RGB LED driver for precise high-speed control over each LED's brightness. An ARM-based microcontroller provides synchronization between the lens, the DMD controller, and the custom RGB LED driver. Below we discuss each hardware component in detail.
 
-\input{chapters/volumetric/figures/fig_blockdiagram_timing.tex}
 
 \subsection{Hardware}
 \paragraph{Focus-tunable Lens} The focus-tunable lens used is the Optotune EL-10-30-TC-VIS. The optical power of the lens is controlled via a manufacturer-provided software and a USB-connected lens driver. The optical power can be set to a static value, or it can be set to follow a rectangular, sinusoidal, or triangular signal for a wide range of frequencies (0.25 Hz to 2000 Hz). For this chapter, all experiments were conducted with the optical power of the lens configured to follow a triangular signal of 60 Hz frequency, and the maximum and minimum lens powers of the triangular signal were approximately 50$m^{-1}$ and 120$m^{-1}$. 
 
-\input{chapters/volumetric/figures/fig_single_plane_images.tex}
-\input{chapters/volumetric/figures/fig_setup.tex}
 
 \paragraph{Optics} Other than the focus-tunable lens, we use the manufacturer-provided optical engine of the TI Discovery 4100 Kit (STAR-07 optical module), a Fresnel lens (60mm focal length), and a beamsplitter that allows the display to optically integrate the real world view and the imagery of the virtual scene. 
 
@@ -16,12 +16,12 @@ To test our ideas, we developed a hardware prototype of a monocular near-eye dis
 The DMD controller we use is the Texas Instruments (TI) Digital Light Processing (DLP) Discovery 4100 Kit which drives an XGA (1024 x 768) DMD module. The display system is capable of displaying binary images at up to 17241 Hz which would allow 287 binary images to be displayed in each lens cycle. This would need precise synchronization between the lens signal and the DMD controller, which is not afforded by the current implementation. For a more robust system, we display 280 images in each lens cycle and design the system such that the 280 images are guaranteed to be displayed slightly before the beginning of the next lens cycle. 
 
 \paragraph{Custom RGB LED Illuminator}
-A PCB mounted RGB LED is controlled using electronics consisting of Digital-Analog-Converters (DACs), Op-Amps, etc. The board listens for three 16-bit binary codes over Serial Peripheral Interface (SPI) protocol over three parallel buses and sets each color LED to the brightness level corresponding to the received code. The board is capable of illuminating the DMD with a wide range of brightnesses and color combinations. $2^{16}$ levels of intensity are possible for each color LED, and all color LEDs can be driven in parallel. The full-scale rise and fall times of each channel are approximately 500ns; every binary frame can be illuminated at a distinct intensity and color mix. This RGB LED illuminator is the same as the one used in Lincoln et al.~\cite{Lincoln2017scene}; please refer to that chapter for more details. 
+A PCB mounted RGB LED is controlled using electronics consisting of Digital Analog Converters (DACs), Op-Amps, etc. The board listens for three 16-bit binary codes over Serial Peripheral Interface (SPI) protocol over three parallel buses and sets each color LED to the brightness level corresponding to the received code. The board is capable of illuminating the DMD with a wide range of brightnesses and color combinations. $2^{16}$ levels of intensity are possible for each color LED, and all color LEDs can be driven in parallel. The full-scale rise and fall times of each channel are approximately 500ns; every binary frame can be illuminated at a distinct intensity and color mix. This RGB LED illuminator is the same as the one used in \citet{Lincoln2017scene}; please refer to that chapter for more details. 
 
 \paragraph{PC}
 A PC using Intel Xeon E5-2630 2.4 GHz processor with an NVIDIA GeForce GTX 980 running Windows 7 is used to implement an offline version of the proposed rendering pipeline. 
 
-
+\input{chapters/volumetric/figures/fig_blockdiagram_timing.tex}
 \subsection{Operational detail}
 Figure~\ref{fig:volumetric:blockdiagram-timing} gives an overview of the operation of the NED. The binary images are uploaded to the DMD controller using the ALP 4.1 Controller Suite. The DMD controller is configured to advance frames each time it receives a trigger signal from the microcontroller. At the end of the sequence of images, the DMD cycles back to the first image. The frametime of the DMD was set to the minimum possible frametime of 58 $\mu s$.
 

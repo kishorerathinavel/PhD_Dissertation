@@ -1,4 +1,4 @@
-\section{Towards Real-Time System}
+\section{Towards a Real-Time System}
 \label{sec:volumetric:rts}
 \input{images/volumetric/real_time_system/fig_real_time_system_overview}
 
@@ -19,11 +19,11 @@ The computational components of this real-time system and their tasks is summari
     \begin{itemize}
         \item Render 3D scene into an RGB image and depth map.
         \item Decomposes RGB image and depth map into 8 binary images and 8 LED colors.
-        \item Encodes these 8 binary images into a gray-scale image and copies this gray-scale image into the three color channels of the image being sent over DVI to the Virtex-7 FPGA.
+        \item Encodes these 8 binary images into a gray-scale image and copies this gray-scale image into the three color channels of the image being sent over a \emph{digital visual interface} (DVI) to the Virtex-7 FPGA.
     \end{itemize}
     \item Virtex-7 FPGA:
     \begin{itemize}
-        \item Receives the DVI image and stores it into an on-board RAM.
+        \item Receives the DVI image and stores it into an on-board \emph{random access memory} RAM.
         \item Copies two color channels of the image on the RAM onto the cache memory.
         \item Waits for a trigger signal from the focus-tunable lens driver which indicates the start of a lens cycle.
         \item Sends 8 RGB LED values to the custom LED controller. These 8 values are uniformly spaced temporally over the duration of one lens cycle, assuming that the lens is oscillating at 60 Hz.
@@ -48,7 +48,7 @@ After this step, we have 8 1-bit images for each depth plane which can be encode
 Due to some limitations in our FPGA implementation (described in Sec.~\ref{sec:volumetric:rts:limitations}), we copy this encoded image into all the three color channels to make the subsequent parts of the display pipeline agnostic to the color channel it chooses to display.
 
 \subsection{Results}
-A video was recorded as a demonstration of this real-time volumetric display system. This video was submitted as part of this dissertation and is also available publically at this URL: \url{https://www.youtube.com/watch?v=pUtvBEPkzfA}. 
+A video was recorded as a demonstration of this real-time volumetric display system. This video was submitted as part of this dissertation and is also available publicly at this URL: \url{https://www.youtube.com/watch?v=pUtvBEPkzfA}. 
 The video shows two real objects and two virtual objects. 
 The real objects are a postage stamp at 30 cm and a real person at 300 cm.
 The virtual objects are a Coca-Cola bottle cap model and a 3D body scan of a person.
@@ -62,10 +62,8 @@ The visual quality of the AR scene can be significantly improved by increasing t
 The Virtex-7 FPGA program used here is a slightly modified version of Lincoln et al.'s scene-adaptive low-latency AR display~\cite{Lincoln2017scene}.
 The modifications include (1) listening for the trigger from the lens driver, (2) modified timings to output only 8 binary images in $\frac{1}{60}$-th of a second.
 As mentioned above, one of the Virtex-7 FPGA's activities is to transfer two color channels of the received image from the RAM to the cache memory.
-In doing so, it may choose to transfer either Red and Green, or Green and Blue, or Blue and Red.
-The order did not matter in \cite{Lincoln2017scene}'s work but it matters for our system because the images shown within one lens cycle's duration need to be in a fixed and pre-determined order. 
+In doing so, it may choose to transfer either red and green, or green and blue, or blue and red.
+The order did not matter in \citet{Lincoln2017scene}'s work but it matters for our system because the images shown within one lens cycle's duration need to be in a fixed and pre-determined order. 
 However, we didn't implement the necessary modifications to ensure a deterministic order of copying the color channels and instead chose to make the system color channel-agnostic by copying the same gray-scale image into the three color channels of the image. 
 If this modification were done, the number of binary planes would be 24 instead of 8.
-
-
 

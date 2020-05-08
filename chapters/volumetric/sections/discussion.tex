@@ -3,16 +3,16 @@
 
 \subsection{Limitations}
 \paragraph{Bulky Optics}
-The bulk of the optics is due to the large optical engine of the DLP Discovery 4100 kit, and the tiny aperture of the focus-tunable lens. Other DMD development boards have much smaller optics, and we also note that there is a commercially available AR display that uses a DMD chip~\cite{Dewald2016Avegant}. The small aperture of the focus-tunable lens constrains the optical design and limits the etendue of the system. There are focus-tunable lenses with a wider aperture that could be used. Our NED, if implemented with alternative components, could approach moderate form factor.
+The bulk of the optics is due to the large optical engine of the DLP Discovery 4100 kit, and the tiny aperture of the focus-tunable lens. Other DMD development boards have much smaller optics, and we also note that there is a commercially available AR display that uses a DMD chip~\cite{Dewald2016Avegant}. The small aperture of the focus-tunable lens constrains the optical design and limits the etendue of the system. There are focus-tunable lenses with a wider aperture that could be used, e.g., the focus-tunable lenses presented in \citet{Dunn2017Wide}. If we redesigned the optics and used alternative components, our NED could approach moderate form factor.
 
 \paragraph{Bulky electronic components}
-All of the driving electronics (DLP Discovery 4100 kit, custom RGB LED controller, microcontroller) could be reimplemented in a compact ASICs device. 
+All of the driving electronics (DLP Discovery 4100 kit, custom RGB LED controller, microcontroller) could be reimplemented in a compact ASIC (Application Specific Integrated Circuit) device. 
 
 \subsection{Future Work}
 Our near-eye display can emulate some other display technologies, such as multifocal and varifocal displays, and is thus suitable as a versatile platform for user studies. 
 The current work could benefit greatly from a compact, wearable, wide-FoV, binocular, and real-time implementation. 
 Since the hardware platform and application are similar, this work could be integrated with recent low-latency~\cite{Lincoln2016motion}, and HDR AR~\cite{Lincoln2017scene} displays work. 
-This would require a holistic approach to a near-eye display rendering pipeline. 
+This would require combining the volumetric rendering pipeline (presented in this chapter) and the low-latency rendering pipeline (presented in \citet{Lincoln2016motion,Lincoln2017scene,lincoln2017low}).
 Another opportunity for research is to investigate if this display can be made entirely independent of eye-tracking requirements. 
 Another avenue for future work is to explore adaptive lens functions. 
 While this dissertation always oscillates the focal length of the lens according to a sinusoidal or triangular waveform at 60 Hz, the lens is capable of following any arbitrary current waveform. 
@@ -21,7 +21,7 @@ Uses of such adaptive depth distribution may be foveation in depth, getting high
 
 \section{Conclusion}
 We have introduced a near-eye volumetric display capable of presenting a large volume over an extended depth-of-field created external to the display's physical volume. We view our system as a hybrid between traditional volumetric displays that create the volume within the confines of the display's physical volume, and view-dependent multifocal near-eye displays. We presented the optical design of our implementation and the rendering pipeline that synthesizes the volume for our display. 
-Our main contribution is the idea that color-to-binary volume decomposition can be performed on a voxel-basis rather than an image-basis. 
+Our main contribution is the idea that color-to-binary volume decomposition can be performed on a per-voxel-basis rather than an image-basis. 
 We propose multiple decomposition algorithms and compare them with each other. 
 We demonstrate a static display system which shows full-color volumetric display refreshed at 60 Hz and comprising 280 focal planes, each at a unique depth, ranging from 15cm (6.7 diopters) to 4M (0.25 diopters). 
 We also demonstrate a dynamic volumetric display system with 8 depth planes. 

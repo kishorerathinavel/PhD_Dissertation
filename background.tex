@@ -1,6 +1,18 @@
+\chapter{Background}
+\label{chapter:background}
+
+This chapter breifly discusses the background knowledge required to understand the work presented in subsequent chapters. 
+We first discuss the relevant properties of the human eye and the depth cues that are avaiable to us. 
+We then discuss different technological approaches that have tried to combine the physical and virtual worlds. 
+We explain why augmented reality head mounted displays are more suitable to our goal and briefly mention the state of the art augmented reality displays and their limitations in addressing the depth cues that we are particularly interested, i.e., accommodation, defocus blur, and occlusion.
+A in-depth discussion of previous augmented reality displays is presented in Sections \ref{sec:volumetric:related_work} and \ref{sec:varifocal_occlusion:related}.
+
 \section{The Human Visual System}
 \label{sec:background:hvs}
 \subsection{The human eye}
+
+All the depth cues that are addressed in this dissertation can be explained by analyzing the image formation mechanism in the human eye. 
+Hence, we start with a brief description of the human eye's components and mechanism involved in imaging incoming light, so that we can build display systems that can provide the appropriate light information.
 
 \input{images/other/fig_eye_schematic.tex}
 
@@ -24,16 +36,19 @@ Observe how there is a high concentration of cones in a narrow region. This regi
 \subsection{Depth cues}
 \label{sec:background:depth_cues}
 \subsubsection{Binocular depth-cues}
+\label{sec:background:binocular}
+\input{images/other/fig_binocular_depth_cues.tex}
+
 Some depth cues that we are aware of depend on information from both eyes. Fig.~\ref{fig:binocular_depth_cues} depicts two binocular depth cues and a brief explanation follows:
 
 \paragraph{Disparity} Since our eyes are at slightly different positions, the image seen by them is also slightly different. 
 This slight shift in the content between the images formed in our eyes is called \emph{disparity}. 
 
-\input{images/other/fig_binocular_depth_cues.tex}
 
 The disparity between the images is also dependent upon the depth of the object from the eyes; the closer the object is, the higher the disparity in its image between the two eyes. 
 
-\paragraph{Convergence} When we look at an object, our eyes automatically rotate in such a manner that the image of the object of attention is formed at the fovea. 
+\paragraph{Convergence} When we look at an object, our eyes automatically rotate in such a manner that the image of the object of attention is formed at the fovea of both our eyes.
+Depending on the distance of the object of attention, the angle of convergence changes. The convergence angle is greater for closer objects and less for farther objects.
 The depth of the object determines the angle by which our eyes have to rotate inwards. This depth cue is called \emph{convergence}.
 
 \subsubsection{Monocular depth-cues}
@@ -42,34 +57,45 @@ Depth cues that are available even when the world is viewed with one eye alone a
 There are several monocular depth cues, namely: \emph{occlusion, accommodation, defocus-blur, intrapupillary occlusion, chromablur,} etc. 
 We discuss each of these monocular depth-cues below: 
 
-\paragraph{Accommodation} Our eyes have a narrow opening called the pupil to let in light from the world. 
-Our eyes have a lens behind the pupil which can be deformed to change the focal distance of the eyes. 
-Our eyes automatically try to bring the object of attention into sharp focus on the retina by deforming the lens. 
+\paragraph{Accommodation} 
+Our eyes have a narrow opening called the pupil to let in light from the world, behind which, we have a lens which can be deformed to change the focal distance of the eyes. 
+We automatically try to bring the object of attention into sharp focus on the retina by deforming this lens.
 This ability to change the focus is called accommodation and it provides us with an estimate of the distance. 
 
-\paragraph{Retinal blur} A given lens state fixes the focal distance and brings objects at that focal distance into sharp focus at the retina, but makes objects at other distances blurred. 
+\paragraph{Defocus blur} A given lens state fixes the focal distance and brings objects at that focal distance into sharp focus at the retina, but makes objects at other distances blurred. 
 This is a property that can be observed in any single-lens imaging system. 
-While this retinal blur is a natural phenomenon for real-world scenes, some display technologies that can change the focal distance need to additionally and synthetically blur virtual objects that are away from the focal distance, e.g., varifocal displays. 
+Some display technologies have been developed that dynamically refocus the virtual plane distance to the eye's focal depth, thereby providing accommodation depth cues. 
+In these displays, the objects that are at depths far away from the virtual plane's depth are computationally blurred to create a synthetic defocus blur effect. 
 \paragraph{Occlusion} Occlusion is a relative depth order cue which arises when the nearer object partially obstructs the view of a farther object. 
 Occlusion actually only informs us about the depth ordering and is not useful to estimate the magnitude of depth. 
 
 Such depth cues, which only provide information about the depth order (relative depth) instead of a quantitative estimate of the depth, are called nonmetrical depth cues. 
-Other depth cues discussed so far (disparity, convergence, accommodation, retinal defocus) provide a quantitative estimate of the depth and are called metrical depth cues. 
+Other depth cues discussed so far (disparity, convergence, accommodation, defocus blur) provide a quantitative estimate of the depth and are called metrical depth cues. 
 
 \input{images/other/fig_cutting_and_vishton.tex}
 
 Even though occlusion is a nonmetric depth cue, it is nonetheless the most important depth cue. 
-In \cite{cutting1995perceiving}, an experiment was done where two objects A and B are shown at different depths, say D1 and D2, and the user is then asked to make a forced-choice as to which object is closer. 
+In \citet{cutting1995perceiving}, an experiment was done where two objects A and B are shown at different depths, say $D_1$ and $D_2$, and the user is then asked to make a forced-choice as to which object is closer. 
 To study the effect of different depth cues, various trials were conducted with only a few depth cues active in insolation. 
 And the results of the experiments are summarized by the graph shown in Fig.~\ref{fig:cutting_and_vishton}. 
 The horizontal axis of Fig.~\ref{fig:cutting_and_vishton} shows the average distance of the two objects, i.e., $\frac{D_1 + D_2}{2}$ and the vertical axis shows the depth contrast between the two objects, i.e., $\frac{2\left(D_1 + D_2\right)}{D_1 + D_2}$.
 And each curve shows minimum depth contrast required for correct ordering at a given depth and given depth cue. 
 We can see that for occlusion, the depth contrast can be very low, and we’d still be able to order the objects correctly. 
 
-\paragraph{Other monocular depth cues} There are many more monocular depth cues, e.g., some recently studied ones such as chormablur~\cite{cholewiak2017chromablur}, intra-pupillary occlusions~\cite{zannoli2016blur}, and depth cues that have been known for a long time such as motion parallax, relative size, atmospheric perspective, etc. 
-Of the above depth cues, except for chromablur and intra-pupillary occlusions, all depth cues are reproduced accurately by the standard graphics rendering pipeline. 
-For chromablur and intra-pupillary occlusions, the displays have to be built either with special optics or non-standard rendering algorithms or both. 
-However, chromablur and intra-pupillary occlusions are not as dominant as accommodation, retinal blur, or occlusions.
+\paragraph{Other monocular depth cues} There are some other monocular depth cues which are not addressed in this dissertation, and these are listed below:
+
+\begin{itemize}
+\item Chromatic aberration, which is present in almost all imaging and display systems, causes slight dependence of the size of the defocus blur on the wavelength of the light~\cite{cholewiak2017chromablur}.
+\item Intra-pupillary occlusions~\cite{zannoli2016blur}: Refers to the view-dependent occlusion and disocclusion effects seen across the area of the pupil. The effects of these view-dependent effects is an asymmetry in occlusion boundaries based on the accommodation state of the eye: When the eye is focused at a nearby object, its occlusion boundary is seen sharply against a blurred background. However, when the eye is focussed at the background, the occlusion boundary of the nearby object is blurred onto the background. 
+\item Occular parallax~\cite{Konrad:2019:OcularParallax}: Refers to the view-dependent occlusion and disocclusion effects seen for the different pupil positions. 
+\item Depth cues due to motion: There are multiple depth cues we infer from our own motion, the motion of objects, or the motion of light sources: 
+\begin{itemize}
+\item Motion parallax: our motion causes different relative motion for objects at different depths against a fixed background.
+\item Kinetic depth effect: Sometimes, we can extrapolate the geometry of an object by observing its shadow or projection provided the three-dimensional object is moving. 
+\item Depth from motion: We can estimate the distance to an object if it moves relative to us. 
+\end{itemize}
+\item Pictorial depth cues: These are depth cues we develop and use from our understanding of our world, e.g., familiar size, relative size, aerial perspective, ligting and shading. 
+\end{itemize}
 
 \section{Beyond 2D Displays}
 \label{sec:background:beyond_2d_displays}
@@ -82,12 +108,12 @@ Here’s a brief description of each approach:
 These displays often resemble the form-factor of traditional computer monitors and present virtual scene with 3D depth cues by presenting each eye with viewpoint-dependent imagery~\cite{geng2013three,holliman2011three}. 
 Typically, these displays present only binocular cues. 
 These displays sometimes time-multiplex the imagery between the two eyes in synchronization with shutter-glasses. 
-Instead of using shutter-glasses, other techniques have been developed that try to re-create the lightfield of the target 3D scene either by using stacks of transparent displays or other novel optical and mechanical configurations~\cite{Wetzstein2012,Jones2007Rendering}. 
+Instead of using shutter-glasses, other techniques have been developed that try to re-create the light field of the target 3D scene either by using stacks of transparent displays or other novel optical and mechanical configurations~\cite{Wetzstein2012,Jones2007Rendering}. 
 With respect to our goal to seamlessly combine the physical and digital worlds, this approach’s main limitation is that the imagery is confined to a local volume or field-of-view.
 
 \subsection{Shader Lamps}
 \label{sec:background:shader_lamps}
-These systems projectors to display virtual worlds onto physical surfaces such as walls, tables, etc~\cite{Bimber:2008,raskar1998office,jones2013illumiroom}. 
+These systems employ projectors to display virtual worlds onto physical surfaces such as walls, tables, etc~\cite{Bimber:2008,raskar1998office,jones2013illumiroom}. 
 Multiple cameras are used to track the physical surfaces and user interactions. 
 Disadvantages with these systems include 
 (1) lack of monocular depth cues, 
@@ -95,8 +121,9 @@ Disadvantages with these systems include
 (3) ambient lighting of these specialized rooms needs to be controlled carefully.
 
 \subsection{Head-Mounted Displays}
-These are compact and lightweight devices that can be worn on the head and present imagery to each eye. 
-These displays are the most promising direction for Augmented Reality because the imagery shown in these displays need not be confined in volume or to any real-world surface. 
+These are head-worn devices that present imagery to each eye. 
+These systems can also be made completely self-contained where the head-worn display even performs tracking and 3D reconstruction of the environment with only on-unit cameras and sensors, e.g., HoloLens\footnote{URL: \href{https://www.microsoft.com/en-us/hololens}{https://www.microsoft.com/en-us/hololens}}, Oculus\footnote{URL: \href{https://www.oculus.com/quest/}{https://www.oculus.com/quest/}}.
+Due to their potential to be lightweight self-contained units that can present wide field-of-view imagery, I consider head mounted displays (HMDs) to be the most promising direction for Augmented Reality. 
 However, there are a number of challenges and approaches for Head-Mounted Displays, which are covered in the remainder of this chapter.
 
 \section{Head-Mounted Displays}
@@ -105,8 +132,7 @@ We briefly discuss each category before focussing on just Augmented Reality disp
 
 \subsection{Virtual Reality Displays}
 \label{sec:background:vr_displays}
-In Virtual Reality, the user is immersed in a completely synthetic environment and is a useful modality in some scenarios, e.g., immersive movies, immersive training for unusual scenarios, or even computer games. 
-While useful in specific scenarios, interaction with the real-world is often unavoidable. 
+\emph{Virtual reality} (VR), which immerses the user in a completely synthetic environment, is a useful modality in some scenarios, e.g., immersive movies, immersive training for unusual scenarios, or even computer games. While useful in specific scenarios, in VR, interaction with the real-world is generally unavailable. 
 Hence, it is unlikely that users would be willing to be completely cut-off from the real-world for extended periods of use. 
 Therefore, it is difficult to imagine VR as the next productivity tool or computing platform.
 
@@ -123,7 +149,7 @@ In other words, for a video see-through AR display to recreate the same experien
 
 \subsubsection{Optical see-through AR displays}
 \label{sec:background:ost_displays}
-Optical see-through AR displays optically insert virtual imagery into the user’s view of the realworld. 
+Optical see-through AR displays optically insert virtual imagery into the user’s view of the real world. 
 Of all the display technologies that seek to integrate the real-world and the virtual world, only optical see-through AR displays propose to do in a portable manner and with minimum encumbrance to the real-world view.
 
 \subsection{Similarities and Differences between Virtual Reality and Augmented Reality}
@@ -133,50 +159,64 @@ Augmented Reality and Virtual Reality are similar technologies in these respects
 However, there are also differences in the enabling technologies:
 
 \begin{enumerate}
-    \item The additional need for an occlusion mask for AR displays to depict opaque virtual objects
-    \item Since a VR display completely blocks out the real world, the user’s own body can not be seen naturally. It would be necessary to 3D reconstruct the user’s body and display it within the virtual scene in real-time.
+    \item AR displays require the addition of an occlusion mask to depict opaque virtual objects. 
+    \item Since a VR display completely blocks out the real world, the user’s own body cannot be seen naturally. For the user to see their body within a VR HMD, it would be necessary to 3D reconstruct the user’s body and display it within the virtual scene in real-time.
     \item For spatially registering virtual objects to the real world, it is often necessary to 3D reconstruct the real-world in real-time.
-    \item More stringent design requirements for AR displays, e.g., AR displays should not encumber the view of the real-world (can not have on-axis components that distort or block the real-world), need lower display latency for virtual objects to appear registered to the real-world, display needs to support a wider range of brightness levels, etc. 
+    \item Design requirements for AR displays are more stringent. AR displays should not encumber the view of the real-world (cannot have on-axis components that distort or block the real-world), need lower display latency for virtual objects to appear registered to the real-world, and need to support a wider range of brightness levels. 
 \end{enumerate}
-For a in-depth discussion on video see-through vs. optical see-through AR displays, please refer to \cite{Rolland2000,rolland1995comparison}. 
+For a in-depth discussion on video see-through vs. optical see-through AR displays, please refer to \citet{Rolland2000} and \citet{rolland1995comparison}. 
 
-\section{Requirements for Augmented Reality Displays}
+\section{Requirements for Optical See-Through Augmented Reality Displays}
 \label{sec:background:requirements_ar_displays}
 The below requirements are arranged approximately in the descending order of subjective importance of the author.
 
 \begin{enumerate}
-    \item \textbf{Compact form-factor:} Future AR headsets may consist of the display unit, multiple sensors (head and eye tracking, cameras for 3D reconstructing the environment, inertial measurement units (IMU)), computing units (CPU and GPU), communication units, and a battery. Despite integrating all these components, it is important that these devices are lightweight so that the users can wear these devices for long hours. \cite{yan2018effects} recommend that VR headsets should be designed with uniform weight distribution and aim to keep the weight within 300 g.
-    \item \textbf{Wide Eyebox:} Eyebox refers to the range of pupil positions from where the virtual image presented by the AR display can be seen. The eyebox is the same as the exit-pupil of the display. Many display technologies and prototypes have been demonstrated which have beautiful imagery but with narrow eyeboxes~\cite{Maimone2017Holographic,westheimer1966maxwellian}. For such displays, eyebox replication techniques are quite useful~\cite{Jang2017Retinal}. 
-    \item \textbf{Wide Field of view:} The human visual system has a monocular field-of-view of about 120 degrees and a binocular field of view of about 210 degrees. To effectively integrate the real and digital worlds, AR displays should aim to present wide field-of-view imagery.
-    \item \textbf{High Resolution:} The human visual system is capable of viewing resolution as high as 60 cycles-per-degree. However, the human visual system has such a high resolution only for a narrow region on the retina called the fovea. Beyond this region, the resolution drops drastically and is very low in the peripheral field-of-view. This non-uniform resolution across the field-of-view provides an opportunity to provide high-resolution imagery without having to build very high-resolution display panels but poses a challenge to dynamically change the display as the eye looks in different directions.
+    \item \textbf{Compact form-factor:} Future AR headsets may consist of the display unit, multiple sensors (head and eye tracking, cameras for 3D reconstructing the environment, inertial measurement units (IMU)), computing units (CPU and GPU), communication units, and a battery. Despite integrating all these components, it is important that these devices are lightweight so that the users can wear these devices for long hours. Previous work \cite{yan2018effects} recommends that VR headsets should be designed with uniform weight distribution and aim to keep the weight within 300 g.
+    \item \textbf{Wide eyebox:} Eyebox refers to the range of pupil positions from where the virtual image presented by the AR display can be seen. The eyebox is the same as the exit-pupil of the display. Many display technologies and prototypes have been demonstrated which have beautiful imagery but with narrow eyeboxes~\cite{Maimone2017Holographic,westheimer1966maxwellian}. For such displays, eyebox replication techniques may be useful.~\cite{Jang2017Retinal}. 
+    \item \textbf{Wide field of view:} The human visual system has a monocular field-of-view of about 120 degrees and a binocular field of view of about 210 degrees. To effectively integrate the real and digital worlds, AR displays should aim to present wide field-of-view imagery.
+    \item \textbf{High resolution:} The human visual system is capable of viewing resolution as high as 60 cycles-per-degree. However, the human visual system has such a high resolution only for a narrow region on the retina called the fovea. Beyond this region, the resolution drops drastically and is very low in the peripheral field-of-view. This non-uniform resolution across the field-of-view provides an opportunity to provide high-resolution imagery without having to build very high-resolution display panels but poses a challenge to dynamically change the display as the eye looks in different directions.
     \item \textbf{Depth cues:} AR displays should provide depth cues similar to that available in the real world. The various depth cues that the human visual system uses are discussed in Sec.~\ref{sec:background:depth_cues}. 
-    \item \textbf{Low Latency:} AR displays need to respond fast to the user’s head and eye movements by updating the imagery being displayed. It is estimated that even 10 milliseconds delay between head motion and display update can result in 5 centimeters of error for a virtual object situated at 2 meters away. See Appendix~\ref{sec:appendix:registration_errors_latency} for the calculation behind these numbers.
+    \item \textbf{Low latency:} AR displays need to respond fast to the user’s head and eye movements by updating the imagery being displayed. It can be shown that even 10 milliseconds delay between head motion and display update can result in 5 centimeters of error for a virtual object situated at 2 meters away. Below is a brief derivation for 5 centimeters error for 10 milliseconds latency:
+ 
+Suppose $\omega_{\text{head}}$ denotes the head rotation speed in degrees-per-seconds and $t_{\text{latency}}$ denotes the latency of the display system (i.e., the time between the tracking information used for rendering and the display of the currently rendered image), then the error of the currently displayed frame is:
+\begin{equation}
+    \theta_{\text{error}} = \omega_{\text{head}} \ast t_{\text{latency}}.
+\end{equation}
+
+For a virtual object that is displayed at distance $d_{\text{object}}$ away, the lateral error is given by:
+\begin{equation}
+    d_{\text{error}} = \tan(\theta_{\text{error}}) \ast d_{\text{object}}.
+\end{equation}
+
+Suppose $\omega_{\text{head}} = 150$ degrees-per-second and $t_{\text{latency}} = 10$ milliseconds, then $\theta_{\text{error}}=1.5$ degrees, and if $d_{\text{object}}=2$ meters, then $d_{\text{error}}=5.24$ centimeters.
+
+
 \end{enumerate}
-A more detailed description of Augmented Reality and its requirements are covered by these review papers: \cite{azuma2001recent,carmigniani2011augmented}. 
+A more detailed description of Augmented Reality and its requirements are covered by these review papers: \citet{azuma2001recent} and \citet{carmigniani2011augmented}. 
 
 \section{Overview of previous work for depth cues in AR displays}
 \label{sec:background:previous_work_ar}
-Current commercially-available AR displays offer impressive capabilities, but they typically do not support important monocular depth cues such as accommodation or occlusion, resulting in a transparent image overlaid onto the real-world at a fixed depth. 
+Current commercially-available AR displays offer impressive capabilities, but they typically do not support important monocular depth cues such as accommodation or mutual occlusion, resulting in a transparent image overlaid onto the real-world at a fixed depth. 
 To realize the vision of Augmented Reality, providing a seamless and perceptually realistic experience requires displays capable of presenting photorealistic imagery, and especially, perceptually realistic depth cues, resulting in virtual imagery being presented at any depth and of any opacity. 
 Previous research prototypes fall short by presenting occlusion only for a fixed depth, and by presenting accommodation and defocus-blur only for a narrow depth-range, or with poor depth or spatial resolution. 
 We briefly discuss major themes in previous work for addressing the lack of accommodation and depth-dependent occlusion. 
 Later, in each technical chapter (Chapter \ref{chapter:volumetric_ned} and \ref{chapter:varifocal_occlusion_ned}), a detailed review of previous work is presented in context for the technology presented in that chapter.
 
-\subsection{Accommodation}
+\subsection{Accommodation and defocus-blur}
 
 Previous AR displays that propose technologies to provide accommodation are broadly classified, and their limitations are mentioned:
 
 \begin{enumerate}
-    \item \emph{Varifocal Displays:} \cite{Dunn2017Wide,Aksit2017Near} Provides synthetic focus cues, requires to track accommodation-state of the eye, and has latency in moving the in-focus plane.
-    \item \emph{Multifocal Displays:} \cite{Akeley2004,Narain2015optimal} Few focal planes which leads to partly synthetic focal cues and reduced spatial resolution for content in-between the few focal planes.
-    \item \emph{Light-field Displays:} \cite{Maimone2014Pinlight} Poor spatial resolution, frame-rates, and narrow depth-range. 
-    \item \emph{Holographic Displays:} \cite{Maimone2017Holographic} Very small eyebox, narrow depth-range.
+    \item \emph{Varifocal Displays} (e.g.,~\citet{Konrad2016Novel,Padmanaban2016Optimizing,Dunn2017Wide,Aksit2017Near}): Provides synthetic defocus-blur cues, requires to track accommodation-state of the eye, and has latency in moving the in-focus plane.
+    \item \emph{Multifocal Displays} (e.g.,~\citet{Akeley2004,Narain2015optimal}): Few focal planes which leads to partly synthetic focal cues and reduced spatial resolution for content in-between the few focal planes.
+    \item \emph{Light-field Displays} (e.g.,~\citet{Lanman2013near,Maimone2014Pinlight,Huang2015Light}): Poor spatial resolution and narrow depth-range. 
+    \item \emph{Holographic Displays} (e.g.,~\citet{Maimone2017Holographic,Shi2017Near}): Complex hardware, high computational costs, and hard trade-offs between eyebox, field-of-view, and depth-range. 
 \end{enumerate}
 
 \subsection{Occlusion}
-
-\emph{Fixed-focus occlusion displays} \cite{Kiyokawa2000,Kiyokawa2001,Kiyokawa2003} can preserve a high-quality of the see-through view, but present the occlusion mask at a fixed distance. 
-
-\emph{Light-field occlusion displays} \cite{maimone2013general} attempts to provide depth-dependent occlusion by presenting a 4D light field occlusion mask using stacked LCD layers placed out of focus in front of the eye, where the occluding patterns are calculated by light field factorization algorithms \cite{Lanman2010,Wetzstein2012}. 
-While theoretically capable of presenting depth-dependent occlusion cues, this approach’s use of LCD panels causes severe diffraction and deterioration of the real-world’s view. 
+Previous AR displays that propose technologies to provide occlusion support are broadly classified, and their limitations are mentioned:
+\begin{enumerate}
+    \item \emph{Fixed-focus occlusion displays} (e.g.,~\citet{Kiyokawa2000,Kiyokawa2001,Kiyokawa2003}): Preserve a high-quality of the see-through view, but present the occlusion mask at a fixed distance. 
+    \item \emph{Light-field occlusion displays} (e.g.,~\citet{maimone2013computational}): Attempt to provide depth-dependent occlusion by presenting a 4D light field occlusion mask using stacked \emph{liquid crystal display} (LCD) layers placed out of focus in front of the eye, where the occluding patterns are calculated by light field factorization algorithms \cite{Lanman2010,Wetzstein2012}. While theoretically capable of presenting depth-dependent occlusion cues, this approach’s use of LCD panels causes severe diffraction and deterioration of the real-world’s view. 
+\end{enumerate}
 
