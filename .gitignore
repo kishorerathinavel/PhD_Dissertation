@@ -3,6 +3,7 @@
 auto/
 auxiliary/
 examples/
+comments/
 *.code-workspace
 *.bak
 *.log
