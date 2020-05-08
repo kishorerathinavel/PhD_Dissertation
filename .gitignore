@@ -8,6 +8,4 @@ examples/
 *.log
 *.ini
 *.mat
-
-
-
+__latexindent_temp.tex
